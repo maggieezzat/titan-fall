@@ -1,0 +1,1160 @@
+fileFormatVersion: 2
+guid: 4513a448934fa6742b7b9778a4c98846
+ModelImporter:
+  serializedVersion: 26
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0_pile1_lowMat
+    second: {fileID: 2100000, guid: 110b28e3aabe1a84b9ca1f7ce8f24ac0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0_pile2_lowMat
+    second: {fileID: 2100000, guid: 1c21b6f9ea4ea0846b378e1783cf14bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0_pile3_lowMat
+    second: {fileID: 2100000, guid: abac73e6a689c7645acd7703800925e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0_pile4_lowMat
+    second: {fileID: 2100000, guid: e3f50abdc21308b4080c3126b11dbb00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0_pile5_lowMat
+    second: {fileID: 2100000, guid: 2babee0ac2d63b040928bc6166ee563a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0_pile_g_lowMat
+    second: {fileID: 2100000, guid: 2ce3c0f6b2b0b744697209c080e147bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0_sph_lowMat
+    second: {fileID: 2100000, guid: 3cf8ebd4e460dab49ba0db90a3777694, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_A2_lowMat
+    second: {fileID: 2100000, guid: 05f18f4e819ca284b8e57c016b2ea407, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_A_lowMat
+    second: {fileID: 2100000, guid: f21a02527a45c4743b0c15ce9ea51e11, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_H2_lowMat
+    second: {fileID: 2100000, guid: 7b438b5e7c369474e9e080773bcf2391, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_H_lowMat
+    second: {fileID: 2100000, guid: 3349dc3d73d715343a0408ae78673fe1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_S2_lowMat
+    second: {fileID: 2100000, guid: 7fbf3c23b20e39741af3c40594ac824d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_S_f2_lowMat
+    second: {fileID: 2100000, guid: cc02e98075828c84ca79b85121b39023, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_S_f_lowMat
+    second: {fileID: 2100000, guid: e05ee083f6ecd494384034366158d46a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_S_lowMat
+    second: {fileID: 2100000, guid: 1f48e4d548310264d985b46d3249fdc8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_cyl2_lowMat
+    second: {fileID: 2100000, guid: 252957faf3983cb4d9ecc02e4200ff16, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_cyl_lowMat
+    second: {fileID: 2100000, guid: 57d444941d8c63f48a7a4683664f58df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_b2_lowMat
+    second: {fileID: 2100000, guid: 87c34d3ade4a3f1479c525b625324a7b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_b_lowMat
+    second: {fileID: 2100000, guid: be7afec276490f04288191c2f30adaf1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_b_o2_lowMat
+    second: {fileID: 2100000, guid: e770e4231c2da9946ac397607334ac63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_b_o_lowMat
+    second: {fileID: 2100000, guid: e543e22e113238f4fa26488ed56ff5a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_bez2_lowMat
+    second: {fileID: 2100000, guid: 523e463df83524c4c9b9cf58b3bfa7d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_bez_lowMat
+    second: {fileID: 2100000, guid: bbc3cb7452c5fdc47bc80856a72c8cb4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_bez_o2_lowMat
+    second: {fileID: 2100000, guid: b8259cf1b30bbe14cb569694d5a55779, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_bez_o_lowMat
+    second: {fileID: 2100000, guid: 0800c3c6caceb7a418ab1da5aa2a3bad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_m2_lowMat
+    second: {fileID: 2100000, guid: e86c033b23e933b489b80ae7ab61b293, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_m_lowMat
+    second: {fileID: 2100000, guid: 9393d2ccb4ddcf14180b186f4f8aa067, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_m_o2_lowMat
+    second: {fileID: 2100000, guid: 571ce94dc0f36ce47bc02f57101c1883, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_m_o_lowMat
+    second: {fileID: 2100000, guid: 4637cb2bb20fea841a42524a333675c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_s2_lowMat
+    second: {fileID: 2100000, guid: 2edca674a4b2c114a849881edd958f20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_s_lowMat
+    second: {fileID: 2100000, guid: 037e99afdc1c498448101d6d7003c747, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_s_o2_lowMat
+    second: {fileID: 2100000, guid: 376a5b20c7d79c5449623f4489380da8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_s_o_lowMat
+    second: {fileID: 2100000, guid: aa4dd3241ee1b3f4c8604d1ddbd76f3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_u2_lowMat
+    second: {fileID: 2100000, guid: e1770bb96f15ca14e81eece26c958352, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_u_lowMat
+    second: {fileID: 2100000, guid: 97e9a7e29d8e4224ebf8c63344d06c48, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_u_o2_lowMat
+    second: {fileID: 2100000, guid: 23f62fff69b00f64f81c0a7e128584b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_f_u_o_lowMat
+    second: {fileID: 2100000, guid: 0969839b0b56a3849a9172f4b3b2bf93, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_pim2_lowMat
+    second: {fileID: 2100000, guid: de646ae14dfda534eaa66033c0afabd9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_pim_lowMat
+    second: {fileID: 2100000, guid: 1e79663ea682340488a39720aaef8918, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_sph2_lowMat
+    second: {fileID: 2100000, guid: e1fbc5a0b0773ae45a06eb49d4775187, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1_sph_lowMat
+    second: {fileID: 2100000, guid: 015f42e2a234a444fbd1b73224a69f2a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_F_lowMat
+    second: {fileID: 2100000, guid: 2f5c907883f61224fb3b40974f4728e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_LF_lowMat
+    second: {fileID: 2100000, guid: f204cf3b8b4ce664eafda9c4bfc55c1e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_Lbon_lowMat
+    second: {fileID: 2100000, guid: be82e6d66bfb12e4fb2cee1a7b17e5ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_Lclips_lowMat
+    second: {fileID: 2100000, guid: 8d0e29448b9a49442b167231e590f2b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_Lcyl_lowMat
+    second: {fileID: 2100000, guid: face523ebe1faed4f8e4c647e3590baf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_Lfab_lowMat
+    second: {fileID: 2100000, guid: a6ddea27c01e8f04d8a8c406f7b89039, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_Lfoot_lowMat
+    second: {fileID: 2100000, guid: 4fbb71cab8b59de47abd0df417c08a57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_Lhip_lowMat
+    second: {fileID: 2100000, guid: 4ef55a3c9e37b4740951bcce0371808a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_Lpil_lowMat
+    second: {fileID: 2100000, guid: 4835de3a84fe6104f8110fce46e220d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_bon_lowMat
+    second: {fileID: 2100000, guid: 82b09c50a5c494842915f787be73bcd7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_clips_lowMat
+    second: {fileID: 2100000, guid: a3f169d9bc173ec41aa9b30e65071cef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_cyl_lowMat
+    second: {fileID: 2100000, guid: adfc87b736cea4c418ede88d923aeb96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_fab_lowMat
+    second: {fileID: 2100000, guid: 5150901cf9c81f94ba2d8e203afdfacf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_foot_lowMat
+    second: {fileID: 2100000, guid: 0c281e43f8e2b4848b59ec71a6e9a152, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_hip_lowMat
+    second: {fileID: 2100000, guid: 0b1e9e4ff84cb2742ace7f7df1161585, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_pil_lowMat
+    second: {fileID: 2100000, guid: 4362f0b4f0ee1904ca7872197c917c69, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2_sli_lowMat
+    second: {fileID: 2100000, guid: 0eb28dcdbe9b05441ad59c24254b4add, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 3_as_lowMat
+    second: {fileID: 2100000, guid: e8b884a78f629604aa6ed73149341455, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 3_belts_lowMat
+    second: {fileID: 2100000, guid: 50e83d3cfdc182e4daa6c665c759da81, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 3_cab_lowMat
+    second: {fileID: 2100000, guid: c0f6fc744ba08bc48b487f7b581f0038, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 3_cyl_lowMat
+    second: {fileID: 2100000, guid: 0a55e850ed648f94789892342702403e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 3_ro_lowMat
+    second: {fileID: 2100000, guid: 22a04b2f6f46d194b8e8aa3b013e07f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 3_sh_lowMat
+    second: {fileID: 2100000, guid: e61362aca84c7cb4a85b38a2f9429bc8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 3_taz_lowMat
+    second: {fileID: 2100000, guid: ce5889bc00d8067419fdff7a553ba573, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 4_clevis_lowMat
+    second: {fileID: 2100000, guid: f0c5e2665a390f744894d74851c9b045, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 4_collar_lowMat
+    second: {fileID: 2100000, guid: 45790082f195d5b4d9fd99931963da5a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 4_dow_lowMat
+    second: {fileID: 2100000, guid: 8f6c6fe0b0655754888945c6e61816fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 4_t_lowMat
+    second: {fileID: 2100000, guid: 85c394e172fb9d5419d177d8c5c59309, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_caab2_lowMat
+    second: {fileID: 2100000, guid: b2d8918b5244e124a94959af237191eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_caab_lowMat
+    second: {fileID: 2100000, guid: 3f994a8882633ad428999e86bb1884c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_cab_phot_lowMat
+    second: {fileID: 2100000, guid: e1cd9a5bdc1db8b459928f50b45b47a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_cab_ra_lowMat
+    second: {fileID: 2100000, guid: a0f7b28bc947c994b9b032ddb8b3599f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_cks_lowMat
+    second: {fileID: 2100000, guid: 0ab6c23164028ec4ba45eeda2072e705, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_ey_lowMat
+    second: {fileID: 2100000, guid: d1755410286e69349961a569814e1bc2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_hed_lowMat
+    second: {fileID: 2100000, guid: b5b375176144d904ab0a43b79eb9ba2a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_nape_lowMat
+    second: {fileID: 2100000, guid: 6ba7c0a79dc488447b2388e3cf52db46, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_neck_lowMat
+    second: {fileID: 2100000, guid: 257ca490b80a35f418a4a97bb1a62f48, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_nose_lowMat
+    second: {fileID: 2100000, guid: 5b1d33d53c0bd134b80769fcfe6320b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_phot1_lowMat
+    second: {fileID: 2100000, guid: 6e9218e3685833a4897b03c76088f103, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_phot_lowMat
+    second: {fileID: 2100000, guid: bf2ee64d0e4e5c74cb079ed86a07bea3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_pi2_lowMat
+    second: {fileID: 2100000, guid: 00ec57af45e7a3f45b713538c94f2044, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_pi_lowMat
+    second: {fileID: 2100000, guid: f3b3dd585a13e0a4a840bbe8b40474ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_ra_lowMat
+    second: {fileID: 2100000, guid: 1367794af3ee9584db6134baf23f4163, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_sm1_lowMat
+    second: {fileID: 2100000, guid: 951fa1dda336513419b0d460ef7dc3c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_sm2_lowMat
+    second: {fileID: 2100000, guid: 92ed6aac65f33a6488d415943f5a3797, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 5_syls_lowMat
+    second: {fileID: 2100000, guid: 3e130342a0e97334e9cc0be490ba702d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_SG_DD_lowMat
+    second: {fileID: 2100000, guid: e4ee151c28a682540bdcf07241024b50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_SG_U_lowMat
+    second: {fileID: 2100000, guid: 9b9cf55339228ad48b39bfc4b1accba9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_SG_lowMat
+    second: {fileID: 2100000, guid: c1733d588d872c046b92460dcdf27cfa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_baz_lowMat
+    second: {fileID: 2100000, guid: c102843bae86c1f498929ec775d6ec25, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_bg2_lowMat
+    second: {fileID: 2100000, guid: 98761708f1cf4524d921371a349ddf96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_bg_c2_lowMat
+    second: {fileID: 2100000, guid: 2c4a894f45c2834419f752caf1c235c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_bg_c_lowMat
+    second: {fileID: 2100000, guid: 797e1a3fcbc05a84fa146845ba24cc27, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_bg_lowMat
+    second: {fileID: 2100000, guid: 4901e996ef97c6b428de16d7a4601d1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_bgb2_lowMat
+    second: {fileID: 2100000, guid: 6fe79ec4e2e793c4eae9f0d0876a3397, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_bgb_lowMat
+    second: {fileID: 2100000, guid: 66b2ba2adf1939f4eac5669009bbccc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_bul2_lowMat
+    second: {fileID: 2100000, guid: c749d82b97bba3447af46667867aef38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_bul3_lowMat
+    second: {fileID: 2100000, guid: f101ef25d21a00a488bffef368eb7d4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_bul4_lowMat
+    second: {fileID: 2100000, guid: 2a2b043dddc59bb458ada4e59bb91baf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_bul5_lowMat
+    second: {fileID: 2100000, guid: ab0abce8c510aeb428b89dd00ea09299, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_bul6_lowMat
+    second: {fileID: 2100000, guid: d24e6d76b52aac14ebdcb2c52368902a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_bul7_lowMat
+    second: {fileID: 2100000, guid: 10c6e7ff7701f9b4ab9f985297a9939b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_bul_lowMat
+    second: {fileID: 2100000, guid: 6c1e18a28d7c42e429a650f38f076106, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_lb_lowMat
+    second: {fileID: 2100000, guid: 1ce8af85bceb2de4fa36f22fa48342d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_lbc_lowMat
+    second: {fileID: 2100000, guid: ac04aedf95f81d54f8d794c5c24bf7b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_lbg_lowMat
+    second: {fileID: 2100000, guid: f053602b084e7dc40b4d5767c2247eff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_mag2_lowMat
+    second: {fileID: 2100000, guid: c292a54f82d82e548b6351693ec582c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_mag3_lowMat
+    second: {fileID: 2100000, guid: 62717ed61723af24eaa11e5d8b9da562, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_mag_lowMat
+    second: {fileID: 2100000, guid: dbdf01ae5b944284a89f49e1185882b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_sb_lowMat
+    second: {fileID: 2100000, guid: 900d103786ff32f4eb8e2dfd619d82d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_sbb_lowMat
+    second: {fileID: 2100000, guid: b7f8c200a8239e846b3bab9456cf2137, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_sho_lowMat
+    second: {fileID: 2100000, guid: a0e56bffed660ae4080cb7f38e266ecb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_spn1_lowMat
+    second: {fileID: 2100000, guid: 038a559bce7c7a74d813de3305386c03, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_spn2_lowMat
+    second: {fileID: 2100000, guid: 90c3d39f15df4f9489a798ebb948e550, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_spn3_lowMat
+    second: {fileID: 2100000, guid: 1c16bed9ef0833e4eafc993c9c624516, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_spn4_lowMat
+    second: {fileID: 2100000, guid: afd0962f861ac3446b57a0b3a01dec74, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 9_spn_lowMat
+    second: {fileID: 2100000, guid: 987f15b97efea2149a373ac671723541, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: a_lowMat
+    second: {fileID: 2100000, guid: 564face390632554396f030e4d7fe4fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ac1_lowMat
+    second: {fileID: 2100000, guid: f33a891512c5fbb4796d08b325babdd3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ac2_lowMat
+    second: {fileID: 2100000, guid: 8b1a60cb2c550774aa916eec9c31c51c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aj1_lowMat
+    second: {fileID: 2100000, guid: 43c2de91bdaf81f4f8e6b508f52edba5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aj2_lowMat
+    second: {fileID: 2100000, guid: eeb297a25b0339c4d8f240823ed65dec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aj3_lowMat
+    second: {fileID: 2100000, guid: d8a8a9604773caa4c9b6f949cdc089c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aj4_lowMat
+    second: {fileID: 2100000, guid: a737e63ba32ce0d4c8a083bd1d63f1d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ar1_lowMat
+    second: {fileID: 2100000, guid: 6345d91fd1ce34d4a80692f24519995c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ar2_lowMat
+    second: {fileID: 2100000, guid: 402968c639c9b394888246f1e4a2a52d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cyl2_lowMat
+    second: {fileID: 2100000, guid: 5b1c5f0c34444224d8b384a5193f093b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cyl_lowMat
+    second: {fileID: 2100000, guid: 2f33ad7d8e923114898667921a9b982c, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.2
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Ethan(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanBody
+      parentName: Ethan(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanGlasses
+      parentName: Ethan(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanSkeleton
+      parentName: Ethan(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanHips
+      parentName: EthanSkeleton
+      position: {x: 0.000008432452, y: 15.574213, z: -0.66051173}
+      rotation: {x: -0.49999934, y: 0.49999934, z: -0.50000066, w: 0.50000066}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanSpine
+      parentName: EthanHips
+      position: {x: -0.89966065, y: 0.0023625947, z: -0.0000005212281}
+      rotation: {x: -0.0000020492112, y: 0.0000006409474, z: 0.043222737, w: 0.99906546}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftUpLeg
+      parentName: EthanSpine
+      position: {x: 0.8960984, y: -0.080048785, z: -1.4872563}
+      rotation: {x: 0.009854246, y: 0.9996559, z: -0.0031334888, w: 0.024108019}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftLeg
+      parentName: EthanLeftUpLeg
+      position: {x: -7.0595703, y: -0.9495904, z: 0.6923961}
+      rotation: {x: 0, y: 0, z: 0.16876774, w: 0.98565584}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftFoot
+      parentName: EthanLeftLeg
+      position: {x: -5.655578, y: 3.4375823, z: 0.6207768}
+      rotation: {x: -0.08430487, y: 0.035964992, z: -0.13311164, w: 0.9868539}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftToe1
+      parentName: EthanLeftFoot
+      position: {x: -1.7103473, y: -2.2011425, z: -0.00001339617}
+      rotation: {x: 7.3885096e-18, y: -8.589314e-17, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftToe2
+      parentName: EthanLeftToe1
+      position: {x: 1.6348534, y: -0.00000019202815, z: -0.00000586336}
+      rotation: {x: 1, y: -5.6351963e-23, z: 1.110223e-16, w: -0.00000068451953}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightUpLeg
+      parentName: EthanSpine
+      position: {x: 0.8960906, y: -0.080056466, z: 1.4872606}
+      rotation: {x: 0.0098541705, y: 0.9996559, z: 0.0031362663, w: -0.024108129}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightLeg
+      parentName: EthanRightUpLeg
+      position: {x: -7.059566, y: -0.9495902, z: -0.692437}
+      rotation: {x: 0, y: 0, z: 0.16876684, w: 0.985656}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightFoot
+      parentName: EthanRightLeg
+      position: {x: -5.6555805, y: 3.4375708, z: -0.6208133}
+      rotation: {x: 0.08430424, y: -0.03596484, z: -0.13311061, w: 0.9868541}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightToe1
+      parentName: EthanRightFoot
+      position: {x: -1.7103457, y: -2.2011437, z: 0.0000012406458}
+      rotation: {x: -1.3899192e-17, y: 3.352535e-17, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightToe2
+      parentName: EthanRightToe1
+      position: {x: 1.6348529, y: 0.0000009897, z: 0.0000038437565}
+      rotation: {x: -1.6724651e-16, y: 4.9321447e-33, z: -2.949027e-17, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanSpine1
+      parentName: EthanSpine
+      position: {x: -2.9335663, y: 0.5145418, z: -0.0000065647264}
+      rotation: {x: -1.0587912e-22, y: -7.34684e-40, z: 6.938894e-18, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanSpine2
+      parentName: EthanSpine1
+      position: {x: -2.539108, y: 0.44563475, z: -0.000005661616}
+      rotation: {x: -1.0587912e-22, y: -7.34684e-40, z: 6.938894e-18, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanNeck
+      parentName: EthanSpine2
+      position: {x: -2.5395725, y: 0.44491458, z: -0.0000056631998}
+      rotation: {x: -7.318979e-17, y: 1.4170987e-17, z: -0.13052638, w: 0.9914448}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanHead
+      parentName: EthanNeck
+      position: {x: -1.8129998, y: -0.8224423, z: 0.0000011795033}
+      rotation: {x: 1.3487235e-18, y: -1.7102821e-17, z: 0.087552026, w: 0.99616}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanHead1
+      parentName: EthanHead
+      position: {x: -3.4950535, y: 0.000009014567, z: 0.0000018863266}
+      rotation: {x: 1.0587912e-22, y: 4.646893e-23, z: -2.7755576e-17, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftCorner
+      parentName: EthanHead1
+      position: {x: 2.9879885, y: -1.3539398, z: -0.4893318}
+      rotation: {x: -0.5, y: 0.5, z: 0.5000007, w: -0.49999928}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftUpperLip
+      parentName: EthanHead1
+      position: {x: 2.8549554, y: -1.5022941, z: -0.28757274}
+      rotation: {x: -0.5, y: 0.5, z: 0.5000007, w: -0.49999928}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightCorner
+      parentName: EthanHead1
+      position: {x: 2.9879863, y: -1.3539407, z: 0.4862804}
+      rotation: {x: -0.5, y: 0.5, z: 0.5000007, w: -0.49999928}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightUpperLip
+      parentName: EthanHead1
+      position: {x: 2.8549542, y: -1.5022947, z: 0.284525}
+      rotation: {x: -0.5, y: 0.5, z: 0.5000007, w: -0.49999928}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanUpperLip
+      parentName: EthanHead1
+      position: {x: 2.8549547, y: -1.746951, z: -0.0014931693}
+      rotation: {x: -0.5, y: 0.5, z: 0.5000007, w: -0.49999928}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanJaw
+      parentName: EthanHead
+      position: {x: -0.6481479, y: -0.5957016, z: -0.0000014305267}
+      rotation: {x: -0.49673736, y: 0.5032417, z: 0.5032421, w: -0.49673653}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftLowerLip
+      parentName: EthanJaw
+      position: {x: 0.8995256, y: -0.18762256, z: -0.283019}
+      rotation: {x: 5.54211e-23, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLowerLip
+      parentName: EthanJaw
+      position: {x: 1.1440992, y: 0.09845738, z: -0.28938332}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightLowerLip
+      parentName: EthanJaw
+      position: {x: 0.8995256, y: 0.38447514, z: -0.28301823}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftBlink
+      parentName: EthanHead
+      position: {x: -1.7165318, y: -1.449797, z: -0.47818974}
+      rotation: {x: -0.43938157, y: 0.5540251, z: 0.55402577, w: -0.4393808}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftBrow
+      parentName: EthanHead
+      position: {x: -1.997799, y: -1.6124868, z: -0.5794651}
+      rotation: {x: -0.5, y: 0.5, z: 0.5000007, w: -0.49999928}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftEye
+      parentName: EthanHead
+      position: {x: -1.6353161, y: -1.1779008, z: -0.5570363}
+      rotation: {x: -0.5, y: 0.5, z: 0.5000007, w: -0.49999928}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightBlink
+      parentName: EthanHead
+      position: {x: -1.7165343, y: -1.4497991, z: 0.67501575}
+      rotation: {x: -0.44628233, y: 0.55759704, z: 0.54723495, w: -0.43640757}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightBrow
+      parentName: EthanHead
+      position: {x: -1.9978014, y: -1.6124889, z: 0.5737404}
+      rotation: {x: -0.5, y: 0.5, z: 0.5000007, w: -0.49999928}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightEye
+      parentName: EthanHead
+      position: {x: -1.6347921, y: -1.1760619, z: 0.5569015}
+      rotation: {x: -0.5, y: 0.5, z: 0.5000007, w: -0.49999928}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftShoulder
+      parentName: EthanNeck
+      position: {x: 0.0004461538, y: -0.0012275964, z: -0.52054065}
+      rotation: {x: -0.48608947, y: -0.0722202, z: 0.8640734, w: -0.10898846}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftArm
+      parentName: EthanLeftShoulder
+      position: {x: 1.636128, y: 0.1860069, z: -1.9269328}
+      rotation: {x: 0.06292434, y: -0.29547754, z: -0.011793284, w: 0.95320225}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftForeArm
+      parentName: EthanLeftArm
+      position: {x: 1.7588884, y: -0.28243613, z: -4.5883913}
+      rotation: {x: -0.18687433, y: 0.0007973312, z: 0.14583053, w: 0.97149926}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHand
+      parentName: EthanLeftForeArm
+      position: {x: 1.4159938, y: 0.7100705, z: -2.8170896}
+      rotation: {x: -0.70413613, y: -0.061654028, z: -0.061605077, w: 0.7046956}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandIndex1
+      parentName: EthanLeftHand
+      position: {x: 0.3696497, y: 1.6088897, z: 1.0208042}
+      rotation: {x: 0.0015112518, y: -0.043594275, z: -0.043560736, w: 0.9980981}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandIndex2
+      parentName: EthanLeftHandIndex1
+      position: {x: 0.0044551017, y: 0.51758265, z: 0.20770623}
+      rotation: {x: -0.052662343, y: 0.035397545, z: -0.2640296, w: 0.9624251}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandIndex3
+      parentName: EthanLeftHandIndex2
+      position: {x: -0.2558797, y: 0.33810025, z: 0.22163044}
+      rotation: {x: -0.02921515, y: 0.08614237, z: -0.2737419, w: 0.9574922}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandIndex4
+      parentName: EthanLeftHandIndex3
+      position: {x: -0.40111205, y: 0.091747805, z: 0.1546183}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandMiddle1
+      parentName: EthanLeftHand
+      position: {x: 0.26789594, y: 1.6881055, z: 0.6330315}
+      rotation: {x: -0.044011682, y: 2.8034074e-17, z: -5.7106006e-18, w: 0.999031}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandMiddle2
+      parentName: EthanLeftHandMiddle1
+      position: {x: 0.07559011, y: 0.60291445, z: 0.23272263}
+      rotation: {x: -0.091909915, y: 0.05467633, z: -0.42002133, w: 0.90119106}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandMiddle3
+      parentName: EthanLeftHandMiddle2
+      position: {x: -0.3582039, y: 0.2876801, z: 0.26024553}
+      rotation: {x: -0.040044915, y: 0.008001845, z: -0.18298166, w: 0.9822679}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandMiddle4
+      parentName: EthanLeftHandMiddle3
+      position: {x: -0.40099832, y: 0.07076018, z: 0.2456227}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandPinky1
+      parentName: EthanLeftHand
+      position: {x: -0.13501364, y: 1.9676679, z: -0.102448255}
+      rotation: {x: -0.15040894, y: 0.08822873, z: -0.33158392, w: 0.92717046}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandPinky2
+      parentName: EthanLeftHandPinky1
+      position: {x: -0.21500519, y: 0.19245139, z: 0.18935402}
+      rotation: {x: -0.044671368, y: 0.009720898, z: -0.17979467, w: 0.9826413}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandPinky3
+      parentName: EthanLeftHandPinky2
+      position: {x: -0.31194606, y: 0.068856254, z: 0.22589014}
+      rotation: {x: -0.045708735, y: -0.0008739185, z: -0.17979562, w: 0.98264116}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandPinky4
+      parentName: EthanLeftHandPinky3
+      position: {x: -0.18926598, y: -0.058929645, z: 0.1392344}
+      rotation: {x: 8.326673e-17, y: 1.3877788e-17, z: -6.938894e-18, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandRing1
+      parentName: EthanLeftHand
+      position: {x: 0.2326963, y: 1.9417288, z: 0.16990979}
+      rotation: {x: -0.04750495, y: -0.02680468, z: -0.21266928, w: 0.9756006}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandRing2
+      parentName: EthanLeftHandRing1
+      position: {x: -0.1949376, y: 0.44337958, z: 0.27653167}
+      rotation: {x: -0.06670461, y: 0.026029166, z: -0.25883004, w: 0.9632653}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandRing3
+      parentName: EthanLeftHandRing2
+      position: {x: -0.30805117, y: 0.1560135, z: 0.23498827}
+      rotation: {x: -0.01883299, y: 0.002628695, z: -0.09988077, w: 0.9948177}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandRing4
+      parentName: EthanLeftHandRing3
+      position: {x: -0.3415188, y: 0.050199952, z: 0.2421079}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandThumb1
+      parentName: EthanLeftHand
+      position: {x: -0.09267725, y: 0.5607133, z: 0.9790668}
+      rotation: {x: 0.66034335, y: -0.2809301, z: -0.23108189, w: 0.6569825}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandThumb2
+      parentName: EthanLeftHandThumb1
+      position: {x: -0.06276755, y: 0.51031476, z: -0.2996919}
+      rotation: {x: 0.042991735, y: -0.025952656, z: -0.17635393, w: 0.98304504}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandThumb3
+      parentName: EthanLeftHandThumb2
+      position: {x: -0.20438065, y: 0.2913478, z: -0.2535473}
+      rotation: {x: 0.04783477, y: -0.015307045, z: -0.17635551, w: 0.9830444}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanLeftHandThumb4
+      parentName: EthanLeftHandThumb3
+      position: {x: -0.3321928, y: 0.1570105, z: -0.29453838}
+      rotation: {x: 2.220446e-16, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightShoulder
+      parentName: EthanNeck
+      position: {x: 0.0004454293, y: -0.001230093, z: 0.52054054}
+      rotation: {x: 0.48609108, y: 0.07221761, z: 0.86407256, w: -0.10898973}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightArm
+      parentName: EthanRightShoulder
+      position: {x: 1.6361376, y: 0.18600544, z: 1.9269224}
+      rotation: {x: -0.06292409, y: 0.2954787, z: -0.011792956, w: 0.9532019}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightForeArm
+      parentName: EthanRightArm
+      position: {x: 1.7589068, y: -0.28243798, z: 4.588384}
+      rotation: {x: 0.1868743, y: -0.00079789746, z: 0.1458294, w: 0.9714995}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHand
+      parentName: EthanRightForeArm
+      position: {x: 1.4160048, y: 0.7100638, z: 2.8170836}
+      rotation: {x: 0.70413506, y: 0.061653953, z: -0.061604813, w: 0.7046967}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandIndex1
+      parentName: EthanRightHand
+      position: {x: 0.3696563, y: 1.6088935, z: -1.0207956}
+      rotation: {x: -0.0015103403, y: 0.04359434, z: -0.04356065, w: 0.9980981}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandIndex2
+      parentName: EthanRightHandIndex1
+      position: {x: 0.0044569643, y: 0.5175845, z: -0.20770372}
+      rotation: {x: 0.05266336, y: -0.035397556, z: -0.2640311, w: 0.9624247}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandIndex3
+      parentName: EthanRightHandIndex2
+      position: {x: -0.25587884, y: 0.33809942, z: -0.22162881}
+      rotation: {x: 0.029214451, y: -0.08614219, z: -0.27374247, w: 0.9574922}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandIndex4
+      parentName: EthanRightHandIndex3
+      position: {x: -0.40111086, y: 0.09175018, z: -0.15461703}
+      rotation: {x: 0.48288566, y: 0, z: -0, w: 0.8756834}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandMiddle1
+      parentName: EthanRightHand
+      position: {x: 0.26790577, y: 1.6881089, z: -0.6330219}
+      rotation: {x: 0.044012643, y: 6.003835e-17, z: 1.01539365e-16, w: 0.999031}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandMiddle2
+      parentName: EthanRightHandMiddle1
+      position: {x: 0.07559396, y: 0.6029141, z: -0.23272008}
+      rotation: {x: 0.094235055, y: -0.05927117, z: -0.41746008, w: 0.9018502}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandMiddle3
+      parentName: EthanRightHandMiddle2
+      position: {x: -0.35820115, y: 0.2876822, z: -0.26024252}
+      rotation: {x: 0.040047344, y: -0.008001346, z: -0.18298474, w: 0.9822672}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandMiddle4
+      parentName: EthanRightHandMiddle3
+      position: {x: -0.40099964, y: 0.070762284, z: -0.24562235}
+      rotation: {x: 0.37079856, y: 0, z: -0, w: 0.9287133}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandPinky1
+      parentName: EthanRightHand
+      position: {x: -0.13500209, y: 1.9676696, z: 0.102459684}
+      rotation: {x: 0.14634132, y: -0.0853054, z: -0.3388892, w: 0.92545193}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandPinky2
+      parentName: EthanRightHandPinky1
+      position: {x: -0.21753068, y: 0.19092141, z: -0.18801479}
+      rotation: {x: 0.035175707, y: -0.014915071, z: -0.15348981, w: 0.98741126}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandPinky3
+      parentName: EthanRightHandPinky2
+      position: {x: -0.31300613, y: 0.0865033, z: -0.21822737}
+      rotation: {x: 0.04428908, y: -0.00024435105, z: -0.18078858, w: 0.9825242}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandPinky4
+      parentName: EthanRightHandPinky3
+      position: {x: -0.19492915, y: -0.048779022, z: -0.13528925}
+      rotation: {x: 0.1938353, y: 4.4878757e-17, z: 1.2351859e-17, w: 0.9810341}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandRing1
+      parentName: EthanRightHand
+      position: {x: 0.23270732, y: 1.9417292, z: -0.16989851}
+      rotation: {x: 0.06069251, y: 0.019897, z: -0.24453726, w: 0.96753407}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandRing2
+      parentName: EthanRightHandRing1
+      position: {x: -0.22523873, y: 0.42180172, z: -0.2870643}
+      rotation: {x: 0.06872708, y: -0.023836246, z: -0.2580223, w: 0.9633966}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandRing3
+      parentName: EthanRightHandRing2
+      position: {x: -0.31629944, y: 0.12867564, z: -0.2405265}
+      rotation: {x: 0.019224158, y: -0.0019391933, z: -0.09966884, w: 0.99483305}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandRing4
+      parentName: EthanRightHandRing3
+      position: {x: -0.34148747, y: 0.020974966, z: -0.2464138}
+      rotation: {x: 0.4587139, y: 0, z: -0, w: 0.888584}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandThumb1
+      parentName: EthanRightHand
+      position: {x: -0.09267432, y: 0.5607199, z: -0.97906363}
+      rotation: {x: -0.660343, y: 0.28093126, z: -0.23108025, w: 0.656983}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandThumb2
+      parentName: EthanRightHandThumb1
+      position: {x: -0.06276726, y: 0.51031303, z: 0.29969576}
+      rotation: {x: -0.04299499, y: 0.025953224, z: -0.17635447, w: 0.9830448}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandThumb3
+      parentName: EthanRightHandThumb2
+      position: {x: -0.20437767, y: 0.29134333, z: 0.25354868}
+      rotation: {x: -0.04783391, y: 0.015310023, z: -0.17635584, w: 0.9830443}
+      scale: {x: 1, y: 1, z: 1}
+    - name: EthanRightHandThumb4
+      parentName: EthanRightHandThumb3
+      position: {x: -0.33219108, y: 0.15700859, z: 0.2945426}
+      rotation: {x: -0.8654032, y: 0, z: 0, w: 0.5010762}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.2
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
