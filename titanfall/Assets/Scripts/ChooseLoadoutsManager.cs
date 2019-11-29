@@ -22,8 +22,9 @@ public class ChooseLoadoutsManager : MonoBehaviour
     public GameObject sniperRifle;
     public GameObject assaultRifle;
     public GameObject primaryWeaponsTextBox;
-    public GameObject rocketLauncher;
-    public GameObject grenadeLauncher;
+    public GameObject launcher;
+    public GameObject grenade;
+    public GameObject missile;
     public GameObject heavyWeaponsTextBox;
     public GameObject titan;
 
@@ -49,15 +50,18 @@ public class ChooseLoadoutsManager : MonoBehaviour
 
         selectedPrimaryWeapon = sniperRifle;
         primaryWeaponsText.text = sniperRifleDesc;
-        selectedHeavyWeapon = rocketLauncher;
+        selectedHeavyWeapon = missile;
         heavyWeaponsText.text = rocketLauncherDesc;
         selectedTitan = titan;
 
         titan.SetActive(false);
         assaultRifle.SetActive(false);
         sniperRifle.SetActive(true);
-        grenadeLauncher.SetActive(false);
-        rocketLauncher.SetActive(false);
+        
+        grenade.SetActive(false);
+        missile.SetActive(false);
+        launcher.SetActive(false);
+
 
         selectedPrimaryWeapon.SetActive(true);
 
@@ -77,17 +81,19 @@ public class ChooseLoadoutsManager : MonoBehaviour
 
     public void selectOnPrimary()
     {
-        // primaryWeaponsPanel.SetActive(false);
-        // titanPanel.SetActive(false);
-        // heavyWeaponsPanel.SetActive(true);
+        primaryWeaponsPanel.SetActive(false);
+        titanPanel.SetActive(false);
+        heavyWeaponsPanel.SetActive(true);
 
-        // titan.SetActive(false);
-        // assaultRifle.SetActive(false);
-        // sniperRifle.SetActive(false);
-        // grenadeLauncher.SetActive(false);
-        // rocketLauncher.SetActive(false);
-
-        // selectedPrimaryWeapon.SetActive(false);
+        titan.SetActive(false);
+        assaultRifle.SetActive(false);
+        sniperRifle.SetActive(false);
+       
+        grenade.SetActive(false);
+        missile.SetActive(false);
+        
+        launcher.SetActive(true);
+        selectedPrimaryWeapon.SetActive(false);
         selectedHeavyWeapon.SetActive(true);
 
     }
@@ -101,8 +107,10 @@ public class ChooseLoadoutsManager : MonoBehaviour
         titan.SetActive(false);
         assaultRifle.SetActive(false);
         sniperRifle.SetActive(false);
-        grenadeLauncher.SetActive(false);
-        rocketLauncher.SetActive(false);
+        
+        grenade.SetActive(false);
+        missile.SetActive(false);
+        launcher.SetActive(false);
 
         selectedPrimaryWeapon.SetActive(true);
         selectedHeavyWeapon.SetActive(false);
@@ -118,8 +126,10 @@ public class ChooseLoadoutsManager : MonoBehaviour
         titan.SetActive(true);
         assaultRifle.SetActive(false);
         sniperRifle.SetActive(false);
-        grenadeLauncher.SetActive(false);
-        rocketLauncher.SetActive(false);
+        
+        grenade.SetActive(false);
+        missile.SetActive(false);
+        launcher.SetActive(false);
 
         selectedPrimaryWeapon.SetActive(false);
         selectedHeavyWeapon.SetActive(false);
@@ -135,8 +145,10 @@ public class ChooseLoadoutsManager : MonoBehaviour
         titan.SetActive(false);
         assaultRifle.SetActive(false);
         sniperRifle.SetActive(false);
-        grenadeLauncher.SetActive(false);
-        rocketLauncher.SetActive(false);
+        
+        grenade.SetActive(false);
+        missile.SetActive(false);
+        launcher.SetActive(true);
 
         selectedPrimaryWeapon.SetActive(false);
         selectedHeavyWeapon.SetActive(true);
@@ -165,25 +177,26 @@ public class ChooseLoadoutsManager : MonoBehaviour
         sniperRifle.SetActive(false);
         assaultRifle.SetActive(true);
         primaryWeaponsText.text = assaultRifleDesc;
-
         superScript.primaryWeaponName = PrimaryWeaponName.assaultRifle;
         
     }
 
     public void selectRocketLauncher()
     {
-        selectedHeavyWeapon = rocketLauncher;
-        grenadeLauncher.SetActive(false);
-        rocketLauncher.SetActive(true);
+        selectedHeavyWeapon = missile;
+        grenade.SetActive(false);
+        missile.SetActive(true);
+        launcher.SetActive(true);
         heavyWeaponsText.text = rocketLauncherDesc;
         superScript.heavyWeaponName = HeavyWeaponName.rocketLauncher;
     }
 
     public void selectGrenadeLauncher()
     {
-        selectedHeavyWeapon = grenadeLauncher;
-        grenadeLauncher.SetActive(true);
-        rocketLauncher.SetActive(false);
+        selectedHeavyWeapon = grenade;
+        grenade.SetActive(true);
+        missile.SetActive(false);
+        launcher.SetActive(true);
         heavyWeaponsText.text = grenadeLauncherDesc;
         superScript.heavyWeaponName = HeavyWeaponName.grenadeLauncher;
     }
