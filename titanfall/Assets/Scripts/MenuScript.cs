@@ -18,8 +18,7 @@ public class MenuScript : MonoBehaviour
     
     public void StartGame()
     {
-        //SceneManager.LoadScene("ChooseLoadouts");
-        SceneManager.LoadScene("CombatLevel");
+        SceneManager.LoadScene("ChooseLoadouts");
 
     }
 
