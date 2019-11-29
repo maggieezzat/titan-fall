@@ -4,6 +4,9 @@ using UnityEngine.Audio;
 
 public class MenuScript : MonoBehaviour
 {
+    public SuperScript superScript;
+
+
     public AudioMixer masterMixer;
 
     public void setMusicLevel(float musicLevel)
@@ -18,7 +21,8 @@ public class MenuScript : MonoBehaviour
     
     public void StartGame()
     {
-        SceneManager.LoadScene("ChooseLoadouts");
+        //superScript.loadScene("ChooseLoadouts");
+        SceneManager.LoadScene("CombatLevel");
 
     }
 

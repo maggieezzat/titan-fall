@@ -7,6 +7,9 @@ using TMPro;
 
 public class ChooseLoadoutsManager : MonoBehaviour
 {
+
+    public SuperScript superScript;
+
     public GameObject titanPanel;
     public GameObject heavyWeaponsPanel;
     public GameObject primaryWeaponsPanel;
@@ -17,7 +20,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
     public GameObject selectedTitan;
 
     public GameObject sniperRifle;
-    public GameObject shotGun;
+    public GameObject assaultRifle;
     public GameObject primaryWeaponsTextBox;
     public GameObject rocketLauncher;
     public GameObject grenadeLauncher;
@@ -25,7 +28,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
     public GameObject titan;
 
     string sniperRifleDesc = "Damage Amount: 85\nFiring Mode: single shot\nFire Rate: 1\nAmmo Count: 6\nRange: 100";
-    string shotGunDesc = "Damage Amount: 70\nFiring Mode: single shot\nFire Rate: 3\nAmmo Count: 12\nRange: 4";
+    string assaultRifleDesc = "Damage Amount: 10\nFiring Mode: Automatic\nFire Rate: 10\nAmmo Count: 35\nRange: 65";
     string grenadeLauncherDesc = "Explosion Radius: 4\nExplosion Damage: 125";
     string rocketLauncherDesc = "Explosion Radius: 3\nExplosion Damage: 150";
 
@@ -36,7 +39,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
 
     void Start()
     {
-        
+        superScript = GameObject.Find("SuperScript").GetComponent<SuperScript>();
         primaryWeaponsText = primaryWeaponsTextBox.GetComponent<TextMeshProUGUI>();
         heavyWeaponsText = heavyWeaponsTextBox.GetComponent<TextMeshProUGUI>();
 
@@ -51,7 +54,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
         selectedTitan = titan;
 
         titan.SetActive(false);
-        shotGun.SetActive(false);
+        assaultRifle.SetActive(false);
         sniperRifle.SetActive(true);
         grenadeLauncher.SetActive(false);
         rocketLauncher.SetActive(false);
@@ -79,7 +82,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
         heavyWeaponsPanel.SetActive(true);
 
         titan.SetActive(false);
-        shotGun.SetActive(false);
+        assaultRifle.SetActive(false);
         sniperRifle.SetActive(false);
         grenadeLauncher.SetActive(false);
         rocketLauncher.SetActive(false);
@@ -96,7 +99,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
         heavyWeaponsPanel.SetActive(false);
 
         titan.SetActive(false);
-        shotGun.SetActive(false);
+        assaultRifle.SetActive(false);
         sniperRifle.SetActive(false);
         grenadeLauncher.SetActive(false);
         rocketLauncher.SetActive(false);
@@ -113,7 +116,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
         titanPanel.SetActive(true);
 
         titan.SetActive(true);
-        shotGun.SetActive(false);
+        assaultRifle.SetActive(false);
         sniperRifle.SetActive(false);
         grenadeLauncher.SetActive(false);
         rocketLauncher.SetActive(false);
@@ -130,7 +133,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
         titanPanel.SetActive(false);
 
         titan.SetActive(false);
-        shotGun.SetActive(false);
+        assaultRifle.SetActive(false);
         sniperRifle.SetActive(false);
         grenadeLauncher.SetActive(false);
         rocketLauncher.SetActive(false);
@@ -150,17 +153,20 @@ public class ChooseLoadoutsManager : MonoBehaviour
     {
         selectedPrimaryWeapon = sniperRifle;
         sniperRifle.SetActive(true);
-        shotGun.SetActive(false);
+        assaultRifle.SetActive(false);
         primaryWeaponsText.text = sniperRifleDesc;
+        superScript.primaryWeaponName = PrimaryWeaponName.sniperRifle;
 
     }
 
-    public void selectShotGun()
+    public void selectAssaultRifle()
     {
-        selectedPrimaryWeapon = shotGun;
+        selectedPrimaryWeapon = assaultRifle;
         sniperRifle.SetActive(false);
-        shotGun.SetActive(true);
-        primaryWeaponsText.text = shotGunDesc;
+        assaultRifle.SetActive(true);
+        primaryWeaponsText.text = assaultRifleDesc;
+
+        superScript.primaryWeaponName = PrimaryWeaponName.assaultRifle;
         
     }
 
@@ -170,6 +176,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
         grenadeLauncher.SetActive(false);
         rocketLauncher.SetActive(true);
         heavyWeaponsText.text = rocketLauncherDesc;
+        superScript.heavyWeaponName = HeavyWeaponName.rocketLauncher;
     }
 
     public void selectGrenadeLauncher()
@@ -178,6 +185,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
         grenadeLauncher.SetActive(true);
         rocketLauncher.SetActive(false);
         heavyWeaponsText.text = grenadeLauncherDesc;
+        superScript.heavyWeaponName = HeavyWeaponName.grenadeLauncher;
     }
 
 
