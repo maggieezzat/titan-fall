@@ -77,17 +77,17 @@ public class ChooseLoadoutsManager : MonoBehaviour
 
     public void selectOnPrimary()
     {
-        primaryWeaponsPanel.SetActive(false);
-        titanPanel.SetActive(false);
-        heavyWeaponsPanel.SetActive(true);
+        // primaryWeaponsPanel.SetActive(false);
+        // titanPanel.SetActive(false);
+        // heavyWeaponsPanel.SetActive(true);
 
-        titan.SetActive(false);
-        assaultRifle.SetActive(false);
-        sniperRifle.SetActive(false);
-        grenadeLauncher.SetActive(false);
-        rocketLauncher.SetActive(false);
+        // titan.SetActive(false);
+        // assaultRifle.SetActive(false);
+        // sniperRifle.SetActive(false);
+        // grenadeLauncher.SetActive(false);
+        // rocketLauncher.SetActive(false);
 
-        selectedPrimaryWeapon.SetActive(false);
+        // selectedPrimaryWeapon.SetActive(false);
         selectedHeavyWeapon.SetActive(true);
 
     }
