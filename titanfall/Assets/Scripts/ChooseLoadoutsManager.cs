@@ -69,13 +69,13 @@ public class ChooseLoadoutsManager : MonoBehaviour
         
     }
 
-    public void BackToMain()
+    public void backToMain()
     {
         SceneManager.LoadScene("MainMenu");
 
     }
 
-    public void SelectOnPrimary()
+    public void selectOnPrimary()
     {
         primaryWeaponsPanel.SetActive(false);
         titanPanel.SetActive(false);
@@ -92,7 +92,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
 
     }
 
-    public void BackToPrimary()
+    public void backToPrimary()
     {
         primaryWeaponsPanel.SetActive(true);
         titanPanel.SetActive(false);
@@ -109,7 +109,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
 
     }
 
-    public void SelectOnHeavy()
+    public void selectOnHeavy()
     {
         primaryWeaponsPanel.SetActive(false);
         heavyWeaponsPanel.SetActive(false);
@@ -126,7 +126,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
 
     }
 
-    public void BackToHeavy()
+    public void backToHeavy()
     {
         primaryWeaponsPanel.SetActive(false);
         heavyWeaponsPanel.SetActive(true);
@@ -143,7 +143,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
 
     }
 
-    public void SelectOnTitan()
+    public void selectOnTitan()
     {
         SceneManager.LoadScene("CombatLevel");
     }

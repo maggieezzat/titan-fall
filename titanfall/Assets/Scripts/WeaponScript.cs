@@ -38,17 +38,26 @@ public class WeaponScript : MonoBehaviour
 
     }
 
-    public void fire()
+    public void playerFire()
     {
         RaycastHit hit;
         if(currentWeapon.weaponType == WeaponType.primary){
             Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, 
                 out hit, ((PrimaryWeapon)currentWeapon).range);
-            Debug.Log(hit.transform.tag);
-        }
-        if(currentWeapon.weaponType == WeaponType.heavy){
+            if(hit.transform.tag.Contains("Enemy")){
+                hit.transform.GetComponent<EnemyScript>().takeDamage(((PrimaryWeapon)currentWeapon).damageAmount);
+            }
             
         }
+        if(currentWeapon.weaponType == WeaponType.heavy)
+        {
+            
+        }
+    }
+
+    public void enemyFire(Transform nozzle)
+    {
+        
     }
 
 

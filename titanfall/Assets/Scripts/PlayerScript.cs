@@ -6,13 +6,12 @@ public class PlayerScript : MonoBehaviour
 {
     public SuperScript superScript;
     public WeaponScript weaponScript;
-    // Start is called before the first frame update
+    
     void Start()
     {
         superScript = GameObject.Find("SuperScript").GetComponent<SuperScript>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         checkForFire();
@@ -23,18 +22,17 @@ public class PlayerScript : MonoBehaviour
     {
         if(weaponScript.currentWeapon.weaponType == WeaponType.primary)
         {
-            if(((PrimaryWeapon)weaponScript.currentWeapon).firingMode == FiringMode.single_shot)
+            if(((PrimaryWeapon)weaponScript.currentWeapon).firingMode == FiringMode.single_shot && 
+            Input.GetButtonDown("Fire1"))
             {
-                if(Input.GetButtonDown("Fire1")){
-                    weaponScript.fire();
-                }
+                weaponScript.playerFire();
             }
-            if(((PrimaryWeapon)weaponScript.currentWeapon).firingMode == FiringMode.automatic)
+            if(((PrimaryWeapon)weaponScript.currentWeapon).firingMode == FiringMode.automatic && 
+            Input.GetButton("Fire1"))
             {
-                if(Input.GetButton("Fire1")){
-                    weaponScript.fire();
-                }
+                weaponScript.playerFire();
             }
+            
         }
     }
 }

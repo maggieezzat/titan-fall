@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Transform nozzle;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
     }
+
+    public void takeDamage(int damage)
+    {
+        Debug.Log(damage);
+
+    }
+    
+    
 }
