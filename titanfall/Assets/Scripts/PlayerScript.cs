@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour
     
     void Start()
     {
-        superScript = GameObject.Find("SuperScript").GetComponent<SuperScript>();
+        //superScript = GameObject.Find("SuperScript").GetComponent<SuperScript>();
     }
 
     void Update()

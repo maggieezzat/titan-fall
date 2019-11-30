@@ -13,9 +13,12 @@ public class WeaponScript : MonoBehaviour
     
     void Start()
     {
-        superScript = GameObject.Find("SuperScript").GetComponent<SuperScript>();
-        createPrimaryWeapon(superScript.primaryWeaponName);
-        createHeavyWeapon(superScript.heavyWeaponName);
+        //superScript = GameObject.Find("SuperScript").GetComponent<SuperScript>();
+        //createPrimaryWeapon(superScript.primaryWeaponName);
+        //createHeavyWeapon(superScript.heavyWeaponName);
+
+        createPrimaryWeapon(PrimaryWeaponName.sniperRifle);
+        createHeavyWeapon(HeavyWeaponName.rocketLauncher);
         currentWeapon = primaryWeapon;
     }
 
