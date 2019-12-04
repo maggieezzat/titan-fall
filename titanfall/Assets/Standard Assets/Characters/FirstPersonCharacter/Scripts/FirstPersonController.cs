@@ -42,6 +42,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
         private bool isCrouching = false;
+        private bool usedTheDoubleJump = false;
 
         // Use this for initialization
         private void Start()
@@ -64,7 +65,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             RotateView();
             // the jump state needs to read here to make sure it is not missed
-            if (!m_Jump)
+            if (!m_Jump && !m_Jumping)
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
@@ -75,6 +76,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 PlayLandingSound();
                 m_MoveDir.y = 0f;
                 m_Jumping = false;
+                usedTheDoubleJump = false;
+
             }
             if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
             {
@@ -85,6 +88,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if(Input.GetKeyDown(KeyCode.C) && !m_Jumping){
                 crouch();
+            }
+
+            if(m_Jumping && !usedTheDoubleJump && Input.GetKeyDown(KeyCode.Space)){
+                m_MoveDir.y = m_JumpSpeed;
+                usedTheDoubleJump = true;
+                Debug.Log("Double Jump");
             }
         }
 
