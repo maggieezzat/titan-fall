@@ -1,15 +1,15 @@
 # Game-Engine and Level-Design
 ## Pilot and Titan Controls
 - [ ] The pilot/titan have idle animation.
-- [ ] The pilot/titan controls the 1st perspective camera **using the mouse cursor**.
-- [ ] The pilot/titan moves **using arrow keys and WASD**.
+- [x] The pilot/titan controls the 1st perspective camera **using the mouse cursor**.
+- [x] The pilot/titan moves **using arrow keys and WASD**.
 - [ ] The pilot/titan can sprint by **holding down the left shift**, *if he's crouching, the crouch is undone*.
 </br>
 
-- [ ] The pilot can jump **using SPACE**.
+- [x] The pilot can jump **using SPACE**.
 - [ ] The pilot can double jump **using double SPACE** (SPACE in mid air).
 - [ ] The pilot can wall run **by being mid-air and sprinting forward** (SPACE -> left Shift + FWD arrow).
-- [ ] The pilot can crouch **using C**, *however he can't sprint*. Note: **Collider has to shrink**.
+- [x] The pilot can crouch **using C**, *however he can't sprint*. Note: **Collider has to shrink**.
 - [ ] The pilot can fire **using the left mouse button** *if he has sufficient ammo*. (check ray-cast target with colliders).
 - [ ] The pilot can long-fire **by holding the left mouse button** *if he has sufficient ammo and if currentWeapon.firingMode == 0 (ie.automatic)*.
 - [ ] The pilot/titan can reload **using R**, *if  ammo is not full and if his current weapon is of type primary weapon*.
