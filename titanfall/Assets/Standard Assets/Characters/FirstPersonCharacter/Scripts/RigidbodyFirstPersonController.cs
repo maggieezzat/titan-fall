@@ -88,6 +88,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_YRotation;
         private Vector3 m_GroundContactNormal;
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
+        private bool isCrouched;
 
 
         public Vector3 Velocity
@@ -133,6 +134,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
             {
                 m_Jump = true;
+            }
+
+            if(Input.GetKeyDown(KeyCode.C) && !m_Jumping){
+                crouch();
             }
         }
 
@@ -259,6 +264,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (!m_PreviouslyGrounded && m_IsGrounded && m_Jumping)
             {
                 m_Jumping = false;
+            }
+        }
+
+        private void crouch(){
+            if(!isCrouched){
+                GameObject ChildGameObject1 = gameObject.transform.GetChild (0).gameObject;
+                ChildGameObject1.GetComponent<Transform>().Translate(0,-1,0);
+                // transform.position = transform.position + new Vector3(0,-1,0);
+                // isCrouched = !isCrouched;
+            }
+            else{
+                // transform.position = transform.position + new Vector3(0,1,0);
+                // isCrouched = !isCrouched;
             }
         }
     }

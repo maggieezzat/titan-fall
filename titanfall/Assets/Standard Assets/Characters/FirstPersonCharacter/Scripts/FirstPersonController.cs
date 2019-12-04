@@ -41,6 +41,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        private bool isCrouching = false;
 
         // Use this for initialization
         private void Start()
@@ -81,8 +82,25 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
+            if(Input.GetKeyDown(KeyCode.C) && !m_Jumping){
+                crouch();
+            }
         }
 
+
+        private void crouch(){
+            if(!isCrouching){
+                Debug.Log(isCrouching);
+                gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale - new Vector3(0.7f,0.7f,0.7f);
+                isCrouching = !isCrouching;
+            }
+            else{
+                gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale - new Vector3(-0.7f,-0.7f,-0.7f);
+                isCrouching = !isCrouching;
+                Debug.Log(isCrouching);
+            }
+        }
 
         private void PlayLandingSound()
         {
