@@ -92,11 +92,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void crouch(){
             if(!isCrouching){
                 Debug.Log(isCrouching);
-                gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale - new Vector3(0.7f,0.7f,0.7f);
+                gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale - new Vector3(0.6f,0.6f,0.6f);
                 isCrouching = !isCrouching;
             }
             else{
-                gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale - new Vector3(-0.7f,-0.7f,-0.7f);
+                gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale - new Vector3(-0.6f,-0.6f,-0.6f);
                 isCrouching = !isCrouching;
                 Debug.Log(isCrouching);
             }
