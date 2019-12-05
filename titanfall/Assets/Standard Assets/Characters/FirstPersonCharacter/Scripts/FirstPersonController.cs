@@ -43,6 +43,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
         private bool isCrouching = false;
         private bool usedTheDoubleJump = false;
+        private bool sprintPressed = false;
+        private bool wallrun = false;
 
         // Use this for initialization
         private void Start()
@@ -65,6 +67,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             RotateView();
             // the jump state needs to read here to make sure it is not missed
+            if(Input.GetKeyDown(KeyCode.Space)){
+                wallrun = false;
+            }
             if (!m_Jump && !m_Jumping)
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
@@ -93,21 +98,49 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if(m_Jumping && !usedTheDoubleJump && Input.GetKeyDown(KeyCode.Space)){
                 m_MoveDir.y = m_JumpSpeed;
                 usedTheDoubleJump = true;
-                Debug.Log("Double Jump");
+            }
+
+            if(Input.GetKeyDown(KeyCode.LeftShift)){
+                sprintPressed = true;
+                // Debug.Log(sprintPressed);
+            }
+
+            if(Input.GetKeyUp(KeyCode.LeftShift)){
+                sprintPressed = false;
+                // Debug.Log(sprintPressed);
+            }
+
+        }
+       
+        private void OnCollisionEnter(Collision other) {
+            Debug.Log("Collided   " + other.gameObject.name);
+            if(other.gameObject.tag.Equals("Wall") && m_Jumping){
+                Debug.Log("IN wall");
+                if(sprintPressed){
+                    Debug.Log("IN");
+                    // gameObject.GetComponent<Rigidbody>().useGravity = false;
+                    wallrun = true;
+                }
             }
         }
 
+        private void OnCollisionExit(Collision other) {
+            if(other.gameObject.tag.Equals("Wall")){
+                // gameObject.GetComponent<Rigidbody>().useGravity = true;
+                wallrun = false;
+            }
+        }
 
         private void crouch(){
             if(!isCrouching){
-                Debug.Log(isCrouching);
+                // Debug.Log(isCrouching);
                 gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale - new Vector3(0.6f,0.6f,0.6f);
                 isCrouching = !isCrouching;
             }
             else{
                 gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale - new Vector3(-0.6f,-0.6f,-0.6f);
                 isCrouching = !isCrouching;
-                Debug.Log(isCrouching);
+                // Debug.Log(isCrouching);
             }
         }
 
@@ -151,6 +184,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             else
             {
                 m_MoveDir += Physics.gravity*m_GravityMultiplier*Time.fixedDeltaTime;
+
+
+            }
+            if(wallrun){
+                m_MoveDir.y = 0;
             }
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
 
