@@ -113,11 +113,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
        
         private void OnCollisionEnter(Collision other) {
-            Debug.Log("Collided   " + other.gameObject.name);
+            //Debug.Log("Collided   " + other.gameObject.name);
             if(other.gameObject.tag.Equals("Wall") && m_Jumping){
-                Debug.Log("IN wall");
+                //Debug.Log("IN wall");
                 if(sprintPressed){
-                    Debug.Log("IN");
+                    //Debug.Log("IN");
                     // gameObject.GetComponent<Rigidbody>().useGravity = false;
                     wallrun = true;
                 }

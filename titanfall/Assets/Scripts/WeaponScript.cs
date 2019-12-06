@@ -10,6 +10,13 @@ public class WeaponScript : MonoBehaviour
     public Weapon currentWeapon;
 
     public Camera fpsCamera;
+
+    void Awake()
+    {
+        createPrimaryWeapon(PrimaryWeaponName.sniperRifle);
+        createHeavyWeapon(HeavyWeaponName.rocketLauncher);
+        currentWeapon = primaryWeapon;
+    }
     
     void Start()
     {
@@ -45,9 +52,9 @@ public class WeaponScript : MonoBehaviour
     {
         RaycastHit hit;
         if(currentWeapon.weaponType == WeaponType.primary){
-            Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, 
+            bool RaycastDown = Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, 
                 out hit, ((PrimaryWeapon)currentWeapon).range);
-            if(hit.transform.tag.Contains("Enemy")){
+            if(RaycastDown  && hit.transform.tag.Contains("Enemy")){
                 hit.transform.GetComponent<EnemyScript>().takeDamage(((PrimaryWeapon)currentWeapon).damageAmount);
             }
             
