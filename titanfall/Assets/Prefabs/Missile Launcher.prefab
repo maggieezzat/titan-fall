@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4762897090239451315}
   m_Layer: 0
   m_Name: Missile Launcher
-  m_TagString: Untagged
+  m_TagString: HeavyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,8 +61,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.39140797, y: 0.32697487, z: 0.78443754}
-  m_Center: {x: -0.0065124035, y: -0.0008363724, z: 0.1974948}
+  m_Size: {x: 0.39140797, y: 0.32697487, z: 0.49778894}
+  m_Center: {x: -0.0065124044, y: -0.0008363764, z: 0.054170515}
 --- !u!114 &4762897090239451315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +78,7 @@ MonoBehaviour:
   trajectoryPath: 0
   TargetObject: {fileID: 0}
   LaunchAngle: 30
+  launched: 0
 --- !u!1 &4762897091162006431
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,11 +143,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Missile
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 1f3b0871a93dd454092082dbadcc6582,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1f3b0871a93dd454092082dbadcc6582,
         type: 3}

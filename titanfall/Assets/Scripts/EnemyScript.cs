@@ -19,7 +19,7 @@ public class EnemyScript : MonoBehaviour
 
     public void takeDamage(int damage)
     {
-        Debug.Log(damage);
+        //Debug.Log(damage);
 
     }
     

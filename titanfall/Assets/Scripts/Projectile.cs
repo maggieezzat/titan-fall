@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Projectile : MonoBehaviour
 {
     public bool trajectoryPath;
     public Transform TargetObject;
     public float LaunchAngle = 45f;
+    public bool launched = false;
     private bool touching;
 
     private Rigidbody rigid;
@@ -16,36 +16,43 @@ public class Projectile : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         rigid.useGravity = false;
-        
+        rigid.isKinematic = true;
+        rigid.detectCollisions = false;
 
-        initialPosition = transform.position;
-        initialRotation = transform.rotation;
+        initialPosition = transform.localPosition;
+        initialRotation = transform.localRotation;
     }
 
     void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space) && trajectoryPath){
-            grenadeLaunch(TargetObject);
-        }
-        else if(Input.GetKeyDown(KeyCode.Space)){
-            rocketLaunch(TargetObject);
-        }
-
-        
-        if (!touching )
+    {   
+        if (!touching && launched)
         {
             // update the rotation of the projectile during trajectory motion
             transform.rotation = Quaternion.LookRotation(rigid.velocity);
-        }
-       
+        }  
+    }
+
+    public void launch(Transform target)
+    {
+        TargetObject = target;
+
+        rigid.isKinematic = false;
+        rigid.detectCollisions = true;
+        launched = true;
+
+        if(trajectoryPath)
+            grenadeLaunch(target);
+        else
+            rocketLaunch(target);
     }
 
     // launches the object towards the TargetObject with a given LaunchAngle
     void grenadeLaunch(Transform target)
     { 
+        
         rigid.useGravity = true;
-        TargetObject = target;
         touching = false;
+
         Vector3 projectileXZPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         Vector3 targetXZPos = new Vector3(TargetObject.position.x, transform.position.y, TargetObject.position.z);
         
@@ -74,18 +81,25 @@ public class Projectile : MonoBehaviour
     void rocketLaunch(Transform target)
     {
         rigid.useGravity = false;
-        TargetObject = target;
+
         transform.LookAt(TargetObject.position);
-        rigid.velocity = transform.forward * 20;
+        rigid.velocity = transform.forward * 10;
     }
 
-    void OnCollisionEnter()
+    void OnCollisionEnter(Collision col)
     {
-        
-        touching = true;
-        rigid.velocity = Vector3.zero;
-        rigid.angularVelocity = Vector3.zero;
-        
+        if(col.gameObject.tag != "HeavyWeapon")
+        {
+            touching = true;
+            rigid.velocity = Vector3.zero;
+            rigid.angularVelocity = Vector3.zero;
+
+            rigid.isKinematic = true;
+            rigid.detectCollisions = false;
+
+            WeaponScript.Instance.setInactive(this.gameObject, initialPosition, initialRotation);
+
+        }
         
     }
 

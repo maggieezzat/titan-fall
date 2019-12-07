@@ -13,9 +13,11 @@ public class SuperScript : MonoBehaviour
     public PrimaryWeaponName primaryWeaponName = PrimaryWeaponName.sniperRifle;
     public HeavyWeaponName heavyWeaponName = HeavyWeaponName.rocketLauncher;
     
-
+#region Singleton
+    public static SuperScript Instance;
     void Awake()
     {
+        Instance = this;
         // Ensure the script is not deleted while loading.
         if (!created)
         {
@@ -28,7 +30,7 @@ public class SuperScript : MonoBehaviour
         }
         
     }
-
+#endregion
     void Update()
     {
 
@@ -42,12 +44,10 @@ public class SuperScript : MonoBehaviour
 
     }
 
-
-
-
 }
 public enum ProjectileMode { straightLine, curveDown };
 public enum FiringMode { automatic, single_shot };
+
 public class Weapon {
     public int damageAmount;
     public WeaponType weaponType;
@@ -57,7 +57,7 @@ public class Weapon {
 }
 
 public class PrimaryWeapon : Weapon {
-    public FiringMode firingMode; // 0 for automatic and 1 for single-shot
+    public FiringMode firingMode; 
     public int fireRate;
     public int ammoCount;
     public int range;
@@ -68,17 +68,41 @@ public class PrimaryWeapon : Weapon {
         this.fireRate = fireRate;
         this.ammoCount = ammoCount;
         this.range = range;
+        this.damageAmount = damageAmount;
     }
 }
 
 public class HeavyWeapon : Weapon {
-    public ProjectileMode projectileMode; //0 for straight and 1 for curved
+    public ProjectileMode projectileMode; 
     public int explosionRadius;
 
     public HeavyWeapon(int damageAmount, ProjectileMode projectileMode, int explosionRadius) : base(damageAmount){
         this.weaponType = WeaponType.heavy;
         this.projectileMode = projectileMode;
         this.explosionRadius = explosionRadius;
+        this.damageAmount = damageAmount;
     }
+}
+
+public class TitanWeapon : Weapon {
+    public FiringMode firingMode;
+    public int fireRate;
+
+    public TitanWeapon(int damageAmount, FiringMode firingMode, int fireRate) : base(damageAmount){
+        this.weaponType = WeaponType.titan;
+        this.firingMode = firingMode;
+        this.fireRate = fireRate;
+        this.damageAmount = damageAmount;
+    }
+}
+
+[System.Serializable]
+public class Pool {
+
+    public string tag;
+    public GameObject pool_GO;
+    //public GameObject prefab;
+    //public int size;
+
 }
 
