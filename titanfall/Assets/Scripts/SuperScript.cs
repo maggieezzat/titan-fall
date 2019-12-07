@@ -48,7 +48,8 @@ public class SuperScript : MonoBehaviour
 public enum ProjectileMode { straightLine, curveDown };
 public enum FiringMode { automatic, single_shot };
 
-public class Weapon {
+public class Weapon 
+{
     public int damageAmount;
     public WeaponType weaponType;
     public Weapon(int damageAmount){
@@ -56,7 +57,8 @@ public class Weapon {
     }
 }
 
-public class PrimaryWeapon : Weapon {
+public class PrimaryWeapon : Weapon 
+{
     public FiringMode firingMode; 
     public int fireRate;
     public int ammoCount;
@@ -72,7 +74,8 @@ public class PrimaryWeapon : Weapon {
     }
 }
 
-public class HeavyWeapon : Weapon {
+public class HeavyWeapon : Weapon 
+{
     public ProjectileMode projectileMode; 
     public int explosionRadius;
 
@@ -84,7 +87,8 @@ public class HeavyWeapon : Weapon {
     }
 }
 
-public class TitanWeapon : Weapon {
+public class TitanWeapon : Weapon 
+{
     public FiringMode firingMode;
     public int fireRate;
 
@@ -97,12 +101,127 @@ public class TitanWeapon : Weapon {
 }
 
 [System.Serializable]
-public class Pool {
+public class Pool 
+{
 
     public string tag;
     public GameObject pool_GO;
-    //public GameObject prefab;
-    //public int size;
+
+}
+
+
+public abstract class Player 
+{
+    public int health;
+    public readonly int maxHealth = 100;
+    public Player(int health)
+    {
+        this.health = health;
+    }
+
+    public abstract void incHealth(int value);
+
+    public bool decHealth(int value)
+    {
+        this.health -= value;
+
+        if(health <= 0)
+            return true;
+        
+        return false;
+    }
+
+}
+
+public class PilotPlayer: Player
+{
+    public int titanFallMeter;
+    public readonly int titanFallMeterMax = 100;
+
+    public PilotPlayer(): base(100)
+    {
+        this.titanFallMeter = 0;
+
+    }
+
+    public override void incHealth(int value)
+    {
+        this.health += value;
+        
+        if(health>=maxHealth)
+            health = maxHealth;
+    }
+
+    public void incTitanFallMeter(int value)
+    {
+        this.titanFallMeter += value;
+        if(titanFallMeter>=titanFallMeterMax)
+            titanFallMeter = titanFallMeterMax;
+    }
+
+    public void resetTitanFallMeter()
+    {
+        this.titanFallMeter = 0;
+    }
+
+}
+
+public class TitanPlayer: Player
+{
+    public int coreAbilityMeter;
+    public readonly int coreAbilityMeterMax = 100;
+
+    public int dashMeter;
+    public readonly int dashMeterMax = 3;
+
+    public int defensiveAbilityCoolDown;
+
+    public int defensiveAbilityCoolDownMax = 15; //15 seconds
+
+    public TitanPlayer(): base(400)
+    {
+        this.health = 400;
+        this.coreAbilityMeter = 0;
+        this.dashMeter = 3;
+        this.defensiveAbilityCoolDown = 0;
+
+    }
+    //titan's health does not increase
+    public override void incHealth(int value)
+    {
+        this.health += 0;
+    }
+
+    public void incCoreAbilityMeter(int value)
+    {
+        this.coreAbilityMeter += value;
+        if(this.coreAbilityMeter>= this.coreAbilityMeterMax)
+            this.coreAbilityMeter = this.coreAbilityMeterMax;
+
+    }
+
+    public void resetCoreAbilityMeter()
+    {
+        this.coreAbilityMeter = 0;
+
+        if(this.coreAbilityMeter <= 0)
+            this.coreAbilityMeter = 0;
+
+    }
+
+    public void incDash()
+    {
+        this.dashMeter +=1;
+        if(this.dashMeter >= this.dashMeterMax)
+            this.dashMeter = this.dashMeterMax;
+    }
+
+    public void decDash()
+    {
+        this.dashMeter -=1;
+        if(this.dashMeter <= 0)
+            this.dashMeter = 0;
+    }
 
 }
 

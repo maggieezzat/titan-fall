@@ -3,7 +3,7 @@
 public class Projectile : MonoBehaviour
 {
     public bool trajectoryPath;
-    public Transform TargetObject;
+    public Vector3 TargetObject;
     public float LaunchAngle = 45f;
     public bool launched = false;
     private bool touching;
@@ -32,7 +32,7 @@ public class Projectile : MonoBehaviour
         }  
     }
 
-    public void launch(Transform target)
+    public void launch(Vector3 target)
     {
         TargetObject = target;
 
@@ -47,14 +47,14 @@ public class Projectile : MonoBehaviour
     }
 
     // launches the object towards the TargetObject with a given LaunchAngle
-    void grenadeLaunch(Transform target)
+    void grenadeLaunch(Vector3 target)
     { 
         
         rigid.useGravity = true;
         touching = false;
 
         Vector3 projectileXZPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        Vector3 targetXZPos = new Vector3(TargetObject.position.x, transform.position.y, TargetObject.position.z);
+        Vector3 targetXZPos = new Vector3(TargetObject.x, transform.position.y, TargetObject.z);
         
         // rotate the object to face the target
         transform.LookAt(targetXZPos);
@@ -63,7 +63,7 @@ public class Projectile : MonoBehaviour
         float R = Vector3.Distance(projectileXZPos, targetXZPos);
         float G = Physics.gravity.y;
         float tanAlpha = Mathf.Tan(LaunchAngle * Mathf.Deg2Rad);
-        float H = TargetObject.position.y - transform.position.y;
+        float H = TargetObject.y - transform.position.y;
 
         //calculate the local space components of the velocity required to land the projectile on the target object 
         float Vz = Mathf.Sqrt(G * R * R / (2.0f * (H - R * tanAlpha)) );
@@ -78,11 +78,11 @@ public class Projectile : MonoBehaviour
         
     }
 
-    void rocketLaunch(Transform target)
+    void rocketLaunch(Vector3 target)
     {
         rigid.useGravity = false;
 
-        transform.LookAt(TargetObject.position);
+        transform.LookAt(TargetObject);
         rigid.velocity = transform.forward * 10;
     }
 

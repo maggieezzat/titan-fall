@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class WeaponScript : MonoBehaviour
 {
     public SuperScript superScript;
+
+    public FirstPersonController fps;
     PrimaryWeaponName primaryWeaponName;
     HeavyWeaponName heavyWeaponName;
     public PrimaryWeapon primaryWeapon;
@@ -12,22 +15,19 @@ public class WeaponScript : MonoBehaviour
     public TitanWeapon titanWeapon;
     public Weapon currentWeapon;
 
+
     public GameObject assaultRifle_GO;
     public GameObject sniperRifle_GO;
     GameObject primaryWeapon_GO;
     public GameObject predatorCanon_GO;
     public GameObject launcher_GO;
 
-    //public List<Pool> pools;
+
     public Pool [] pools = new Pool [3];
     public Dictionary<string, Queue<GameObject>> poolDict;
-
     Queue<GameObject> heavyWeaponPool;
     int heavyWeaponIndex = 0;
 
-    // public GameObject missilePrefab;
-    // public GameObject grenadePrefab;
-    // private GameObject heavyWeaponPrefab;
 
     ParticleSystem muzzleFlashPrimary;
     ParticleSystem muzzleFlashTitan;
@@ -56,15 +56,14 @@ public class WeaponScript : MonoBehaviour
         createTitanWeapon();
 
         currentWeapon = primaryWeapon;
-        //currentWeapon = heavyWeapon;
-        //currentWeapon = titanWeapon;
     }
 
 #endregion
 
     void Start()
     {
-
+        fps = transform.GetComponent<FirstPersonController>();
+        
         assaultRifle_GO.SetActive(false);
         sniperRifle_GO.SetActive(false);
         
@@ -88,15 +87,11 @@ public class WeaponScript : MonoBehaviour
         {
             heavyWeaponPool = poolDict["GrenadesPool"];
             heavyWeaponIndex = 1;
-            //pools[heavyWeaponIndex].pool_GO.SetActive(true);
-            // heavyWeaponPrefab = grenadePrefab;
         }
         else
         {
             heavyWeaponPool = poolDict["MissilesPool"];
             heavyWeaponIndex = 0;
-            //pools[heavyWeaponIndex].pool_GO.SetActive(true);
-            // heavyWeaponPrefab = missilePrefab;
         }
 
         muzzleFlashTitan = predatorCanon_GO.transform.GetChild(0).GetComponent<ParticleSystem>();
@@ -110,12 +105,17 @@ public class WeaponScript : MonoBehaviour
 
     void Update()
     {
-        if( (Input.GetButtonUp("Fire2") && currentWeapon.weaponType == WeaponType.primary && primaryWeapon.firingMode == FiringMode.automatic)
-        || (Input.GetButtonUp("Fire2") &&  currentWeapon.weaponType == WeaponType.titan))
+        if( (Input.GetButtonUp("Fire1") && currentWeapon.weaponType == WeaponType.primary && primaryWeapon.firingMode == FiringMode.automatic)
+        || (Input.GetButtonUp("Fire1") &&  currentWeapon.weaponType == WeaponType.titan))
         {
             StartCoroutine("muzzleFlashStopCo");
             isPlaying = false;
         }
+
+        if(Input.GetKeyDown(KeyCode.V))
+            activateCoreAbility();
+        
+        print(fps.coreAbility);
         
     }
 
@@ -157,7 +157,47 @@ public class WeaponScript : MonoBehaviour
         explosions.Enqueue(exp);
         StartCoroutine(nextExplosionCo(exp));
 
+        //damage to objects within radius
+        explosionDamage(collisionLoc, ((HeavyWeapon)currentWeapon).explosionRadius,((HeavyWeapon)currentWeapon).damageAmount);
         
+    }
+
+    void explosionDamage(Vector3 center, float radius, int damageAmount)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        int i = 0;
+        while (i < hitColliders.Length)
+        {
+            if(hitColliders[i].transform.tag.Contains("Enemy"))
+            {
+                hitColliders[i].transform.GetComponent<EnemyScript>().takeDamage(damageAmount);
+            }
+            i++;
+            
+        }
+    }
+
+    void activateCoreAbility()
+    {
+        
+        float radius = 10f;
+        Vector3 center = transform.position;
+        int damageAmount = currentWeapon.damageAmount;
+
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        int i = 0;
+        while (i < hitColliders.Length)
+        {
+            fps.coreAbility = true;
+            if(hitColliders[i].transform.tag.Contains("Enemy"))
+            {
+                StartCoroutine(coreAbilityCo(hitColliders[i].transform));
+            }
+            i++;
+            fps.coreAbility = false;
+            
+        }
+        //
     }
 
     public void switchWeapon()
@@ -215,8 +255,8 @@ public class WeaponScript : MonoBehaviour
         
         if(currentWeapon.weaponType == WeaponType.heavy)
         {
-            bool RaycastDown = Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, 
-                out hit);
+            Ray ray = fpsCamera.ScreenPointToRay(Input.mousePosition);
+            bool RaycastDown = Physics.Raycast(ray, out hit);
             
             if(RaycastDown && heavyWeaponPool.Peek().activeSelf)
             {
@@ -224,11 +264,10 @@ public class WeaponScript : MonoBehaviour
                 
                 projectile.SetActive(true);
                 projectile.transform.parent = null;
-                projectile.GetComponent<Projectile>().launch(hit.transform);
+                projectile.GetComponent<Projectile>().launch(hit.point);
+                Debug.Log(hit.transform.name);
                 
                 StartCoroutine("nextLaunchCo");
-
-                //TODO: damage to enemies within range
             }
         }
 
@@ -275,6 +314,12 @@ public class WeaponScript : MonoBehaviour
 
     }
 
+    public IEnumerator coreAbilityCo(Transform hit)
+    {
+        fpsCamera.transform.LookAt(hit);        
+        //playerFire();
+        yield return new WaitForSeconds(0.5f);
+    }
 
     public void createPrimaryWeapon(PrimaryWeaponName primaryWeaponName)
     {

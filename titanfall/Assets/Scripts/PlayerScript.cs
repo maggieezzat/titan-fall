@@ -41,13 +41,13 @@ public class PlayerScript : MonoBehaviour
         if(weaponScript.currentWeapon.weaponType == WeaponType.primary)
         {
             if(((PrimaryWeapon)weaponScript.currentWeapon).firingMode == FiringMode.single_shot && 
-            Input.GetButtonDown("Fire2") && Time.time >= nextTimeToFire)
+            Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire)
             {
                 nextTimeToFire = Time.time + 1f/fireRate;
                 weaponScript.playerFire();
             }
             if(((PrimaryWeapon)weaponScript.currentWeapon).firingMode == FiringMode.automatic && 
-            Input.GetButton("Fire2") && Time.time >= nextTimeToFire)
+            Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
             {
                 nextTimeToFire = Time.time + 1f/fireRate;
                 weaponScript.playerFire();
@@ -56,7 +56,7 @@ public class PlayerScript : MonoBehaviour
         }
         else if(weaponScript.currentWeapon.weaponType == WeaponType.heavy)
         {
-            if(Input.GetButtonDown("Fire2"))
+            if(Input.GetButtonDown("Fire1"))
             {
                 weaponScript.playerFire();
             }
@@ -64,7 +64,7 @@ public class PlayerScript : MonoBehaviour
         }
         else if(weaponScript.currentWeapon.weaponType == WeaponType.titan)
         {
-            if(Input.GetButton("Fire2") && Time.time >= nextTimeToFire)
+            if(Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
             {
                 nextTimeToFire = Time.time + 1f/fireRate;
                 weaponScript.playerFire();
