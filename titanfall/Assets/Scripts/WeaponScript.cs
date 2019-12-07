@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class WeaponScript : MonoBehaviour
 {
     public SuperScript superScript;
+
+    public FirstPersonController fps;
     PrimaryWeaponName primaryWeaponName;
     HeavyWeaponName heavyWeaponName;
     public PrimaryWeapon primaryWeapon;
@@ -59,7 +62,8 @@ public class WeaponScript : MonoBehaviour
 
     void Start()
     {
-
+        fps = transform.GetComponent<FirstPersonController>();
+        
         assaultRifle_GO.SetActive(false);
         sniperRifle_GO.SetActive(false);
         
@@ -107,6 +111,11 @@ public class WeaponScript : MonoBehaviour
             StartCoroutine("muzzleFlashStopCo");
             isPlaying = false;
         }
+
+        if(Input.GetKeyDown(KeyCode.V))
+            activateCoreAbility();
+        
+        print(fps.coreAbility);
         
     }
 
@@ -166,6 +175,29 @@ public class WeaponScript : MonoBehaviour
             i++;
             
         }
+    }
+
+    void activateCoreAbility()
+    {
+        
+        float radius = 10f;
+        Vector3 center = transform.position;
+        int damageAmount = currentWeapon.damageAmount;
+
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        int i = 0;
+        while (i < hitColliders.Length)
+        {
+            fps.coreAbility = true;
+            if(hitColliders[i].transform.tag.Contains("Enemy"))
+            {
+                StartCoroutine(coreAbilityCo(hitColliders[i].transform));
+            }
+            i++;
+            fps.coreAbility = false;
+            
+        }
+        //
     }
 
     public void switchWeapon()
@@ -282,6 +314,12 @@ public class WeaponScript : MonoBehaviour
 
     }
 
+    public IEnumerator coreAbilityCo(Transform hit)
+    {
+        fpsCamera.transform.LookAt(hit);        
+        //playerFire();
+        yield return new WaitForSeconds(0.5f);
+    }
 
     public void createPrimaryWeapon(PrimaryWeaponName primaryWeaponName)
     {
