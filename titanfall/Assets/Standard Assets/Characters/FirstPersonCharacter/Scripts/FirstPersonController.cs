@@ -45,7 +45,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool usedTheDoubleJump = false;
         private bool sprintPressed = false;
         private bool wallrun = false;
-
         // Use this for initialization
         private void Start()
         {
