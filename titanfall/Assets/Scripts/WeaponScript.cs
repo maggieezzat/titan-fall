@@ -107,7 +107,11 @@ public class WeaponScript : MonoBehaviour
 
     void Update()
     {
-        if( (Input.GetButtonUp("Fire1") && currentWeapon.weaponType == WeaponType.primary && primaryWeapon.firingMode == FiringMode.automatic)
+        if( (Input.GetButtonUp("Fire1") && currentWeapon.weaponType == WeaponType.primary 
+            && primaryWeapon.firingMode == FiringMode.automatic)
+        || (currentWeapon.weaponType == WeaponType.primary 
+            && primaryWeapon.firingMode == FiringMode.automatic
+            && primaryWeapon.ammoCount <= 0)
         || (Input.GetButtonUp("Fire1") &&  currentWeapon.weaponType == WeaponType.titan))
         {
             StartCoroutine("muzzleFlashStopCo");

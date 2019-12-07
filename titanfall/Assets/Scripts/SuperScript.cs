@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public enum PrimaryWeaponName { sniperRifle , assaultRifle };
 public enum HeavyWeaponName { rocketLauncher, grenadeLauncher };
 public enum WeaponType { primary, heavy, titan};
+public enum PlayerType {pilot, titan};
 public class SuperScript : MonoBehaviour
 {
 
@@ -62,16 +63,29 @@ public class PrimaryWeapon : Weapon
     public FiringMode firingMode; 
     public int fireRate;
     public int ammoCount;
+    public readonly int maxAmmoCount;
     public int range;
 
-    public PrimaryWeapon(int damageAmount, FiringMode firingMode, int fireRate, int ammoCount, int range) : base(damageAmount){
+    public PrimaryWeapon(int damageAmount, FiringMode firingMode, int fireRate, int maxAmmoCount, int range) : base(damageAmount){
         this.weaponType = WeaponType.primary;
         this.firingMode = firingMode;
         this.fireRate = fireRate;
-        this.ammoCount = ammoCount;
+        this.maxAmmoCount = maxAmmoCount;
+        this.ammoCount = maxAmmoCount;
         this.range = range;
         this.damageAmount = damageAmount;
     }
+
+    public void decAmmo()
+    {
+        ammoCount-=1;
+    }
+
+    public void reLoad()
+    {   
+        this.ammoCount = this.maxAmmoCount;
+    }
+
 }
 
 public class HeavyWeapon : Weapon 
