@@ -157,7 +157,23 @@ public class WeaponScript : MonoBehaviour
         explosions.Enqueue(exp);
         StartCoroutine(nextExplosionCo(exp));
 
+        explosionDamage(collisionLoc, ((HeavyWeapon)currentWeapon).explosionRadius,((HeavyWeapon)currentWeapon).damageAmount);
         
+    }
+
+    void explosionDamage(Vector3 center, float radius, int damageAmount)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        int i = 0;
+        while (i < hitColliders.Length)
+        {
+            if(hitColliders[i].transform.tag.Contains("Enemy"))
+            {
+                hitColliders[i].transform.GetComponent<EnemyScript>().takeDamage(damageAmount);
+            }
+            i++;
+            
+        }
     }
 
     public void switchWeapon()
@@ -215,8 +231,8 @@ public class WeaponScript : MonoBehaviour
         
         if(currentWeapon.weaponType == WeaponType.heavy)
         {
-            bool RaycastDown = Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, 
-                out hit);
+            Ray ray = fpsCamera.ScreenPointToRay(Input.mousePosition);
+            bool RaycastDown = Physics.Raycast(ray, out hit);
             
             if(RaycastDown && heavyWeaponPool.Peek().activeSelf)
             {
@@ -224,7 +240,8 @@ public class WeaponScript : MonoBehaviour
                 
                 projectile.SetActive(true);
                 projectile.transform.parent = null;
-                projectile.GetComponent<Projectile>().launch(hit.transform);
+                projectile.GetComponent<Projectile>().launch(hit.point);
+                Debug.Log(hit.transform.name);
                 
                 StartCoroutine("nextLaunchCo");
 
