@@ -20,6 +20,8 @@ public class WeaponScript : MonoBehaviour
     public GameObject sniperRifle_GO;
     GameObject primaryWeapon_GO;
     public GameObject predatorCanon_GO;
+
+    public GameObject aimCanvas;
     public GameObject launcher_GO;
 
 
@@ -115,7 +117,6 @@ public class WeaponScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.V))
             activateCoreAbility();
         
-        print(fps.coreAbility);
         
     }
 
@@ -185,18 +186,8 @@ public class WeaponScript : MonoBehaviour
         int damageAmount = currentWeapon.damageAmount;
 
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-        int i = 0;
-        while (i < hitColliders.Length)
-        {
-            fps.coreAbility = true;
-            if(hitColliders[i].transform.tag.Contains("Enemy"))
-            {
-                StartCoroutine(coreAbilityCo(hitColliders[i].transform));
-            }
-            i++;
-            fps.coreAbility = false;
-            
-        }
+        StartCoroutine("coreAbilityCo",hitColliders);
+        
         //
     }
 
@@ -314,11 +305,27 @@ public class WeaponScript : MonoBehaviour
 
     }
 
-    public IEnumerator coreAbilityCo(Transform hit)
+    public IEnumerator coreAbilityCo(Collider [] hitColliders)
     {
-        fpsCamera.transform.LookAt(hit);        
-        //playerFire();
-        yield return new WaitForSeconds(0.5f);
+        fps.coreAbility = true;
+        aimCanvas.SetActive(true);
+        int i = 0;
+        while (i < hitColliders.Length)
+        {
+            if(hitColliders[i].transform.tag.Contains("Enemy"))
+            {
+                fpsCamera.transform.LookAt(hitColliders[i].transform);
+                // Vector3 direction = hitColliders[i].transform.position - transform.position;
+                // Quaternion toRotation = Quaternion.FromToRotation(transform.forward, direction);
+                // fpsCamera.transform.rotation = Quaternion.Lerp(fpsCamera.transform.rotation, toRotation, 2f * Time.time);
+                playerFire();
+                yield return new WaitForSeconds(0.5f);
+            }
+            i++;
+        }
+        fps.coreAbility = false;
+        aimCanvas.SetActive(false);
+        StartCoroutine(muzzleFlashStopCo());
     }
 
     public void createPrimaryWeapon(PrimaryWeaponName primaryWeaponName)
