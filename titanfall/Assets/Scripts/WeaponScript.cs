@@ -12,22 +12,19 @@ public class WeaponScript : MonoBehaviour
     public TitanWeapon titanWeapon;
     public Weapon currentWeapon;
 
+
     public GameObject assaultRifle_GO;
     public GameObject sniperRifle_GO;
     GameObject primaryWeapon_GO;
     public GameObject predatorCanon_GO;
     public GameObject launcher_GO;
 
-    //public List<Pool> pools;
+
     public Pool [] pools = new Pool [3];
     public Dictionary<string, Queue<GameObject>> poolDict;
-
     Queue<GameObject> heavyWeaponPool;
     int heavyWeaponIndex = 0;
 
-    // public GameObject missilePrefab;
-    // public GameObject grenadePrefab;
-    // private GameObject heavyWeaponPrefab;
 
     ParticleSystem muzzleFlashPrimary;
     ParticleSystem muzzleFlashTitan;
@@ -56,8 +53,6 @@ public class WeaponScript : MonoBehaviour
         createTitanWeapon();
 
         currentWeapon = primaryWeapon;
-        //currentWeapon = heavyWeapon;
-        //currentWeapon = titanWeapon;
     }
 
 #endregion
@@ -88,15 +83,11 @@ public class WeaponScript : MonoBehaviour
         {
             heavyWeaponPool = poolDict["GrenadesPool"];
             heavyWeaponIndex = 1;
-            //pools[heavyWeaponIndex].pool_GO.SetActive(true);
-            // heavyWeaponPrefab = grenadePrefab;
         }
         else
         {
             heavyWeaponPool = poolDict["MissilesPool"];
             heavyWeaponIndex = 0;
-            //pools[heavyWeaponIndex].pool_GO.SetActive(true);
-            // heavyWeaponPrefab = missilePrefab;
         }
 
         muzzleFlashTitan = predatorCanon_GO.transform.GetChild(0).GetComponent<ParticleSystem>();
@@ -157,6 +148,7 @@ public class WeaponScript : MonoBehaviour
         explosions.Enqueue(exp);
         StartCoroutine(nextExplosionCo(exp));
 
+        //damage to objects within radius
         explosionDamage(collisionLoc, ((HeavyWeapon)currentWeapon).explosionRadius,((HeavyWeapon)currentWeapon).damageAmount);
         
     }
@@ -244,8 +236,6 @@ public class WeaponScript : MonoBehaviour
                 Debug.Log(hit.transform.name);
                 
                 StartCoroutine("nextLaunchCo");
-
-                //TODO: damage to enemies within range
             }
         }
 
