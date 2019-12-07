@@ -25,8 +25,8 @@
 - [ ] The pilot embarks the titan with animation by **pressing E**, *if he is close to the titan*, and then he becomes the titan.
 </br>
 
-- [ ] The titan can fire **using the left mouse button**. (check ray-cast target with colliders).
-- [ ] The titan can long-fire **by holding the left mouse button** *if currentWeapon.firingMode == 0 (ie.automatic)*. Note: Titan has infinite ammo.
+- [x] The titan can fire **using the left mouse button**. (check ray-cast target with colliders).
+- [x] The titan can long-fire **by holding the left mouse button** *if currentWeapon.firingMode == 0 (ie.automatic)*. Note: Titan has infinite ammo.
 - [ ] The titan can perform a "Dash" by **pressing SPACE and a movement key**, *if he Dash meter is not empty*.
 - [ ] The titan loses a Dash point from the dash meter having performed a Dash.
 - [ ] The Dash meter increases by 1Dash/sec. *if it is not full, and if it hasn't reached the maximum (3 Dashes)*.

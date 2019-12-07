@@ -289,6 +289,7 @@ public class WeaponScript : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         muzzleFlashPrimary.Stop();
         muzzleFlashTitan.Stop();
+        isPlaying = false;
     }
 
     public IEnumerator nextLaunchCo()
@@ -315,9 +316,6 @@ public class WeaponScript : MonoBehaviour
             if(hitColliders[i].transform.tag.Contains("Enemy"))
             {
                 fpsCamera.transform.LookAt(hitColliders[i].transform);
-                // Vector3 direction = hitColliders[i].transform.position - transform.position;
-                // Quaternion toRotation = Quaternion.FromToRotation(transform.forward, direction);
-                // fpsCamera.transform.rotation = Quaternion.Lerp(fpsCamera.transform.rotation, toRotation, 2f * Time.time);
                 playerFire();
                 yield return new WaitForSeconds(0.5f);
             }
