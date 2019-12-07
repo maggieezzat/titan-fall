@@ -113,7 +113,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
        
         private void OnCollisionEnter(Collision other) {
             //Debug.Log("Collided   " + other.gameObject.name);
-            if(other.gameObject.tag.Equals("Wall") && m_Jumping){
+            if( m_Jumping){
                 //Debug.Log("IN wall");
                 if(sprintPressed){
                     //Debug.Log("IN");
@@ -126,8 +126,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void OnCollisionExit(Collision other) {
             if(other.gameObject.tag.Equals("Wall")){
                 // gameObject.GetComponent<Rigidbody>().useGravity = true;
-                wallrun = false;
             }
+                wallrun = false;
         }
 
         private void crouch(){
