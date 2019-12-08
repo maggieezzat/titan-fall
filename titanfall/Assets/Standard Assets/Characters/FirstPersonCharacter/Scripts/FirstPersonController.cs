@@ -50,7 +50,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool usedTheDoubleJump = false;
         private bool sprintPressed = false;
         private bool wallrun = false;
-        private bool dashed;
+        private int dashSemaphore = -30;
+        private float realWalkSpeed;
+        private float realRunSpeed;
+        private float dashSpeed;
+
+        public int dashMeter = 3;
         // private int wallrunSemaphore = 0;
 
         // Use this for initialization
@@ -66,12 +71,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+            realWalkSpeed = m_WalkSpeed;
+            realRunSpeed = m_RunSpeed;
+            dashSpeed = 10* m_RunSpeed;
+            InvokeRepeating("incrementDashMeter", 0f, 5f);
+            
+
         }
 
 
         // Update is called once per frame
         private void Update()
         {
+            Debug.Log("Dash Meter: " + dashMeter);
             if(!coreAbility)
                 RotateView();
             
@@ -118,15 +130,23 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 sprintPressed = false;
                 // Debug.Log(sprintPressed);
             }
+            if(Input.GetKeyDown(KeyCode.X) && (dashSemaphore < -30) && dashMeter > 0){
+                dashMeter-=1;
+                dashSemaphore = 5;
+                m_WalkSpeed = dashSpeed;
+                m_RunSpeed = dashSpeed;
+            }
+            if(dashSemaphore <= 0){
+                m_RunSpeed = realRunSpeed;
+                m_WalkSpeed = realWalkSpeed;
+            }
+            if(dashSemaphore > -120){
+                dashSemaphore--;
+            }
 
 
         }
        
-        private void dash(){
-        //    transform.position = Vector3.Lerp(transform.position,transform.position + new Vector3(0,5,0), 0.5f);
-            dashed = true;
-            Debug.Log("Dashed");
-       }
         private void OnCollisionEnter(Collision other) {
             if(m_Jumping && sprintPressed && !other.gameObject.tag.Equals("Border")){
                 wallrun = true;
@@ -344,6 +364,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 return;
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+        }
+
+        private void incrementDashMeter()
+        {
+            Debug.Log("INCREMENT DASH METER");
+            int newDashMeter = dashMeter + 1;;
+            dashMeter = (newDashMeter > 3) ? 3 : newDashMeter;
         }
     }
 }

@@ -21,6 +21,7 @@ public class ProgressBar : MonoBehaviour
     public Sprite BarBackGroundSprite;
     [Range(1f, 100f)]
     public int Alert = 20;
+    public int dashAlert = 2;
     public Color BarAlertColor;
 
     [Header("Sound Alert")]
@@ -33,15 +34,27 @@ public class ProgressBar : MonoBehaviour
     private AudioSource audiosource;
     private Text txtTitle;
     private float barValue;
+    public bool dash = false;
     public float BarValue
     {
         get { return barValue; }
 
         set
         {
-            value = Mathf.Clamp(value, 0, 100);
+            int maxBarValue = 100;
+
+            if (dash)
+            {
+                barValue = (float)value / 3 * 100;
+                barValue = Mathf.Clamp(value, 0, maxBarValue);
+                UpdateValue(barValue); 
+            }
+            else {
+
+            value = Mathf.Clamp(value, 0, maxBarValue);
             barValue = value;
             UpdateValue(barValue);
+            }
 
         }
     }
@@ -75,17 +88,37 @@ public class ProgressBar : MonoBehaviour
 
     void UpdateValue(float val)
     {
-        bar.fillAmount = val / 100;
-        txtTitle.text = Title + " " + val + "%";
+        if (dash) bar.fillAmount = val / 3;
+        else bar.fillAmount = val / 100;
 
-        if (Alert >= val)
-        {
-            bar.color = BarAlertColor;
+        txtTitle.text = Title + " " + val;
+
+        if (!dash) txtTitle.text += "%";
+
+        
+        if (dash) {
+
+            if (dashAlert > val)
+            {
+                bar.color = BarAlertColor;
+            }
+            else
+            {
+                bar.color = BarColor;
+            }
+            
         }
-        else
-        {
-            bar.color = BarColor;
+        else{
+            if (Alert >= val)
+            {
+                bar.color = BarAlertColor;
+            }
+            else
+            {
+                bar.color = BarColor;
+            }
         }
+        
 
     }
 

@@ -48,6 +48,8 @@ public class CombatLevelManager : MonoBehaviour
         playerScript = PlayerScript.Instance;
         weaponScript = WeaponScript.Instance;
 
+        titanDashBar.dash = true;
+
         SetBars();
         SetTexts();
     }
@@ -115,7 +117,7 @@ public class CombatLevelManager : MonoBehaviour
     void SetBars()
     {
         titanHealthBar.BarValue = playerScript.titanPlayer.health;
-        titanDashBar.BarValue = playerScript.titanPlayer.dashMeter;
+        titanDashBar.BarValue = fps.dashMeter;
         titanCoreAbilityBar.BarValue = playerScript.titanPlayer.coreAbilityMeter;
 
         pilotHealthBar.BarValue = playerScript.pilotPlayer.health;
