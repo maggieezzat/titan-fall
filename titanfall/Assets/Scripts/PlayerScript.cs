@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -15,6 +16,12 @@ public class PlayerScript : MonoBehaviour
     public TitanPlayer titanPlayer;
 
     public static PlayerScript Instance;
+
+    /* UI Elements */
+    public GameObject playerHealthText;
+    public GameObject playerHealthBar;
+    public GameObject ammoDisplay;
+    /***************/
 
     void Awake()
     {
@@ -45,7 +52,13 @@ public class PlayerScript : MonoBehaviour
         {
             weaponScript.switchToTitanWeapon();
         }
-            
+
+        playerHealthText.GetComponent<Text>().text = "Health " + pilotPlayer.health + "%";
+        playerHealthBar.GetComponent<Image>().fillAmount = (float)pilotPlayer.health / pilotPlayer.maxHealth;
+        //playerHealthBar.GetComponent<Image>().color = 
+        PrimaryWeapon primaryWeapon = weaponScript.primaryWeapon;
+        ammoDisplay.GetComponent<Text>().text = "Ammo " + primaryWeapon.ammoCount + "/" + primaryWeapon.maxAmmoCount;
+
     }
 
     public void becomeTitan()
