@@ -5,12 +5,15 @@ using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
 
 // camera look rotation is frozen depending on core ability
+//look rotation and update cursor lock now takes gameover parameter
+//a public gameover parameter is added, default is false
 namespace UnityStandardAssets.Characters.FirstPerson
 {
     [RequireComponent(typeof (CharacterController))]
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
+        public bool gameOver = false;
         public bool coreAbility = false;
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
@@ -198,7 +201,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             ProgressStepCycle(speed);
             UpdateCameraPosition(speed);
 
-            m_MouseLook.UpdateCursorLock();
+            m_MouseLook.UpdateCursorLock(gameOver);
         }
 
 
@@ -313,7 +316,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void RotateView()
         {
-            m_MouseLook.LookRotation (transform, m_Camera.transform);
+            m_MouseLook.LookRotation (transform, m_Camera.transform, gameOver);
         }
 
 

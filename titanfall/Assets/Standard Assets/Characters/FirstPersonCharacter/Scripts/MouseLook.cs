@@ -2,11 +2,13 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
+//look rotation, internal lock update and update cursor lock now takes gameover parameter
 namespace UnityStandardAssets.Characters.FirstPerson
 {
     [Serializable]
     public class MouseLook
     {
+       
         public float XSensitivity = 2f;
         public float YSensitivity = 2f;
         public bool clampVerticalRotation = true;
@@ -28,7 +30,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        public void LookRotation(Transform character, Transform camera)
+        public void LookRotation(Transform character, Transform camera, bool gameOver)
         {
             float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
             float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
@@ -52,7 +54,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 camera.localRotation = m_CameraTargetRot;
             }
 
-            UpdateCursorLock();
+            UpdateCursorLock(gameOver);
         }
 
         public void SetCursorLock(bool value)
@@ -65,16 +67,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
-        public void UpdateCursorLock()
+        public void UpdateCursorLock(bool gameOver)
         {
             //if the user set "lockCursor" we check & properly lock the cursos
             if (lockCursor)
-                InternalLockUpdate();
+                InternalLockUpdate(gameOver);
         }
 
-        private void InternalLockUpdate()
+        private void InternalLockUpdate(bool gameOver)
         {
-            if(Input.GetKeyUp(KeyCode.Escape))
+            if(Input.GetKeyUp(KeyCode.Escape) || gameOver)
             {
                 m_cursorIsLocked = false;
             }

@@ -287,6 +287,7 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
+//look rotation now takes gameover parameter and here is default to false
 namespace UnityStandardAssets.Characters.FirstPerson
 {
     [RequireComponent(typeof(Rigidbody))]
@@ -521,7 +522,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // get the rotation before it's changed
             float oldYRotation = transform.eulerAngles.y;
 
-            mouseLook.LookRotation(transform, cam.transform);
+            mouseLook.LookRotation(transform, cam.transform, false);
 
             if (m_IsGrounded || advancedSettings.airControl)
             {

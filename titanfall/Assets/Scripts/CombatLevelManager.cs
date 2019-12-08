@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class CombatLevelManager : MonoBehaviour
 {
+    public FirstPersonController fps;
     public GameObject pausePanel;
+    public GameObject gameOverPanel;
     public GameObject pilotHUD;
     public GameObject titanHUD;
 
@@ -38,6 +41,17 @@ public class CombatLevelManager : MonoBehaviour
     int titanDash = 50;
     int titanCoreAbility = 70;
     
+#region Singleton    
+    public static CombatLevelManager Instance;
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
+#endregion
+
+
     void Start()
     {
         SetBars();
@@ -67,6 +81,19 @@ public class CombatLevelManager : MonoBehaviour
         audioSource.Play();
         Time.timeScale = 0;
 
+    }
+
+    public void gameOver()
+    {
+        gameOverPanel.SetActive(true);
+        pilotHUD.SetActive(false);
+        titanHUD.SetActive(false);
+        audioSource.Stop();
+        audioSource.clip = pauseMusic;
+        audioSource.Play();
+        Time.timeScale = 0;
+
+        fps.gameOver = true;
     }
 
     public void ResumeGame()

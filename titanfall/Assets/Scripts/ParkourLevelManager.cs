@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class ParkourLevelManager : MonoBehaviour
 {
+
+    public FirstPersonController fps;
     public GameObject pausePanel;
+    public GameObject gameOverPanel;
     public GameObject pilotHUD;
     public GameObject titanHUD;
 
@@ -37,7 +41,17 @@ public class ParkourLevelManager : MonoBehaviour
     int titanHealth = 20;
     int titanDash = 50;
     int titanCoreAbility = 70;
-    
+
+#region Singleton    
+    public static ParkourLevelManager Instance;
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
+#endregion
+
     void Start()
     {
         SetBars();
@@ -69,6 +83,19 @@ public class ParkourLevelManager : MonoBehaviour
 
     }
 
+    public void gameOver()
+    {
+        gameOverPanel.SetActive(true);
+        pilotHUD.SetActive(false);
+        titanHUD.SetActive(false);
+        audioSource.Stop();
+        audioSource.clip = pauseMusic;
+        audioSource.Play();
+        Time.timeScale = 0;
+
+        fps.gameOver = true;
+    }
+
     public void ResumeGame()
     {
         pausePanel.SetActive(false);
@@ -84,6 +111,7 @@ public class ParkourLevelManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene("ParkourLevel");
+        Time.timeScale = 1;
     }
 
     public void QuitToMain()
