@@ -11,8 +11,7 @@ TagManager:
   - Border
   - esniper
   - etitan
-  - eassult
-  - eassault
+  - EnemyAssault
   layers:
   - Default
   - TransparentFX

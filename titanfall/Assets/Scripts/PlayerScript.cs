@@ -15,6 +15,8 @@ public class PlayerScript : MonoBehaviour
     public PilotPlayer pilotPlayer;
     public TitanPlayer titanPlayer;
 
+    public bool isDead = false;
+
     public static PlayerScript Instance;
 
     /* UI Elements */
@@ -133,6 +135,11 @@ public class PlayerScript : MonoBehaviour
             weaponScript.switchWeapon();
         }
 
+    }
+
+    public void takeDamage(int damage)
+    {
+        isDead = currentPlayer.decHealth(damage);
     }
 
 

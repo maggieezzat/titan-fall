@@ -65,6 +65,7 @@ public class ProgressBar : MonoBehaviour
     {
         bar = transform.Find("Bar").GetComponent<Image>();
         //barBackground = GetComponent<Image>();
+        
         txtTitle = transform.Find("Text").GetComponent<Text>();
         //barBackground = transform.Find("BarBackground").GetComponent<Image>();
         //audiosource = GetComponent<AudioSource>();

@@ -8,7 +8,7 @@ public class EnemyScript : MonoBehaviour
     public Transform nozzle;
 
     public Transform [] patrolPoints;
-    private int health = 30;
+    private int health = 100;
 
     PlayerScript playerScript;
 
@@ -28,12 +28,15 @@ public class EnemyScript : MonoBehaviour
     private Animator enemyAnimator;
 
     private NavMeshAgent agent;
+    public ProgressBar healthBar;
 
     public GameObject player;
     private bool inRange = false;
 
     bool initPatrolSet = false;
     int currentIndex = 0;
+    bool isDead = false;
+    public ParticleSystem blood;
 
 
     void Start()
@@ -46,12 +49,18 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
-        if (inRange)
+
+        if(health <= 0)
         {
-            bool destinationSet = agent.SetDestination(player.transform.position);
-            bool pathPend = agent.pathPending;
-            print("desti" + destinationSet);
-            print("pend"+pathPend);
+            die();
+
+        }
+
+
+
+        if(inRange && !isDead)
+        {
+            agent.SetDestination(player.transform.position);
             Vector3 dir = Vector3.ProjectOnPlane((player.transform.position - transform.position), Vector3.up);
             transform.rotation = Quaternion.LookRotation(dir);
             if(!enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Rifle Run"))
@@ -69,19 +78,9 @@ public class EnemyScript : MonoBehaviour
             enemyAnimator.SetBool("isRunning",false);
             enemyAnimator.SetBool("isWalking", true);
 
-            print("out of raznge");
-
-            // if(!Vector3.Equals(agent.destination, patrolPoints[0].position) && !Vector3.Equals(agent.destination,patrolPoints[1].position)){
-            //         agent.destination = patrolPoints[0].position;
-            //         print("setting initial patrol");
-            //         print(agent.destination);
-            //         print(patrolPoints[0].position);
-            // }
-
             if(!initPatrolSet){
                 agent.destination = patrolPoints[currentIndex].position;
                 initPatrolSet = true;
-                print("setting initial patrol");
 
             }
                 
@@ -111,7 +110,7 @@ public class EnemyScript : MonoBehaviour
             //enemyAnimator.SetBool("isForward", false);
         }
 
-        if (gameObject.tag == "eassault")
+        if (gameObject.tag == "EnemyAssault")
         {
             if (enemyAnimator.GetBool("isWalking"))
             {
@@ -120,7 +119,7 @@ public class EnemyScript : MonoBehaviour
             }
 
         }
-        else if (gameObject.tag == "esniper")
+        else if (gameObject.tag == "EnemySniper")
         {
             if (enemyAnimator.GetBool("isWalking"))
             {
@@ -129,7 +128,7 @@ public class EnemyScript : MonoBehaviour
             }
         }
 
-        else if (gameObject.tag == "etitan")
+        else if (gameObject.tag == "EnemyTitan")
         {
             if (enemyAnimator.GetBool("isWalking"))
             {
@@ -144,10 +143,18 @@ public class EnemyScript : MonoBehaviour
     public void takeDamage(int damage)
     {
         health -= damage;
+        healthBar.BarValue = health;
+        enemyAnimator.SetTrigger("isHit");
+        blood.Play();
     }
 
     public void die()
     {
+        enemyAnimator.SetTrigger("isDead");
+        transform.GetComponent<Collider>().enabled = false;
+        agent.updatePosition = false;
+        agent.updateRotation = false;
+        isDead = true;
 
     }
     

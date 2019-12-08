@@ -284,9 +284,23 @@ public class WeaponScript : MonoBehaviour
 
     }
 
-    public void enemyFire(Transform nozzle)
+    public void enemyFire(string enemyTag,Transform nozzle)
     {
+        RaycastHit hit;
+        bool RaycastDown = Physics.Raycast(nozzle.position, nozzle.forward, 
+                out hit);
+        int damageAmount = 0;
         
+        switch(enemyTag)
+        {
+            case "EnemyAssault": damageAmount = 10; break;
+            case "EnemySniper": damageAmount = 85; break;
+            case "EnemyTitan": damageAmount = 15;break;
+        }
+
+        if(RaycastDown  && hit.transform.tag.Contains("Player")){
+               hit.transform.GetComponent<PlayerScript>().takeDamage(damageAmount);
+            }
     }
 
     public IEnumerator muzzleFlashStopCo()
