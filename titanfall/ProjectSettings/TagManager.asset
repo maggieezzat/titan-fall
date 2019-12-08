@@ -9,6 +9,10 @@ TagManager:
   - Enemy
   - Wall
   - Border
+  - esniper
+  - etitan
+  - eassult
+  - eassault
   layers:
   - Default
   - TransparentFX
