@@ -50,6 +50,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool usedTheDoubleJump = false;
         private bool sprintPressed = false;
         private bool wallrun = false;
+        private bool dashed;
+        // private int wallrunSemaphore = 0;
+
         // Use this for initialization
         private void Start()
         {
@@ -116,26 +119,30 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 // Debug.Log(sprintPressed);
             }
 
+
         }
        
+        private void dash(){
+        //    transform.position = Vector3.Lerp(transform.position,transform.position + new Vector3(0,5,0), 0.5f);
+            dashed = true;
+            Debug.Log("Dashed");
+       }
         private void OnCollisionEnter(Collision other) {
-            //Debug.Log("Collided   " + other.gameObject.name);
-            if( m_Jumping){
-                //Debug.Log("IN wall");
-                if(sprintPressed){
-                    //Debug.Log("IN");
-                    // gameObject.GetComponent<Rigidbody>().useGravity = false;
-                    wallrun = true;
-                }
+            if(m_Jumping && sprintPressed && !other.gameObject.tag.Equals("Border")){
+                wallrun = true;
+                // wallrunSemaphore++;
+                // Debug.Log(wallrunSemaphore +  "inc");
             }
         }
 
         private void OnCollisionExit(Collision other) {
-            if(other.gameObject.tag.Equals("Wall")){
-                // gameObject.GetComponent<Rigidbody>().useGravity = true;
-            }
+            if(!other.gameObject.tag.Equals("Border")){
                 wallrun = false;
+                // wallrunSemaphore--;
+                // Debug.Log(wallrunSemaphore +  "dec");
+            }
         }
+
 
         private void crouch(){
             if(!isCrouching){
@@ -193,6 +200,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 
             }
+            // if(wallrunSemaphore > 0){
+            //     m_MoveDir.y = 0;
+            // }
             if(wallrun){
                 m_MoveDir.y = 0;
             }
