@@ -58,7 +58,7 @@ public class PlayerScript : MonoBehaviour
         //TODO: isTitan and isDead => Disembark the titan
         if(isDead && !isTitan)
         {
-            //CombatLevelManager.Instance.gameOver();
+            CombatLevelManager.Instance.gameOver();
         }
         if(isDead && isTitan)
         {
