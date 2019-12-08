@@ -10,10 +10,10 @@
 - [x] The pilot can double jump **using double SPACE** (SPACE in mid air).
 - [x] The pilot can wall run **by being mid-air and sprinting forward** (SPACE -> left Shift + FWD arrow).
 - [x] The pilot can crouch **using C**, *however he can't sprint*. Note: **Collider has to shrink**.
-- [ ] The pilot can fire **using the left mouse button** *if he has sufficient ammo*. (check ray-cast target with colliders).
-- [ ] The pilot can long-fire **by holding the left mouse button** *if he has sufficient ammo and if currentWeapon.firingMode == 0 (ie.automatic)*.
-- [ ] The pilot/titan can reload **using R**, *if  ammo is not full and if his current weapon is of type primary weapon*.
-- [ ] The pilot can switch weapon (primary <-> heavy) **using Z**.
+- [x] The pilot can fire **using the left mouse button** *if he has sufficient ammo*. (check ray-cast target with colliders).
+- [x] The pilot can long-fire **by holding the left mouse button** *if he has sufficient ammo and if currentWeapon.firingMode == 0 (ie.automatic)*.
+- [x] The pilot/titan can reload **using R**, *if  ammo is not full and if his current weapon is of type primary weapon*.
+- [x] The pilot can switch weapon (primary <-> heavy) **using Z**.
 - [ ] The pilot kills enemies which increases his titanfall meter by **+10** for killing pilots and **+50** for killing titans.
 - [ ] The pilot gets hit by enemies and loses HP according to the damage amount of weapon used.
 - [ ] The health meter increases automatically by 5HP/sec., *if the pilot doesn't get hit for 3 seconds straight and if his health isn't already full (reached 100)*.
@@ -25,8 +25,8 @@
 - [ ] The pilot embarks the titan with animation by **pressing E**, *if he is close to the titan*, and then he becomes the titan.
 </br>
 
-- [ ] The titan can fire **using the left mouse button**. (check ray-cast target with colliders).
-- [ ] The titan can long-fire **by holding the left mouse button** *if currentWeapon.firingMode == 0 (ie.automatic)*. Note: Titan has infinite ammo.
+- [x] The titan can fire **using the left mouse button**. (check ray-cast target with colliders).
+- [x] The titan can long-fire **by holding the left mouse button** *if currentWeapon.firingMode == 0 (ie.automatic)*. Note: Titan has infinite ammo.
 - [ ] The titan can perform a "Dash" by **pressing SPACE and a movement key**, *if he Dash meter is not empty*.
 - [ ] The titan loses a Dash point from the dash meter having performed a Dash.
 - [ ] The Dash meter increases by 1Dash/sec. *if it is not full, and if it hasn't reached the maximum (3 Dashes)*.

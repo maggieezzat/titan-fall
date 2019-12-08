@@ -5,10 +5,13 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
     public Transform nozzle;
+    private int health = 30;
+
+    PlayerScript playerScript;
 
     void Start()
     {
-        
+        playerScript = PlayerScript.Instance;
     }
 
     
@@ -18,6 +21,11 @@ public class EnemyScript : MonoBehaviour
     }
 
     public void takeDamage(int damage)
+    {
+        health -= damage;
+    }
+
+    public void die()
     {
 
     }

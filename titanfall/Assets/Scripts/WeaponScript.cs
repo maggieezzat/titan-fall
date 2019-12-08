@@ -20,6 +20,8 @@ public class WeaponScript : MonoBehaviour
     public GameObject sniperRifle_GO;
     GameObject primaryWeapon_GO;
     public GameObject predatorCanon_GO;
+
+    public GameObject aimCanvas;
     public GameObject launcher_GO;
 
 
@@ -105,7 +107,11 @@ public class WeaponScript : MonoBehaviour
 
     void Update()
     {
-        if( (Input.GetButtonUp("Fire1") && currentWeapon.weaponType == WeaponType.primary && primaryWeapon.firingMode == FiringMode.automatic)
+        if( (Input.GetButtonUp("Fire1") && currentWeapon.weaponType == WeaponType.primary 
+            && primaryWeapon.firingMode == FiringMode.automatic)
+        || (currentWeapon.weaponType == WeaponType.primary 
+            && primaryWeapon.firingMode == FiringMode.automatic
+            && primaryWeapon.ammoCount <= 0)
         || (Input.GetButtonUp("Fire1") &&  currentWeapon.weaponType == WeaponType.titan))
         {
             StartCoroutine("muzzleFlashStopCo");
@@ -185,18 +191,8 @@ public class WeaponScript : MonoBehaviour
         int damageAmount = currentWeapon.damageAmount;
 
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-        int i = 0;
-        while (i < hitColliders.Length)
-        {
-            fps.coreAbility = true;
-            if(hitColliders[i].transform.tag.Contains("Enemy"))
-            {
-                StartCoroutine(coreAbilityCo(hitColliders[i].transform));
-            }
-            i++;
-            fps.coreAbility = false;
-            
-        }
+        StartCoroutine("coreAbilityCo",hitColliders);
+        
         //
     }
 
@@ -298,6 +294,7 @@ public class WeaponScript : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         muzzleFlashPrimary.Stop();
         muzzleFlashTitan.Stop();
+        isPlaying = false;
     }
 
     public IEnumerator nextLaunchCo()
@@ -314,11 +311,24 @@ public class WeaponScript : MonoBehaviour
 
     }
 
-    public IEnumerator coreAbilityCo(Transform hit)
+    public IEnumerator coreAbilityCo(Collider [] hitColliders)
     {
-        fpsCamera.transform.LookAt(hit);        
-        //playerFire();
-        yield return new WaitForSeconds(0.5f);
+        fps.coreAbility = true;
+        aimCanvas.SetActive(true);
+        int i = 0;
+        while (i < hitColliders.Length)
+        {
+            if(hitColliders[i].transform.tag.Contains("Enemy"))
+            {
+                fpsCamera.transform.LookAt(hitColliders[i].transform);
+                playerFire();
+                yield return new WaitForSeconds(0.5f);
+            }
+            i++;
+        }
+        fps.coreAbility = false;
+        aimCanvas.SetActive(false);
+        StartCoroutine(muzzleFlashStopCo());
     }
 
     public void createPrimaryWeapon(PrimaryWeaponName primaryWeaponName)
