@@ -26,14 +26,16 @@ public class PlayerScript : MonoBehaviour
     void Awake()
     {
         Instance = this;
-    }
-    
-    void Start()
-    {
+
         pilotPlayer = new PilotPlayer();
         titanPlayer = new TitanPlayer();
         currentPlayer = pilotPlayer;
         currentPlayerType = PlayerType.pilot;
+    }
+    
+    void Start()
+    {
+        
 
         currentPlayer.health = 50;
         ((PilotPlayer)currentPlayer).titanFallMeter = 20;
