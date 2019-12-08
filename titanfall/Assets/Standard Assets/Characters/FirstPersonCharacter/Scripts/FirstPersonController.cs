@@ -83,7 +83,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
-            Debug.Log("Dash Meter: " + dashMeter);
             if(!coreAbility)
                 RotateView();
             
@@ -123,12 +122,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if(Input.GetKeyDown(KeyCode.LeftShift)){
                 sprintPressed = true;
-                // Debug.Log(sprintPressed);
             }
 
             if(Input.GetKeyUp(KeyCode.LeftShift)){
                 sprintPressed = false;
-                // Debug.Log(sprintPressed);
             }
             if(Input.GetKeyDown(KeyCode.X) && (dashSemaphore < -30) && dashMeter > 0){
                 dashMeter-=1;
@@ -151,7 +148,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if(m_Jumping && sprintPressed && !other.gameObject.tag.Equals("Border")){
                 wallrun = true;
                 // wallrunSemaphore++;
-                // Debug.Log(wallrunSemaphore +  "inc");
             }
         }
 
@@ -159,21 +155,20 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if(!other.gameObject.tag.Equals("Border")){
                 wallrun = false;
                 // wallrunSemaphore--;
-                // Debug.Log(wallrunSemaphore +  "dec");
             }
         }
 
 
         private void crouch(){
-            if(!isCrouching){
-                // Debug.Log(isCrouching);
+            if(!isCrouching)
+            {
                 gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale - new Vector3(0.6f,0.6f,0.6f);
                 isCrouching = !isCrouching;
             }
-            else{
+            else
+            {
                 gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale - new Vector3(-0.6f,-0.6f,-0.6f);
                 isCrouching = !isCrouching;
-                // Debug.Log(isCrouching);
             }
         }
 
@@ -368,7 +363,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void incrementDashMeter()
         {
-            Debug.Log("INCREMENT DASH METER");
             int newDashMeter = dashMeter + 1;;
             dashMeter = (newDashMeter > 3) ? 3 : newDashMeter;
         }

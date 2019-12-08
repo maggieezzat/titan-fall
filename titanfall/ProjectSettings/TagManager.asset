@@ -12,6 +12,8 @@ TagManager:
   - esniper
   - etitan
   - EnemyAssault
+  - EnemySniper
+  - EnemyTitan
   layers:
   - Default
   - TransparentFX

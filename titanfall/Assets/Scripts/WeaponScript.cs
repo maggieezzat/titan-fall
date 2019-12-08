@@ -121,8 +121,6 @@ public class WeaponScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.V))
             activateCoreAbility();
         
-        // print(fps.coreAbility);
-        
     }
 
     void createPools()
@@ -185,15 +183,12 @@ public class WeaponScript : MonoBehaviour
 
     void activateCoreAbility()
     {
-        
         float radius = 10f;
         Vector3 center = transform.position;
         int damageAmount = currentWeapon.damageAmount;
 
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         StartCoroutine("coreAbilityCo",hitColliders);
-        
-        //
     }
 
     public void switchWeapon()
@@ -261,7 +256,6 @@ public class WeaponScript : MonoBehaviour
                 projectile.SetActive(true);
                 projectile.transform.parent = null;
                 projectile.GetComponent<Projectile>().launch(hit.point);
-                Debug.Log(hit.transform.name);
                 
                 StartCoroutine("nextLaunchCo");
             }
@@ -298,9 +292,10 @@ public class WeaponScript : MonoBehaviour
             case "EnemyTitan": damageAmount = 15;break;
         }
 
-        if(RaycastDown  && hit.transform.tag.Contains("Player")){
-               hit.transform.GetComponent<PlayerScript>().takeDamage(damageAmount);
-            }
+        if(RaycastDown  && hit.transform.tag.Contains("Player"))
+        {
+            hit.transform.GetComponent<PlayerScript>().takeDamage(damageAmount);
+        }
     }
 
     public IEnumerator muzzleFlashStopCo()

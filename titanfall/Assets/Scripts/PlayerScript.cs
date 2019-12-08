@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour
 {
     public SuperScript superScript;
     public WeaponScript weaponScript;
+    
     private float fireRate;
     private float nextTimeToFire;
 
@@ -14,17 +15,14 @@ public class PlayerScript : MonoBehaviour
     public Player currentPlayer;
     public PilotPlayer pilotPlayer;
     public TitanPlayer titanPlayer;
+    bool isTitan = false;
 
     public bool isDead = false;
+    
+
+#region Singleton
 
     public static PlayerScript Instance;
-
-    /* UI Elements */
-    //public GameObject playerHealthText;
-    //public GameObject playerHealthBar;
-    //public GameObject ammoDisplay;
-    /***************/
-
     void Awake()
     {
         Instance = this;
@@ -34,15 +32,11 @@ public class PlayerScript : MonoBehaviour
         currentPlayer = pilotPlayer;
         currentPlayerType = PlayerType.pilot;
     }
-    
+
+#endregion
+
     void Start()
     {
-        
-
-        currentPlayer.health = 50;
-        ((PilotPlayer)currentPlayer).titanFallMeter = 20;
-        
-        //superScript = GameObject.Find("SuperScript").GetComponent<SuperScript>();
         fireRate = weaponScript.primaryWeapon.fireRate;
         nextTimeToFire = 0f;
     }
@@ -55,16 +49,24 @@ public class PlayerScript : MonoBehaviour
 
         checkForReload();
 
+        //TODO: call titan, embark, disembark
         if(Input.GetKeyDown(KeyCode.T))
         {
             weaponScript.switchToTitanWeapon();
         }
 
-        //playerHealthText.GetComponent<Text>().text = "Health " + pilotPlayer.health + "%";
-        //playerHealthBar.GetComponent<Image>().fillAmount = (float)pilotPlayer.health / pilotPlayer.maxHealth;
-        //playerHealthBar.GetComponent<Image>().color = 
-        //PrimaryWeapon primaryWeapon = weaponScript.primaryWeapon;
-        //ammoDisplay.GetComponent<Text>().text = "Ammo " + primaryWeapon.ammoCount + "/" + primaryWeapon.maxAmmoCount;
+        //TODO: isTitan and isDead => Disembark the titan
+        if(isDead && !isTitan)
+        {
+            //CombatLevelManager.Instance.gameOver();
+        }
+        if(isDead && isTitan)
+        {
+            //disembark the titan
+            //switch to pilot
+            currentPlayer = pilotPlayer;
+            isDead = false;
+        }
 
     }
 
@@ -95,7 +97,6 @@ public class PlayerScript : MonoBehaviour
                 nextTimeToFire = Time.time + 1f/fireRate;
                 weaponScript.playerFire();
                 ((PrimaryWeapon)weaponScript.currentWeapon).decAmmo();
-                print(((PrimaryWeapon)weaponScript.currentWeapon).ammoCount);
             }
             if(((PrimaryWeapon)weaponScript.currentWeapon).firingMode == FiringMode.automatic && 
             Input.GetButton("Fire1") && Time.time >= nextTimeToFire
@@ -104,7 +105,6 @@ public class PlayerScript : MonoBehaviour
                 nextTimeToFire = Time.time + 1f/fireRate;
                 weaponScript.playerFire();
                 ((PrimaryWeapon)weaponScript.currentWeapon).decAmmo();
-                print(((PrimaryWeapon)weaponScript.currentWeapon).ammoCount);
             }
             
         }
@@ -125,6 +125,8 @@ public class PlayerScript : MonoBehaviour
             }
 
         }
+
+
     }
 
 
@@ -140,6 +142,7 @@ public class PlayerScript : MonoBehaviour
     public void takeDamage(int damage)
     {
         isDead = currentPlayer.decHealth(damage);
+
     }
 
 

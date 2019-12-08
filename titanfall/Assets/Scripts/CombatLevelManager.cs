@@ -107,6 +107,7 @@ public class CombatLevelManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene("CombatLevel");
+        Time.timeScale = 1;
     }
 
     public void QuitToMain()
