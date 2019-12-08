@@ -12,6 +12,7 @@ public class pitFallScript : MonoBehaviour
         if(other.gameObject.tag.Equals("Player"))
         {
             ParkourLevelManager.Instance.gameOver();
+            print("game over");
         }
     }
 

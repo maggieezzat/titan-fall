@@ -80,6 +80,7 @@ public class ParkourLevelManager : MonoBehaviour
         Time.timeScale = 0;
 
         fps.gameOver = true;
+        
     }
 
     public void ResumeGame()
