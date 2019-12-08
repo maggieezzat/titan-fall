@@ -47,7 +47,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool usedTheDoubleJump = false;
         private bool sprintPressed = false;
         private bool wallrun = false;
-        private int wallrunSemaphore = 0;
+        private bool dashed;
+        // private int wallrunSemaphore = 0;
+
         // Use this for initialization
         private void Start()
         {
@@ -114,8 +116,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 // Debug.Log(sprintPressed);
             }
 
+
         }
        
+        private void dash(){
+        //    transform.position = Vector3.Lerp(transform.position,transform.position + new Vector3(0,5,0), 0.5f);
+            dashed = true;
+            Debug.Log("Dashed");
+       }
         private void OnCollisionEnter(Collision other) {
             if(m_Jumping && sprintPressed && !other.gameObject.tag.Equals("Border")){
                 wallrun = true;
@@ -201,6 +209,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             UpdateCameraPosition(speed);
 
             m_MouseLook.UpdateCursorLock();
+
+            if(Input.GetKeyDown(KeyCode.X)){
+                m_MoveDir.x += 10;
+            }
+
         }
 
 

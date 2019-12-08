@@ -115,7 +115,7 @@ public class WeaponScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.V))
             activateCoreAbility();
         
-        print(fps.coreAbility);
+        // print(fps.coreAbility);
         
     }
 
