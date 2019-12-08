@@ -8,8 +8,8 @@ public class WeaponScript : MonoBehaviour
     public SuperScript superScript;
 
     public FirstPersonController fps;
-    PrimaryWeaponName primaryWeaponName;
-    HeavyWeaponName heavyWeaponName;
+    public PrimaryWeaponName primaryWeaponName;
+    public HeavyWeaponName heavyWeaponName;
     public PrimaryWeapon primaryWeapon;
     public HeavyWeapon heavyWeapon;
     public TitanWeapon titanWeapon;
