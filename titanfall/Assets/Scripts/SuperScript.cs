@@ -32,18 +32,6 @@ public class SuperScript : MonoBehaviour
         
     }
 #endregion
-    void Update()
-    {
-
-        
-    }
-
-    public void loadScene(string sceneName)
-    {
-        
-        SceneManager.LoadScene(sceneName);
-
-    }
 
 }
 public enum ProjectileMode { straightLine, curveDown };

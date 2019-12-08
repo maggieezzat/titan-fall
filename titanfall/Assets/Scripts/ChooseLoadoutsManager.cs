@@ -40,7 +40,7 @@ public class ChooseLoadoutsManager : MonoBehaviour
 
     void Start()
     {
-        superScript = GameObject.Find("SuperScript").GetComponent<SuperScript>();
+        superScript = SuperScript.Instance;
         primaryWeaponsText = primaryWeaponsTextBox.GetComponent<TextMeshProUGUI>();
         heavyWeaponsText = heavyWeaponsTextBox.GetComponent<TextMeshProUGUI>();
 
