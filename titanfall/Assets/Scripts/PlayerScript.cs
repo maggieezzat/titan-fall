@@ -18,9 +18,9 @@ public class PlayerScript : MonoBehaviour
     public static PlayerScript Instance;
 
     /* UI Elements */
-    public GameObject playerHealthText;
-    public GameObject playerHealthBar;
-    public GameObject ammoDisplay;
+    //public GameObject playerHealthText;
+    //public GameObject playerHealthBar;
+    //public GameObject ammoDisplay;
     /***************/
 
     void Awake()
@@ -34,6 +34,9 @@ public class PlayerScript : MonoBehaviour
         titanPlayer = new TitanPlayer();
         currentPlayer = pilotPlayer;
         currentPlayerType = PlayerType.pilot;
+
+        currentPlayer.health = 50;
+        ((PilotPlayer)currentPlayer).titanFallMeter = 20;
         
         //superScript = GameObject.Find("SuperScript").GetComponent<SuperScript>();
         fireRate = weaponScript.primaryWeapon.fireRate;
@@ -53,11 +56,11 @@ public class PlayerScript : MonoBehaviour
             weaponScript.switchToTitanWeapon();
         }
 
-        playerHealthText.GetComponent<Text>().text = "Health " + pilotPlayer.health + "%";
-        playerHealthBar.GetComponent<Image>().fillAmount = (float)pilotPlayer.health / pilotPlayer.maxHealth;
+        //playerHealthText.GetComponent<Text>().text = "Health " + pilotPlayer.health + "%";
+        //playerHealthBar.GetComponent<Image>().fillAmount = (float)pilotPlayer.health / pilotPlayer.maxHealth;
         //playerHealthBar.GetComponent<Image>().color = 
-        PrimaryWeapon primaryWeapon = weaponScript.primaryWeapon;
-        ammoDisplay.GetComponent<Text>().text = "Ammo " + primaryWeapon.ammoCount + "/" + primaryWeapon.maxAmmoCount;
+        //PrimaryWeapon primaryWeapon = weaponScript.primaryWeapon;
+        //ammoDisplay.GetComponent<Text>().text = "Ammo " + primaryWeapon.ammoCount + "/" + primaryWeapon.maxAmmoCount;
 
     }
 

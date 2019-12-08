@@ -9,10 +9,11 @@ public class ParkourLevelManager : MonoBehaviour
 {
 
     public FirstPersonController fps;
+    public PlayerScript playerScript;
+    public WeaponScript weaponScript;
     public GameObject pausePanel;
     public GameObject gameOverPanel;
     public GameObject pilotHUD;
-    public GameObject titanHUD;
 
     public AudioSource audioSource;
     public AudioClip parkourLevelMusic;
@@ -25,22 +26,6 @@ public class ParkourLevelManager : MonoBehaviour
     public Text pilotWeaponNameText;
     public Text pilotAmmoCountText;
 
-    string pilotWeaponName = "Rifle";
-    int pilotAmmoCount = 10;
-    int weaponMaxAmmo = 20;
-
-    int pilotHealth = 20;
-    int pilotTitanFall = 80;
-
-
-    //Titan's HUD
-    public ProgressBar titanHealthBar;
-    public ProgressBar titanDashBar;
-    public ProgressBar titanCoreAbilityBar;
-
-    int titanHealth = 20;
-    int titanDash = 50;
-    int titanCoreAbility = 70;
 
 #region Singleton    
     public static ParkourLevelManager Instance;
@@ -54,6 +39,9 @@ public class ParkourLevelManager : MonoBehaviour
 
     void Start()
     {
+        playerScript = PlayerScript.Instance;
+        weaponScript = WeaponScript.Instance;
+
         SetBars();
         SetTexts();
         
@@ -75,7 +63,6 @@ public class ParkourLevelManager : MonoBehaviour
     {
         pausePanel.SetActive(true);
         pilotHUD.SetActive(false);
-        titanHUD.SetActive(false);
         audioSource.Stop();
         audioSource.clip = pauseMusic;
         audioSource.Play();
@@ -87,7 +74,6 @@ public class ParkourLevelManager : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
         pilotHUD.SetActive(false);
-        titanHUD.SetActive(false);
         audioSource.Stop();
         audioSource.clip = pauseMusic;
         audioSource.Play();
@@ -100,7 +86,6 @@ public class ParkourLevelManager : MonoBehaviour
     {
         pausePanel.SetActive(false);
         pilotHUD.SetActive(true);
-        titanHUD.SetActive(true);
         audioSource.Stop();
         audioSource.clip = parkourLevelMusic;
         audioSource.Play();
@@ -121,19 +106,22 @@ public class ParkourLevelManager : MonoBehaviour
 
     void SetBars()
     {
-        titanHealthBar.BarValue = titanHealth;
-        titanDashBar.BarValue = titanDash;
-        titanCoreAbilityBar.BarValue = titanCoreAbility;
-
-        pilotHealthBar.BarValue = pilotHealth;
-        pilotTitanFallBar.BarValue = pilotTitanFall;
+        pilotHealthBar.BarValue = playerScript.pilotPlayer.health;
+        pilotTitanFallBar.BarValue = playerScript.pilotPlayer.titanFallMeter;
     }
 
     void SetTexts()
     {
-        pilotWeaponNameText.text = pilotWeaponName;
-        pilotAmmoCountText.text = "Ammo: " + pilotAmmoCount + "/" + weaponMaxAmmo;
-
+        if(weaponScript.currentWeapon.weaponType == WeaponType.primary)
+        {
+            pilotAmmoCountText.text = "Ammo: " + weaponScript.primaryWeapon.ammoCount + "/" + weaponScript.primaryWeapon.maxAmmoCount;
+            pilotWeaponNameText.text = weaponScript.primaryWeaponName.ToString().ToUpper().Replace("RIFLE"," RIFLE");
+        }
+        else if(weaponScript.currentWeapon.weaponType == WeaponType.heavy)
+        {
+            pilotAmmoCountText.text = "";
+            pilotWeaponNameText.text = weaponScript.heavyWeaponName.ToString().ToUpper().Replace("LAUNCHER"," LAUNCHER");
+        }
     }
 
 
