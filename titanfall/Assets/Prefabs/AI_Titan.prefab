@@ -45,7 +45,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &882417473739534817
 Transform:
   m_ObjectHideFlags: 0
@@ -162,11 +162,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2623098061970466839, guid: 02a535a5caec2e74ebaa839114bf74ba,
         type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2623098061970466839, guid: 02a535a5caec2e74ebaa839114bf74ba,
-        type: 3}
       propertyPath: patrolPoints.Array.data[0]
       value: 
       objectReference: {fileID: 882417472753923845}
@@ -175,11 +170,6 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[1]
       value: 
       objectReference: {fileID: 882417474022434580}
-    - target: {fileID: 3636503996282114877, guid: 02a535a5caec2e74ebaa839114bf74ba,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02a535a5caec2e74ebaa839114bf74ba, type: 3}
 --- !u!4 &6650037059834907162 stripped
