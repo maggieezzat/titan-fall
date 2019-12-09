@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
-
-    //anything
     PlayerScript playerScript;
     public GameObject player;
 
@@ -48,6 +46,9 @@ public class EnemyScript : MonoBehaviour
     public AudioClip enemyFootsteps;
     public AudioSource audioSource;
 
+    private bool shoot = false;
+    private bool isPatroling = true;
+
 
     void Start()
     {
@@ -62,6 +63,8 @@ public class EnemyScript : MonoBehaviour
             case "EnemyTitan": health = 400; break;
 
         }
+
+        InvokeRepeating("toggleFire", 0, 3);
     }
 
 
@@ -77,7 +80,7 @@ public class EnemyScript : MonoBehaviour
         float rangeZ = player.transform.position.z - transform.position.z;
         float distance = Vector3.Distance(agent.transform.position, player.transform.position);
         
-        if (distance < 25f)
+        if (distance < 25f && distance > 15f)
             inRange = true;
         else
             inRange = false;
@@ -97,12 +100,16 @@ public class EnemyScript : MonoBehaviour
             
             //TODO: fire only each 3 seconds
             //TODO: handle CONTINOUS shooting (assault) every 3 seconds??
-            WeaponScript.Instance.enemyFire(gameObject.tag, nozzle);
-            if(!isPlaying){
-                muzzleFlash.Play();
-                isPlaying = true;
-                StartCoroutine("muzzleFlashStopCo");
+            if (shoot){
+                WeaponScript.Instance.enemyFire(gameObject.tag, nozzle);
+                if(!isPlaying){
+                    muzzleFlash.Play();
+                    isPlaying = true;
+                    StartCoroutine("muzzleFlashStopCo");
             }
+
+            }
+            
 
             Vector3 dir = Vector3.ProjectOnPlane((player.transform.position - transform.position), Vector3.up);
             transform.rotation = Quaternion.LookRotation(dir);
@@ -119,8 +126,11 @@ public class EnemyScript : MonoBehaviour
         else
         {
             chase = false;
-            enemyAnimator.SetBool("isRunning",false);
-            enemyAnimator.SetBool("isWalking", true);
+            if (isPatroling){
+                enemyAnimator.SetBool("isRunning",false);
+                enemyAnimator.SetBool("isWalking", true);
+            }
+            
             // audioSource.clip = enemyFootsteps;
             // audioSource.Play();
 
@@ -130,10 +140,12 @@ public class EnemyScript : MonoBehaviour
                 initPatrolSet = true;
             }
         
-            if(agent.remainingDistance <= 1)
+            if(agent.remainingDistance <= 1 && isPatroling)
             {
-                currentPatrolIndex = (currentPatrolIndex + 1) % 2;
-                agent.destination = patrolPoints[currentPatrolIndex].position;
+                enemyAnimator.SetBool("isWalking", false);
+                enemyAnimator.SetBool("isIdle", true);
+                isPatroling = false;
+                Invoke("switchPatrolPt", 5f);
             }    
         }
 
@@ -165,11 +177,22 @@ public class EnemyScript : MonoBehaviour
         
     }
 
+    void switchPatrolPt(){
+        currentPatrolIndex = (currentPatrolIndex + 1) % 2;
+        agent.destination = patrolPoints[currentPatrolIndex].position;
+        isPatroling = true;
+    }
+
     public IEnumerator muzzleFlashStopCo()
     {
         yield return new WaitForSeconds(0.2f);
         muzzleFlash.Stop();
         isPlaying = false;
+    }
+
+    void toggleFire(){
+        if(inRange && !isDead)
+            shoot =!shoot;
     }
 
 
