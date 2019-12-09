@@ -43,6 +43,8 @@ public class EnemyScript : MonoBehaviour
     int health = 100;
     bool isDead = false;
     
+    public AudioClip enemyFootsteps;
+    public AudioSource audioSource;
 
 
     void Start()
@@ -50,6 +52,14 @@ public class EnemyScript : MonoBehaviour
         enemyAnimator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         playerScript = PlayerScript.Instance;
+
+        switch(gameObject.tag)
+        {
+            case "EnemyAssault": health = 100; break;
+            case "EnemySniper":health = 100; break;
+            case "EnemyTitan": health = 400; break;
+
+        }
     }
 
 
@@ -99,6 +109,8 @@ public class EnemyScript : MonoBehaviour
             {
                 enemyAnimator.SetBool("isRunning",true);
                 enemyAnimator.SetBool("isWalking", false);
+                // audioSource.clip = enemyFootsteps;
+                // audioSource.Play();
             }
             initPatrolSet = false;   
         }
@@ -107,6 +119,8 @@ public class EnemyScript : MonoBehaviour
             chase = false;
             enemyAnimator.SetBool("isRunning",false);
             enemyAnimator.SetBool("isWalking", true);
+            // audioSource.clip = enemyFootsteps;
+            // audioSource.Play();
 
             if(!initPatrolSet)
             {
