@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
+
+    //anything
     PlayerScript playerScript;
     public GameObject player;
 
