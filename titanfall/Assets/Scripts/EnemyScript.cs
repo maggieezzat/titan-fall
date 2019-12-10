@@ -47,6 +47,9 @@ public class EnemyScript : MonoBehaviour
     public AudioSource audioSource;
     bool isAudioPlaying = false;
 
+    private bool shoot = false;
+    private bool isPatroling = true;
+    public bool isPlaying = false;
 
     void Start()
     {
@@ -64,6 +67,8 @@ public class EnemyScript : MonoBehaviour
         audioSource.clip = enemyFootsteps;
         audioSource.Play();
         isAudioPlaying = true;
+
+        InvokeRepeating("toggleFire", 0, 3);
     }
 
 
@@ -79,7 +84,7 @@ public class EnemyScript : MonoBehaviour
         float rangeZ = player.transform.position.z - transform.position.z;
         float distance = Vector3.Distance(agent.transform.position, player.transform.position);
         
-        if (distance < 25f)
+        if (distance < 25f && distance > 15f)
             inRange = true;
         else
             inRange = false;
@@ -104,7 +109,16 @@ public class EnemyScript : MonoBehaviour
                 muzzleFlash.Play();
                 isMuzzlePlaying = true;
                 StartCoroutine("muzzleFlashStopCo");
+            if (shoot){
+                WeaponScript.Instance.enemyFire(gameObject.tag, nozzle);
+                if(!isPlaying){
+                    muzzleFlash.Play();
+                    isPlaying = true;
+                    StartCoroutine("muzzleFlashStopCo");
             }
+
+            }
+            
 
             Vector3 dir = Vector3.ProjectOnPlane((player.transform.position - transform.position), Vector3.up);
             transform.rotation = Quaternion.LookRotation(dir);
@@ -121,8 +135,11 @@ public class EnemyScript : MonoBehaviour
         else
         {
             chase = false;
-            enemyAnimator.SetBool("isRunning",false);
-            enemyAnimator.SetBool("isWalking", true);
+            if (isPatroling){
+                enemyAnimator.SetBool("isRunning",false);
+                enemyAnimator.SetBool("isWalking", true);
+            }
+            
             // audioSource.clip = enemyFootsteps;
             // audioSource.Play();
 
@@ -132,10 +149,12 @@ public class EnemyScript : MonoBehaviour
                 initPatrolSet = true;
             }
         
-            if(agent.remainingDistance <= 1)
+            if(agent.remainingDistance <= 1 && isPatroling)
             {
-                currentPatrolIndex = (currentPatrolIndex + 1) % 2;
-                agent.destination = patrolPoints[currentPatrolIndex].position;
+                enemyAnimator.SetBool("isWalking", false);
+                enemyAnimator.SetBool("isIdle", true);
+                isPatroling = false;
+                Invoke("switchPatrolPt", 5f);
             }    
         }
 
@@ -167,11 +186,22 @@ public class EnemyScript : MonoBehaviour
         
     }
 
-    public IEnumerator muzzleFlashStopCo()
+    void switchPatrolPt(){
+        currentPatrolIndex = (currentPatrolIndex + 1) % 2;
+        agent.destination = patrolPoints[currentPatrolIndex].position;
+        isPatroling = true;
+    }
+
+    IEnumerator muzzleFlashStopCo()
     {
         yield return new WaitForSeconds(0.2f);
         muzzleFlash.Stop();
         isMuzzlePlaying = false;
+    }
+
+    void toggleFire(){
+        if(inRange && !isDead)
+            shoot =!shoot;
     }
 
 
