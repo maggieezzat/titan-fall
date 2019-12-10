@@ -12,7 +12,7 @@ public class EnemyScript : MonoBehaviour
     public Transform nozzle;
     public ParticleSystem blood;
     public ParticleSystem muzzleFlash;
-    bool isPlaying = false;
+    bool isMuzzlePlaying = false;
 
 
     Animator enemyAnimator;
@@ -45,6 +45,7 @@ public class EnemyScript : MonoBehaviour
     
     public AudioClip enemyFootsteps;
     public AudioSource audioSource;
+    bool isAudioPlaying = false;
 
 
     void Start()
@@ -60,6 +61,9 @@ public class EnemyScript : MonoBehaviour
             case "EnemyTitan": health = 400; break;
 
         }
+        audioSource.clip = enemyFootsteps;
+        audioSource.Play();
+        isAudioPlaying = true;
     }
 
 
@@ -96,9 +100,9 @@ public class EnemyScript : MonoBehaviour
             //TODO: fire only each 3 seconds
             //TODO: handle CONTINOUS shooting (assault) every 3 seconds??
             WeaponScript.Instance.enemyFire(gameObject.tag, nozzle);
-            if(!isPlaying){
+            if(!isMuzzlePlaying){
                 muzzleFlash.Play();
-                isPlaying = true;
+                isMuzzlePlaying = true;
                 StartCoroutine("muzzleFlashStopCo");
             }
 
@@ -167,7 +171,7 @@ public class EnemyScript : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         muzzleFlash.Stop();
-        isPlaying = false;
+        isMuzzlePlaying = false;
     }
 
 
