@@ -126,8 +126,6 @@ public class EnemyScript : MonoBehaviour
                     enemyAnimator.SetBool("isRunning", true);
                     enemyAnimator.SetBool("isWalking", false);
                     enemyAnimator.SetBool("isIdle", false);
-                    // audioSource.clip = enemyFootsteps;
-                    // audioSource.Play();
                 }
                 initPatrolSet = false;
                 isPatroling = false;
@@ -135,9 +133,7 @@ public class EnemyScript : MonoBehaviour
             }
         }
         else
-        {
-            // audioSource.clip = enemyFootsteps;
-            // audioSource.Play();
+        {   
             if (!isDead)
             {
                 agent.updatePosition = true;
@@ -182,7 +178,7 @@ public class EnemyScript : MonoBehaviour
                     sniperObj.gameObject.transform.localEulerAngles = sniperRot;
                 }
                 break;
-            case "EnemyTitan":  //TODO: Titan Enemy Prefab
+            case "EnemyTitan":  
                 if (enemyAnimator.GetBool("isWalking"))
                 {
                     titanGun.gameObject.transform.localPosition = titanPos;

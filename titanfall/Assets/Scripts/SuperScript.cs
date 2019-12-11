@@ -128,8 +128,10 @@ public abstract class Player
         this.health -= value;
 
         if(health <= 0)
+        {
+            health = 0;
             return true;
-        
+        }
         return false;
     }
 

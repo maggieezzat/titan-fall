@@ -34,6 +34,9 @@ public class PlayerScript : MonoBehaviour
     public GameObject coreAbilityShield;
     public bool isDefensiveAbility = false;
     public GameObject defensiveAbilityShield;
+    float nextTimeToShield = 0f;
+
+    float regenerationCount = 0f;
 
     
 
@@ -58,6 +61,15 @@ public class PlayerScript : MonoBehaviour
     {
         fireRate = weaponScript.primaryWeapon.fireRate;
         nextTimeToFire = 0f;
+        InvokeRepeating("regenerateHealth", 0f, 1f);
+    }
+
+    void regenerateHealth()
+    {
+        if(regenerationCount >= 3f && currentPlayerType == PlayerType.pilot)
+        {
+            pilotPlayer.incHealth(5);
+        }
     }
 
     void Update()
@@ -82,6 +94,8 @@ public class PlayerScript : MonoBehaviour
             isDead = false;
             StartCoroutine(disembarkCo());
         }
+
+        regenerationCount += 1f * Time.deltaTime;
 
     }
 
@@ -185,13 +199,23 @@ public class PlayerScript : MonoBehaviour
 
     void checkForDefensiveAbility()
     {
-        // if(Input.GetKeyDown(KeyCode.F) && 
-        // currentPlayerType == PlayerType.titan && 
-        // ((PilotPlayer)currentPlayer).titanFallMeter >= 100)
+        if(Input.GetKeyDown(KeyCode.F) && 
+        currentPlayerType == PlayerType.titan && 
+        Time.time >= nextTimeToShield && !isDefensiveAbility)
         {
-            
+            defensiveAbilityShield.SetActive(true);
+            Invoke("stopDefensiveAbility",10f);
+            isDefensiveAbility = true;
         }
 
+    }
+
+    void stopDefensiveAbility()
+    {
+        nextTimeToShield = Time.time + 15f;
+        isDefensiveAbility = false;
+        CombatLevelManager.Instance.defAbilityCoolDown_GO.SetActive(true);
+        defensiveAbilityShield.SetActive(false);
     }
 
 
@@ -211,6 +235,7 @@ public class PlayerScript : MonoBehaviour
     public void takeDamage(int damage)
     {
         isDead = currentPlayer.decHealth(damage);
+        regenerationCount = 0f;
         StartCoroutine(showHitScreenCo());
     }
 

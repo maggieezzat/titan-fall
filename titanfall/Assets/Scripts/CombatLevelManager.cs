@@ -34,6 +34,10 @@ public class CombatLevelManager : MonoBehaviour
     public ProgressBar titanHealthBar;
     public ProgressBar titanDashBar;
     public ProgressBar titanCoreAbilityBar;
+
+    public GameObject defAbilityCoolDown_GO;
+    public ProgressBarCircle defAbilityCoolDown;
+    public float counter = 15f;
     
 #region Singleton    
     public static CombatLevelManager Instance;
@@ -62,6 +66,18 @@ public class CombatLevelManager : MonoBehaviour
     
     void Update()
     {
+        if(defAbilityCoolDown_GO.activeSelf)
+        {
+            counter -= 1f * Time.deltaTime;
+            defAbilityCoolDown.UpdateValue((int)(counter), 15);
+        }
+        if(counter <=0)
+        {
+            counter = 15f;
+            defAbilityCoolDown_GO.SetActive(false);
+        }
+        
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseGame();
@@ -71,6 +87,7 @@ public class CombatLevelManager : MonoBehaviour
         SetTexts();
 
     }
+
 
     void PauseGame()
     {
