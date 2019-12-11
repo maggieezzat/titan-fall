@@ -56,6 +56,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float dashSpeed;
 
         public int dashMeter = 3;
+        public GameObject camera;
 
         public OurNameSpace.PlayerScript playerScript;
         // private int wallrunSemaphore = 0;
@@ -374,9 +375,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public void embarkTitan(){
             Debug.Log("I am embarked");
             if(isCrouching){
-                gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale + new Vector3(0.6f,0.6f,0.6f);
+                crouch();
             }
             gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale + new Vector3(0.6f,0.6f,0.6f);
+            // camera.GetComponent<Transform>().Translate(0,1,0);
         }
 
         public void disEmbarkTitan(){
