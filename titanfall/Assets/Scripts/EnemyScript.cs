@@ -52,6 +52,8 @@ public class EnemyScript : MonoBehaviour
     public Weapon enemyWeapon;
     bool continousShooting = false;
 
+    public int killPoints;
+
     void Start()
     {
         enemyAnimator = GetComponent<Animator>();
@@ -271,12 +273,24 @@ public class EnemyScript : MonoBehaviour
 
     public void die()
     {
-        enemyAnimator.SetTrigger("isDead");
-        transform.GetComponent<Collider>().enabled = false;
-        agent.updatePosition = false;
-        agent.updateRotation = false;
-        isDead = true;
-
+        if(!isDead)
+        {
+            enemyAnimator.SetTrigger("isDead");
+            transform.GetComponent<Collider>().enabled = false;
+            agent.updatePosition = false;
+            agent.updateRotation = false;
+            isDead = true;
+            playerScript.killedEnemies++;
+            if(playerScript.currentPlayerType == PlayerType.pilot)
+                ((PilotPlayer)playerScript.currentPlayer).incTitanFallMeter(killPoints);
+            else
+            {
+                if( !playerScript.isCoreAbility)
+                    ((TitanPlayer)playerScript.currentPlayer).incCoreAbilityMeter(killPoints);
+            }
+                
+        }
+        
     }
 
 

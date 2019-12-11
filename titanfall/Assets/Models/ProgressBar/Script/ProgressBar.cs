@@ -35,39 +35,36 @@ public class ProgressBar : MonoBehaviour
     private Text txtTitle;
     private float barValue;
     public bool dash = false;
-    public float BarValue
-    {
-        get { return barValue; }
+    public float BarValue;
+    // {
+    //     get { return barValue; }
 
-        set
-        {
-            int maxBarValue = 100;
+    //     set
+    //     {
+    //         int maxBarValue = 100;
 
-            if (dash)
-            {
-                barValue = (float)value / 3 * 100;
-                barValue = Mathf.Clamp(value, 0, maxBarValue);
-                UpdateValue(barValue); 
-            }
-            else {
+    //         if (dash)
+    //         {
+    //             barValue = (float)value / 3 * 100;
+    //             //barValue = Mathf.Clamp(value, 0, maxBarValue);
+    //             UpdateValue(barValue); 
+    //         }
+    //         else 
+    //         {
+    //             value = Mathf.Clamp(value, 0, maxBarValue);
+    //             barValue = value;
+    //             UpdateValue(barValue);
+    //         }
 
-            value = Mathf.Clamp(value, 0, maxBarValue);
-            barValue = value;
-            UpdateValue(barValue);
-            }
-
-        }
-    }
+    //     }
+    // }
 
         
 
     private void Awake()
     {
         bar = transform.Find("Bar").GetComponent<Image>();
-        //barBackground = GetComponent<Image>();
-        
         txtTitle = transform.Find("Text").GetComponent<Text>();
-        //barBackground = transform.Find("BarBackground").GetComponent<Image>();
         //audiosource = GetComponent<AudioSource>();
     }
 
@@ -79,25 +76,20 @@ public class ProgressBar : MonoBehaviour
         txtTitle.fontSize = TitleFontSize;
 
         bar.color = BarColor;
-        //barBackground.color = BarBackGroundColor; 
-        //barBackground.sprite = BarBackGroundSprite;
-
-        UpdateValue(barValue);
+        //UpdateValue(barValue);
 
 
     }
 
-    void UpdateValue(float val)
+    public void UpdateValue(float val, float maxBarValue)
     {
-        if (dash) bar.fillAmount = val / 3;
-        else bar.fillAmount = val / 100;
-
+        bar.fillAmount = val / maxBarValue;
         txtTitle.text = Title + " " + val;
 
-        if (!dash) txtTitle.text += "%";
-
-        
-        if (dash) {
+        if(dash)
+        {
+            //bar.fillAmount = val / 3;
+            //txtTitle.text = Title + " " + val;
 
             if (dashAlert > val)
             {
@@ -107,9 +99,13 @@ public class ProgressBar : MonoBehaviour
             {
                 bar.color = BarColor;
             }
-            
+
         }
-        else{
+        else
+        {
+            //bar.fillAmount = val / 100;
+            //txtTitle.text = Title + " " + val + "%";
+
             if (Alert >= val)
             {
                 bar.color = BarAlertColor;
@@ -118,8 +114,8 @@ public class ProgressBar : MonoBehaviour
             {
                 bar.color = BarColor;
             }
+
         }
-        
 
     }
 
@@ -128,15 +124,12 @@ public class ProgressBar : MonoBehaviour
     {
         if (!Application.isPlaying)
         {           
-            UpdateValue(100);
+            UpdateValue(100,100);
             txtTitle.color = TitleColor;
             txtTitle.font = TitleFont;
             txtTitle.fontSize = TitleFontSize;
 
-            bar.color = BarColor;
-            //barBackground.color = BarBackGroundColor;
-
-            //barBackground.sprite = BarBackGroundSprite;           
+            bar.color = BarColor;         
         }
         else
         {

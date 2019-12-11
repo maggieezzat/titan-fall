@@ -12,16 +12,15 @@ public class CutSceneManager : MonoBehaviour
 
     public GameObject calledTitan;
     
+    public static CutSceneManager Instance;
 
-    void Update()
+#region Singleton
+    void Awake()
     {
-        //TODO: titanfallmeter =100, then reset it
-        //TODO: player script
-        if(Input.GetKeyDown(KeyCode.Q) )
-        {
-            playCutScene();
-        }
+        Instance = this;
     }
+
+#endregion
 
     public void playCutScene()
     {
