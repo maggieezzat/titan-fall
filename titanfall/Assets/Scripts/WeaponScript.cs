@@ -220,6 +220,16 @@ public class WeaponScript : MonoBehaviour
 
     }
 
+    public void switchToPilotWeapon()
+    {
+        currentWeapon = primaryWeapon;
+        primaryWeapon_GO.SetActive(true);
+        pools[heavyWeaponIndex].pool_GO.SetActive(false);
+        launcher_GO.SetActive(false);
+        predatorCanon_GO.SetActive(false);
+
+    }
+
     public void playerFire()
     {
         RaycastHit hit;
@@ -263,8 +273,11 @@ public class WeaponScript : MonoBehaviour
 
         if(currentWeapon.weaponType == WeaponType.titan)
         {
+            int layerMask = 1 << 8;
+            layerMask = ~layerMask;
+
             bool RaycastDown = Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, 
-                out hit);
+                out hit, Mathf.Infinity , layerMask);
 
             if(RaycastDown  && hit.transform.tag.Contains("Enemy")){
                hit.transform.GetComponent<EnemyScript>().takeDamage(((TitanWeapon)currentWeapon).damageAmount);
@@ -278,23 +291,27 @@ public class WeaponScript : MonoBehaviour
 
     }
 
-    public void enemyFire(string enemyTag,Transform nozzle)
+    public void enemyFire(Weapon enemyWeapon,Transform nozzle)
     {
         RaycastHit hit;
-        bool RaycastDown = Physics.Raycast(nozzle.position, nozzle.forward, 
+        Vector3 playerDir = Vector3.ProjectOnPlane((transform.position - nozzle.position), Vector3.up);
+        bool RaycastDown;
+        if(enemyWeapon.weaponType == WeaponType.titan)
+            RaycastDown = Physics.Raycast(nozzle.position, playerDir, 
                 out hit);
-        int damageAmount = 0;
-        
-        switch(enemyTag)
-        {
-            case "EnemyAssault": damageAmount = 10; break;
-            case "EnemySniper": damageAmount = 85; break;
-            case "EnemyTitan": damageAmount = 15;break;
-        }
+        else
+            RaycastDown = Physics.Raycast(nozzle.position, playerDir, 
+                out hit, ((PrimaryWeapon)enemyWeapon).range);
+        int damageAmount = enemyWeapon.damageAmount;
 
         if(RaycastDown  && hit.transform.tag.Contains("Player"))
         {
-            hit.transform.GetComponent<PlayerScript>().takeDamage(damageAmount);
+            Debug.Log("player hit");
+            PlayerScript.Instance.takeDamage(damageAmount);
+        }
+        if(RaycastDown && hit.transform.tag.Contains("DefensiveAbility"))
+        {
+            Debug.Log("defensive hit");
         }
     }
 

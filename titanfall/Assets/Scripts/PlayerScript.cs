@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
+    public GameObject bloodyScreen;
+    public GameObject brokenScreen;
+    public GameObject titanScreen;
+    public Animator blackScreen;
     public SuperScript superScript;
     public WeaponScript weaponScript;
     
@@ -15,9 +19,10 @@ public class PlayerScript : MonoBehaviour
     public Player currentPlayer;
     public PilotPlayer pilotPlayer;
     public TitanPlayer titanPlayer;
-    bool isTitan = false;
 
     public bool isDead = false;
+    bool changeColor = false;
+
     
 
 #region Singleton
@@ -49,35 +54,33 @@ public class PlayerScript : MonoBehaviour
 
         checkForReload();
 
-        //TODO: call titan, embark, disembark
-        if(Input.GetKeyDown(KeyCode.T))
+        //TODO: titan is called, and is near to pilot
+        if(Input.GetKeyDown(KeyCode.E))
         {
-            weaponScript.switchToTitanWeapon();
+            if(currentPlayerType == PlayerType.titan)
+                StartCoroutine(disembarkCo());
+            else
+                StartCoroutine(embarkCo());
         }
 
-        //TODO: isTitan and isDead => Disembark the titan
-        if(isDead && !isTitan)
+        if(isDead && currentPlayerType == PlayerType.pilot)
         {
-            CombatLevelManager.Instance.gameOver();
+            bloodyScreen.SetActive(false);
+            StartCoroutine(gameOverCo());
         }
-        if(isDead && isTitan)
+        if(isDead && currentPlayerType == PlayerType.titan)
         {
-            //disembark the titan
-            //switch to pilot
-            currentPlayer = pilotPlayer;
+            brokenScreen.SetActive(false);
             isDead = false;
+            StartCoroutine(disembarkCo());
         }
 
     }
 
-    public void becomeTitan()
+    IEnumerator gameOverCo()
     {
-        currentPlayer = titanPlayer;
-        currentPlayerType = PlayerType.titan;
-        weaponScript.switchToTitanWeapon();
-        fireRate = weaponScript.titanWeapon.fireRate;
-
-        //TODO: change back again when becoming pilot again
+        yield return new WaitForSeconds(0.3f);
+        CombatLevelManager.Instance.gameOver();
     }
     
     public void checkForReload()
@@ -116,7 +119,7 @@ public class PlayerScript : MonoBehaviour
             }
             
         }
-        else if(weaponScript.currentWeapon.weaponType == WeaponType.titan && currentPlayerType==PlayerType.titan)
+        else if(weaponScript.currentWeapon.weaponType == WeaponType.titan )
         {
             if(Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
             {
@@ -142,9 +145,49 @@ public class PlayerScript : MonoBehaviour
     public void takeDamage(int damage)
     {
         isDead = currentPlayer.decHealth(damage);
+        StartCoroutine(showHitScreenCo());
+    }
+
+    public void callTitan()
+    {
 
     }
 
+    IEnumerator embarkCo()
+    {
+        blackScreen.SetTrigger("isFadeIn");
+        yield return new WaitForSeconds(0.5f);
+        currentPlayer = titanPlayer;
+        currentPlayerType = PlayerType.titan;
+        weaponScript.switchToTitanWeapon();
+        fireRate = weaponScript.titanWeapon.fireRate;
+        titanScreen.SetActive(true);
+
+    }
+
+    IEnumerator disembarkCo()
+    {
+        blackScreen.SetTrigger("isFadeOut");
+        yield return new WaitForSeconds(1.9f);
+        currentPlayer = pilotPlayer;
+        currentPlayerType = PlayerType.pilot;
+        weaponScript.switchToPilotWeapon();
+        fireRate = weaponScript.primaryWeapon.fireRate;
+        titanScreen.SetActive(false);
+
+    }
+
+    IEnumerator showHitScreenCo()
+    {
+        if(currentPlayerType == PlayerType.pilot)
+            bloodyScreen.SetActive(true);
+        else
+            brokenScreen.SetActive(true);
+        
+        yield return new WaitForSeconds(1f);
+        bloodyScreen.SetActive(false);
+        brokenScreen.SetActive(false);
+    }
 
 
 }

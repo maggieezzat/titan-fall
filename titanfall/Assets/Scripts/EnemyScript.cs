@@ -17,13 +17,13 @@ public class EnemyScript : MonoBehaviour
 
     Animator enemyAnimator;
     NavMeshAgent agent;
-    public Transform [] patrolPoints;
+    public Transform[] patrolPoints;
     bool initPatrolSet = false;
     int currentPatrolIndex = 0;
     bool inRange = false;
-    bool chase = false;
+    private bool isPatroling = true;
 
-    
+
     public Vector3 assaultPos = new Vector3(0.1563f, -0.052f, -0.106f);
     public Vector3 assaultRot = new Vector3(-173.68f, 296.309f, 251.662f);
 
@@ -42,14 +42,15 @@ public class EnemyScript : MonoBehaviour
     public ProgressBar healthBar;
     int health = 100;
     bool isDead = false;
-    
+
     public AudioClip enemyFootsteps;
     public AudioSource audioSource;
     bool isAudioPlaying = false;
 
-    private bool shoot = false;
-    private bool isPatroling = true;
     public bool isPlaying = false;
+    public float nextTimeToFire = 0f;
+    public Weapon enemyWeapon;
+    bool continousShooting = false;
 
     void Start()
     {
@@ -57,115 +58,117 @@ public class EnemyScript : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         playerScript = PlayerScript.Instance;
 
-        switch(gameObject.tag)
+        switch (gameObject.tag)
         {
-            case "EnemyAssault": health = 100; break;
-            case "EnemySniper":health = 100; break;
-            case "EnemyTitan": health = 400; break;
+            case "EnemyAssault":
+                {
+                    enemyWeapon = new PrimaryWeapon(10, FiringMode.automatic, 10, 35, 65);
+                    health = 100;
+                }
+                break;
+            case "EnemySniper":
+                {
+                    enemyWeapon = new PrimaryWeapon(85, FiringMode.single_shot, 1, 35, 100);
+                    health = 100;
+                }
+                break;
+            case "EnemyTitan":
+                {
+                    health = 400;
+                    enemyWeapon = new TitanWeapon(15, FiringMode.automatic, 20);
+                }
+                break;
 
         }
         audioSource.clip = enemyFootsteps;
         audioSource.Play();
         isAudioPlaying = true;
 
-        InvokeRepeating("toggleFire", 0, 3);
+        InvokeRepeating("toggleFire", 1f, 3f); //"start" firing every 3 seconds
     }
 
 
     void Update()
     {
 
-        if(health <= 0)
+        if (health <= 0)
         {
             die();
         }
 
-        float rangeX = player.transform.position.x - transform.position.x;
-        float rangeZ = player.transform.position.z - transform.position.z;
         float distance = Vector3.Distance(agent.transform.position, player.transform.position);
-        
-        if (distance < 25f && distance > 15f)
+
+        if (distance <= 25f)
             inRange = true;
         else
             inRange = false;
 
-        if(inRange && !isDead)
+        if (inRange)
         {
-            if(!chase)
+            if (!isDead)
             {
+                if (agent.remainingDistance <= 15f)
+                    agent.updatePosition = false;
+                else
+                    agent.updatePosition = true;
                 agent.SetDestination(player.transform.position);
-                chase = true;
-            }
-            else
-            {
-                if(agent.remainingDistance >1f)
-                    agent.SetDestination(player.transform.position);
-            }
-            
-            //TODO: fire only each 3 seconds
-            //TODO: handle CONTINOUS shooting (assault) every 3 seconds??
-            WeaponScript.Instance.enemyFire(gameObject.tag, nozzle);
-            if(!isMuzzlePlaying){
-                muzzleFlash.Play();
-                isMuzzlePlaying = true;
-                StartCoroutine("muzzleFlashStopCo");
-            if (shoot){
-                WeaponScript.Instance.enemyFire(gameObject.tag, nozzle);
-                if(!isPlaying){
-                    muzzleFlash.Play();
-                    isPlaying = true;
-                    StartCoroutine("muzzleFlashStopCo");
-            }
 
-            }
-            
+                Vector3 dir = Vector3.ProjectOnPlane((player.transform.position - transform.position), Vector3.up);
+                transform.rotation = Quaternion.LookRotation(dir);
 
-            Vector3 dir = Vector3.ProjectOnPlane((player.transform.position - transform.position), Vector3.up);
-            transform.rotation = Quaternion.LookRotation(dir);
-
-            if(!enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Rifle Run"))
-            {
-                enemyAnimator.SetBool("isRunning",true);
-                enemyAnimator.SetBool("isWalking", false);
-                // audioSource.clip = enemyFootsteps;
-                // audioSource.Play();
+                if (!enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Rifle Run"))
+                {
+                    enemyAnimator.SetBool("isRunning", true);
+                    enemyAnimator.SetBool("isWalking", false);
+                    enemyAnimator.SetBool("isIdle", false);
+                    // audioSource.clip = enemyFootsteps;
+                    // audioSource.Play();
+                }
+                initPatrolSet = false;
+                isPatroling = false;
+                //firing is handeled in toggle fire when the player is inRange and !isDead
             }
-            initPatrolSet = false;   
         }
         else
         {
-            chase = false;
-            if (isPatroling){
-                enemyAnimator.SetBool("isRunning",false);
-                enemyAnimator.SetBool("isWalking", true);
-            }
-            
             // audioSource.clip = enemyFootsteps;
             // audioSource.Play();
+            if (!isDead)
+            {
+                agent.updatePosition = true;
 
-            if(!initPatrolSet)
-            {
-                agent.destination = patrolPoints[currentPatrolIndex].position;
-                initPatrolSet = true;
+                if (!initPatrolSet)
+                {
+                    agent.destination = patrolPoints[currentPatrolIndex].position;
+                    initPatrolSet = true;
+                    isPatroling = true;
+                }
+
+                if (isPatroling)
+                {
+                    enemyAnimator.SetBool("isRunning", false);
+                    enemyAnimator.SetBool("isIdle", false);
+                    enemyAnimator.SetBool("isWalking", true);
+                }
+
+                if (agent.remainingDistance <= 1 && isPatroling)
+                {
+                    enemyAnimator.SetBool("isWalking", false);
+                    enemyAnimator.SetBool("isIdle", true);
+                    isPatroling = false;
+                    Invoke("switchPatrolPt", 5f);
+                }
             }
-        
-            if(agent.remainingDistance <= 1 && isPatroling)
-            {
-                enemyAnimator.SetBool("isWalking", false);
-                enemyAnimator.SetBool("isIdle", true);
-                isPatroling = false;
-                Invoke("switchPatrolPt", 5f);
-            }    
         }
 
-        switch(gameObject.tag)
+        switch (gameObject.tag)
         {
-            case "EnemyAssault": 
+            case "EnemyAssault":
                 if (enemyAnimator.GetBool("isWalking"))
                 {
                     assaultObj.gameObject.transform.localPosition = assaultPos;
                     assaultObj.gameObject.transform.localEulerAngles = assaultRot;
-                } 
+                }
                 break;
             case "EnemySniper":
                 if (enemyAnimator.GetBool("isWalking"))
@@ -183,10 +186,33 @@ public class EnemyScript : MonoBehaviour
                 break;
 
         }
-        
+
+        if (inRange && continousShooting && !isDead)
+        {
+            float fireRate;
+            if (enemyWeapon.weaponType == WeaponType.primary)
+                fireRate = ((PrimaryWeapon)enemyWeapon).fireRate;
+            else
+                fireRate = ((TitanWeapon)enemyWeapon).fireRate;
+
+            if (Time.time >= nextTimeToFire)
+            {
+                agent.updatePosition = false;
+                // enemyAnimator.SetTrigger("isFiring");
+                nextTimeToFire = Time.time + 1f / fireRate;
+                WeaponScript.Instance.enemyFire(enemyWeapon, nozzle);
+                if (!isMuzzlePlaying)
+                {
+                    muzzleFlash.Play();
+                    isMuzzlePlaying = true;
+                }
+            }
+        }
+
     }
 
-    void switchPatrolPt(){
+    void switchPatrolPt()
+    {
         currentPatrolIndex = (currentPatrolIndex + 1) % 2;
         agent.destination = patrolPoints[currentPatrolIndex].position;
         isPatroling = true;
@@ -194,16 +220,46 @@ public class EnemyScript : MonoBehaviour
 
     IEnumerator muzzleFlashStopCo()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1f);
         muzzleFlash.Stop();
         isMuzzlePlaying = false;
     }
 
-    void toggleFire(){
-        if(inRange && !isDead)
-            shoot =!shoot;
+    void toggleFire() //called every 3 sec
+    {
+        if (inRange && !isDead)
+        {
+            float fireRate;
+            if (enemyWeapon.weaponType == WeaponType.primary)
+                fireRate = ((PrimaryWeapon)enemyWeapon).fireRate;
+            else
+                fireRate = ((TitanWeapon)enemyWeapon).fireRate;
+
+            if (fireRate == 1f) //shoot once every 3 secs while inRange
+            {
+                enemyAnimator.SetTrigger("isFiring");
+                WeaponScript.Instance.enemyFire(enemyWeapon, nozzle);
+                if (!isMuzzlePlaying)
+                {
+                    muzzleFlash.Play();
+                    isMuzzlePlaying = true;
+                    StartCoroutine("muzzleFlashStopCo");
+                }
+            }
+            else //continuously shoot for one sec every frame update
+            {
+                continousShooting = true;
+                Invoke("stopContinuousShooting", 1f);
+            }
+        }
     }
 
+    public void stopContinuousShooting()
+    {
+        continousShooting = false;
+        muzzleFlash.Stop();
+        isMuzzlePlaying = false;
+    }
 
     public void takeDamage(int damage)
     {
@@ -222,6 +278,6 @@ public class EnemyScript : MonoBehaviour
         isDead = true;
 
     }
-    
-    
+
+
 }

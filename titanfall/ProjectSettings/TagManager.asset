@@ -9,11 +9,10 @@ TagManager:
   - Enemy
   - Wall
   - Border
-  - esniper
-  - etitan
   - EnemyAssault
   - EnemySniper
   - EnemyTitan
+  - DefensiveShield
   layers:
   - Default
   - TransparentFX
@@ -23,7 +22,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - IgnoreShield
   - 
   - 
   - 
