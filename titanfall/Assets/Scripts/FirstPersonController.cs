@@ -130,12 +130,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 sprintPressed = false;
             }
             if(Input.GetKeyDown(KeyCode.X) && (dashSemaphore < -30) && dashMeter > 0 && (PlayerScript.Instance.currentPlayerType == PlayerType.titan)){
+                playerScript.setIsInvincible(true);
                 dashMeter-=1;
                 dashSemaphore = 5;
                 m_WalkSpeed = dashSpeed;
                 m_RunSpeed = dashSpeed;
             }
             if(dashSemaphore <= 0){
+                playerScript.setIsInvincible(false);
                 m_RunSpeed = realRunSpeed;
                 m_WalkSpeed = realWalkSpeed;
             }
@@ -367,6 +369,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             int newDashMeter = dashMeter + 1;;
             dashMeter = (newDashMeter > 3) ? 3 : newDashMeter;
+        }
+
+        public void embarkTitan(){
+            Debug.Log("I am embarked");
+            if(isCrouching){
+                gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale + new Vector3(0.6f,0.6f,0.6f);
+            }
+            gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale + new Vector3(0.6f,0.6f,0.6f);
+        }
+
+        public void disEmbarkTitan(){
+            Debug.Log("I am disembarked");
+            gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale + new Vector3(-0.6f,-0.6f,-0.6f);
         }
     }
 }

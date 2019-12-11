@@ -38,6 +38,9 @@ public class PlayerScript : MonoBehaviour
 
     float regenerationCount = 0f;
 
+    public UnityStandardAssets.Characters.FirstPerson.FirstPersonController firstPersonController;
+    private bool isInvincible;
+
     
 
 #region Singleton
@@ -82,6 +85,21 @@ public class PlayerScript : MonoBehaviour
         checkForDefensiveAbility();
         checkForCoreAbility();
 
+        //embark
+        if(Input.GetKeyDown(KeyCode.E) && embarkEnabled && currentPlayerType == PlayerType.pilot)
+        {
+            
+            StartCoroutine(embarkCo());
+            calledTitan.SetActive(false);
+            embarkEnabled = false;
+            
+        }
+
+        //disembark
+        if(Input.GetKeyDown(KeyCode.E) && currentPlayerType == PlayerType.titan)
+        {
+            StartCoroutine(disembarkCo());
+        }
 
         if(isDead && currentPlayerType == PlayerType.pilot)
         {
@@ -251,6 +269,9 @@ public class PlayerScript : MonoBehaviour
         fireRate = weaponScript.titanWeapon.fireRate;
         titanScreen.SetActive(true);
         CombatLevelManager.Instance.switchToTitanStats();
+        // Debug.Log("Should print");
+        firstPersonController.embarkTitan();
+
 
     }
 
@@ -264,6 +285,7 @@ public class PlayerScript : MonoBehaviour
         fireRate = weaponScript.primaryWeapon.fireRate;
         titanScreen.SetActive(false);
         CombatLevelManager.Instance.switchToPilotStats();
+        firstPersonController.disEmbarkTitan();
 
     }
 
@@ -283,6 +305,10 @@ public class PlayerScript : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         CombatLevelManager.Instance.gameOver();
+    }
+
+    public void setIsInvincible(bool value){
+        isInvincible = value;
     }
 
 }
