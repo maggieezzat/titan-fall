@@ -85,21 +85,6 @@ public class PlayerScript : MonoBehaviour
         checkForDefensiveAbility();
         checkForCoreAbility();
 
-        //embark
-        if(Input.GetKeyDown(KeyCode.E) && embarkEnabled && currentPlayerType == PlayerType.pilot)
-        {
-            
-            StartCoroutine(embarkCo());
-            calledTitan.SetActive(false);
-            embarkEnabled = false;
-            
-        }
-
-        //disembark
-        if(Input.GetKeyDown(KeyCode.E) && currentPlayerType == PlayerType.titan)
-        {
-            StartCoroutine(disembarkCo());
-        }
 
         if(isDead && currentPlayerType == PlayerType.pilot)
         {

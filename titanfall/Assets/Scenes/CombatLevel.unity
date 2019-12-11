@@ -59396,7 +59396,7 @@ MonoBehaviour:
   coreAbilityShield: {fileID: 266919952}
   isDefensiveAbility: 0
   defensiveAbilityShield: {fileID: 1721868313}
-  firstPersonController: {fileID: 0}
+  firstPersonController: {fileID: 1102830339}
 --- !u!114 &2079395634
 MonoBehaviour:
   m_ObjectHideFlags: 0
