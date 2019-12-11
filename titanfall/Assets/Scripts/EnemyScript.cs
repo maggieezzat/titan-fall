@@ -46,9 +46,7 @@ public class EnemyScript : MonoBehaviour
     int health = 100;
     bool isDead = false;
 
-    public AudioClip enemyFootsteps;
     public AudioSource audioSource;
-    bool isAudioPlaying = false;
 
     public bool isPlaying = false;
     public float nextTimeToFire = 0f;
@@ -85,9 +83,6 @@ public class EnemyScript : MonoBehaviour
                 break;
 
         }
-        audioSource.clip = enemyFootsteps;
-        audioSource.Play();
-        isAudioPlaying = true;
 
         InvokeRepeating("toggleFire", 1f, 3f); //"start" firing every 3 seconds
     }
@@ -293,5 +288,13 @@ public class EnemyScript : MonoBehaviour
     }
 
 
+    void step()
+    {
+        audioSource.Play();
+    }
+
+
 }
+
+
 }
