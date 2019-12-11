@@ -260,7 +260,8 @@ public class EnemyScript : MonoBehaviour
     public void takeDamage(int damage)
     {
         health -= damage;
-        healthBar.BarValue = health;
+        //healthBar.BarValue = health;
+        healthBar.UpdateValue(health, 100);
         enemyAnimator.SetTrigger("isHit");
         blood.Play();
     }
