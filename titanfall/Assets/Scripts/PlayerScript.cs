@@ -21,7 +21,8 @@ public class PlayerScript : MonoBehaviour
     public TitanPlayer titanPlayer;
 
     public bool isDead = false;
-    bool changeColor = false;
+    public bool embarkEnabled = false;
+    public GameObject calledTitan;
 
     
 
@@ -54,13 +55,18 @@ public class PlayerScript : MonoBehaviour
 
         checkForReload();
 
-        //TODO: titan is called, and is near to pilot
-        if(Input.GetKeyDown(KeyCode.E))
+        //embark
+        if(Input.GetKeyDown(KeyCode.E) && embarkEnabled && currentPlayerType == PlayerType.pilot)
         {
-            if(currentPlayerType == PlayerType.titan)
-                StartCoroutine(disembarkCo());
-            else
-                StartCoroutine(embarkCo());
+            StartCoroutine(embarkCo());
+            calledTitan.SetActive(false);
+            embarkEnabled = false;
+        }
+
+        //disembark
+        if(Input.GetKeyDown(KeyCode.E) && currentPlayerType == PlayerType.titan)
+        {
+            StartCoroutine(disembarkCo());
         }
 
         if(isDead && currentPlayerType == PlayerType.pilot)

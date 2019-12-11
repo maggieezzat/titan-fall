@@ -4,34 +4,42 @@ using UnityEngine;
 
 public class CutSceneManager : MonoBehaviour
 {
-    public Animator titanAnim;
-    public Animator playerAnim;
+    public Animator cutSceneTitanAnim;
+    public Animator cutScenePilotAnim;
+    public Transform fpsController;
     public Camera fpsCam;
     public Camera cutSceneCam;
 
-
-    void Start()
-    {
-        
-        titanAnim = transform.GetComponent<Animator>();
-
-    }
+    public GameObject calledTitan;
+    
 
     void Update()
     {
-        
-        
+        //TODO: titanfallmeter =100, then reset it
+        //TODO: player script
+        if(Input.GetKeyDown(KeyCode.Q) )
+        {
+            playCutScene();
+        }
     }
 
     public void playCutScene()
     {
         cutSceneCam.enabled = true;
         fpsCam.enabled = false;
-        titanAnim.SetTrigger("isLanding");
+        cutSceneTitanAnim.SetTrigger("isLanding");
+    }
+
+    public void stopCutScene()
+    {
+        fpsCam.enabled = true;
+        cutSceneCam.enabled = false;
+        calledTitan.SetActive(true);
+        calledTitan.transform.position = fpsController.position;
     }
 
     void playVictory()
     {
-        playerAnim.SetTrigger("isVictory");
+        cutScenePilotAnim.SetTrigger("isVictory");
     }
 }
