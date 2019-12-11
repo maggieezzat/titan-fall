@@ -86,7 +86,7 @@ public class Projectile : MonoBehaviour
         rigid.useGravity = false;
 
         transform.LookAt(TargetObject);
-        rigid.velocity = transform.forward * 20;
+        rigid.velocity = transform.forward * 50;
     }
 
     void OnCollisionEnter(Collision col)
