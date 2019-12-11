@@ -120,9 +120,6 @@ public class WeaponScript : MonoBehaviour
             StartCoroutine("muzzleFlashStopCo");
             isPlaying = false;
         }
-
-        if(Input.GetKeyDown(KeyCode.V))
-            activateCoreAbility();
         
     }
 
@@ -184,7 +181,7 @@ public class WeaponScript : MonoBehaviour
         }
     }
 
-    void activateCoreAbility()
+    public void activateCoreAbility()
     {
         float radius = 10f;
         Vector3 center = transform.position;
@@ -282,8 +279,15 @@ public class WeaponScript : MonoBehaviour
             bool RaycastDown = Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, 
                 out hit, Mathf.Infinity , layerMask);
 
-            if(RaycastDown  && hit.transform.tag.Contains("Enemy")){
-               hit.transform.GetComponent<EnemyScript>().takeDamage(((TitanWeapon)currentWeapon).damageAmount);
+            if(RaycastDown  && hit.transform.tag.Contains("Enemy"))
+            {
+                
+                // if(hit.transform.GetComponent<EnemyScript>())
+                    hit.transform.GetComponent<EnemyScript>().takeDamage(((TitanWeapon)currentWeapon).damageAmount);
+                // else{
+                //     print(hit.transform.name);
+                // }
+                    
             }
             if(isPlaying == false){
                 muzzleFlashTitan.Play();
@@ -309,13 +313,9 @@ public class WeaponScript : MonoBehaviour
 
         if(RaycastDown  && hit.transform.tag.Contains("Player"))
         {
-            Debug.Log("player hit");
             PlayerScript.Instance.takeDamage(damageAmount);
         }
-        if(RaycastDown && hit.transform.tag.Contains("DefensiveAbility"))
-        {
-            Debug.Log("defensive hit");
-        }
+        
     }
 
     public IEnumerator muzzleFlashStopCo()
@@ -345,6 +345,7 @@ public class WeaponScript : MonoBehaviour
         fps.coreAbility = true;
         aimCanvas.SetActive(true);
         int i = 0;
+        print(hitColliders.Length);
         while (i < hitColliders.Length)
         {
             if(hitColliders[i].transform.tag.Contains("Enemy"))
@@ -354,6 +355,12 @@ public class WeaponScript : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
             i++;
+            if(i == (hitColliders.Length-1))
+            {
+                PlayerScript.Instance.isCoreAbility = false;
+                print("hi");
+            }
+            
         }
         fps.coreAbility = false;
         aimCanvas.SetActive(false);

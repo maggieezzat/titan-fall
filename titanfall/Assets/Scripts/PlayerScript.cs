@@ -24,6 +24,19 @@ public class PlayerScript : MonoBehaviour
     public bool isDead = false;
     public bool embarkEnabled = false;
     public GameObject calledTitan;
+    
+    public int killedEnemies = 0;
+
+    CutSceneManager cutSceneManager;
+
+
+    public bool isCoreAbility = false;
+    public GameObject coreAbilityShield;
+    public bool isDefensiveAbility = false;
+    public GameObject defensiveAbilityShield;
+    float nextTimeToShield = 0f;
+
+    float regenerationCount = 0f;
 
     public UnityStandardAssets.Characters.FirstPerson.FirstPersonController firstPersonController;
 
@@ -40,6 +53,8 @@ public class PlayerScript : MonoBehaviour
         titanPlayer = new TitanPlayer();
         currentPlayer = pilotPlayer;
         currentPlayerType = PlayerType.pilot;
+
+        cutSceneManager = CutSceneManager.Instance;
     }
 
 #endregion
@@ -48,15 +63,26 @@ public class PlayerScript : MonoBehaviour
     {
         fireRate = weaponScript.primaryWeapon.fireRate;
         nextTimeToFire = 0f;
+        InvokeRepeating("regenerateHealth", 0f, 1f);
+    }
+
+    void regenerateHealth()
+    {
+        if(regenerationCount >= 3f && currentPlayerType == PlayerType.pilot)
+        {
+            pilotPlayer.incHealth(5);
+        }
     }
 
     void Update()
     {
         checkForFire();
-        
-        checkForSwitchWeapon();
-
         checkForReload();
+        checkForSwitchWeapon();
+        checkForTitanCall();
+        checkForEmbarkDisEmbark();
+        checkForDefensiveAbility();
+        checkForCoreAbility();
 
         //embark
         if(Input.GetKeyDown(KeyCode.E) && embarkEnabled && currentPlayerType == PlayerType.pilot)
@@ -86,21 +112,21 @@ public class PlayerScript : MonoBehaviour
             StartCoroutine(disembarkCo());
         }
 
+        regenerationCount += 1f * Time.deltaTime;
+
     }
 
-    IEnumerator gameOverCo()
-    {
-        yield return new WaitForSeconds(0.3f);
-        CombatLevelManager.Instance.gameOver();
-    }
     
-    public void checkForReload()
+    void checkForReload()
     {
-        if(Input.GetKeyDown(KeyCode.R) && weaponScript.currentWeapon.weaponType == WeaponType.primary)
+        if(Input.GetKeyDown(KeyCode.R) && 
+        currentPlayerType == PlayerType.pilot && 
+        weaponScript.currentWeapon.weaponType == WeaponType.primary)
             ((PrimaryWeapon)weaponScript.currentWeapon).reLoad();
     }
 
-    public void checkForFire()
+
+    void checkForFire()
     {
         if(weaponScript.currentWeapon.weaponType == WeaponType.primary && currentPlayerType==PlayerType.pilot)
         {
@@ -144,7 +170,7 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-    public void checkForSwitchWeapon()
+    void checkForSwitchWeapon()
     {
         if(Input.GetKeyDown(KeyCode.Z) &&  currentPlayerType==PlayerType.pilot)
         {
@@ -153,26 +179,95 @@ public class PlayerScript : MonoBehaviour
 
     }
 
+
+    void checkForEmbarkDisEmbark()
+    {
+        //embark
+        if(Input.GetKeyDown(KeyCode.E) && embarkEnabled && currentPlayerType == PlayerType.pilot)
+        {
+            StartCoroutine(embarkCo());
+            calledTitan.SetActive(false);
+            embarkEnabled = false;
+        }
+
+        //disembark
+        if(Input.GetKeyDown(KeyCode.E) && currentPlayerType == PlayerType.titan)
+        {
+            StartCoroutine(disembarkCo());
+        }
+
+    }
+
+
+    void checkForTitanCall()
+    {
+        // if(Input.GetKeyDown(KeyCode.Q) && 
+        // currentPlayerType == PlayerType.pilot && 
+        // ((PilotPlayer)currentPlayer).titanFallMeter >= 100)
+        //TODO: return titanfall check
+        if(Input.GetKeyDown(KeyCode.Q) && 
+        currentPlayerType == PlayerType.pilot )
+        {
+            cutSceneManager.playCutScene();
+        }
+
+    }
+
+
+    void checkForDefensiveAbility()
+    {
+        if(Input.GetKeyDown(KeyCode.F) && 
+        currentPlayerType == PlayerType.titan && 
+        Time.time >= nextTimeToShield && !isDefensiveAbility)
+        {
+            defensiveAbilityShield.SetActive(true);
+            Invoke("stopDefensiveAbility",10f);
+            isDefensiveAbility = true;
+        }
+
+    }
+
+    void stopDefensiveAbility()
+    {
+        nextTimeToShield = Time.time + 15f;
+        isDefensiveAbility = false;
+        CombatLevelManager.Instance.defAbilityCoolDown_GO.SetActive(true);
+        defensiveAbilityShield.SetActive(false);
+    }
+
+
+    void checkForCoreAbility()
+    {
+        if(Input.GetKeyDown(KeyCode.V) && 
+        currentPlayerType == PlayerType.titan && 
+        ((TitanPlayer)currentPlayer).coreAbilityMeter >= 100)
+        {
+            isCoreAbility = true;
+            titanPlayer.resetCoreAbilityMeter();
+            weaponScript.activateCoreAbility();
+        }
+    }
+
+
     public void takeDamage(int damage)
     {
         isDead = currentPlayer.decHealth(damage);
+        regenerationCount = 0f;
         StartCoroutine(showHitScreenCo());
     }
 
-    public void callTitan()
-    {
-
-    }
 
     IEnumerator embarkCo()
     {
         blackScreen.SetTrigger("isFadeIn");
         yield return new WaitForSeconds(0.5f);
+        pilotPlayer.resetTitanFallMeter();
         currentPlayer = titanPlayer;
         currentPlayerType = PlayerType.titan;
         weaponScript.switchToTitanWeapon();
         fireRate = weaponScript.titanWeapon.fireRate;
         titanScreen.SetActive(true);
+        CombatLevelManager.Instance.switchToTitanStats();
 
     }
 
@@ -185,6 +280,7 @@ public class PlayerScript : MonoBehaviour
         weaponScript.switchToPilotWeapon();
         fireRate = weaponScript.primaryWeapon.fireRate;
         titanScreen.SetActive(false);
+        CombatLevelManager.Instance.switchToPilotStats();
 
     }
 
@@ -200,6 +296,11 @@ public class PlayerScript : MonoBehaviour
         brokenScreen.SetActive(false);
     }
 
+    IEnumerator gameOverCo()
+    {
+        yield return new WaitForSeconds(0.3f);
+        CombatLevelManager.Instance.gameOver();
+    }
 
 }
 

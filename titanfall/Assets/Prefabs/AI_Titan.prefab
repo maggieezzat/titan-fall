@@ -45,7 +45,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &882417473739534817
 Transform:
   m_ObjectHideFlags: 0
@@ -277,6 +277,11 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 2731192915150887708}
+    - target: {fileID: 2623098061970466839, guid: 02a535a5caec2e74ebaa839114bf74ba,
+        type: 3}
+      propertyPath: killPoints
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02a535a5caec2e74ebaa839114bf74ba, type: 3}
 --- !u!1 &7643440486055835657 stripped

@@ -109,8 +109,8 @@ public class ParkourLevelManager : MonoBehaviour
 
     void SetBars()
     {
-        pilotHealthBar.BarValue = playerScript.pilotPlayer.health;
-        pilotTitanFallBar.BarValue = playerScript.pilotPlayer.titanFallMeter;
+        pilotHealthBar.UpdateValue(playerScript.pilotPlayer.health, 100);
+        pilotTitanFallBar.UpdateValue(playerScript.pilotPlayer.titanFallMeter, 100);
     }
 
     void SetTexts()
