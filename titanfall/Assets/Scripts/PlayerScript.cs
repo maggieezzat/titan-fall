@@ -25,6 +25,8 @@ public class PlayerScript : MonoBehaviour
     public bool embarkEnabled = false;
     public GameObject calledTitan;
 
+    public UnityStandardAssets.Characters.FirstPerson.FirstPersonController firstPersonController;
+
     
 
 #region Singleton
@@ -62,12 +64,14 @@ public class PlayerScript : MonoBehaviour
             StartCoroutine(embarkCo());
             calledTitan.SetActive(false);
             embarkEnabled = false;
+            firstPersonController.embarkTitan();
         }
 
         //disembark
         if(Input.GetKeyDown(KeyCode.E) && currentPlayerType == PlayerType.titan)
         {
             StartCoroutine(disembarkCo());
+            firstPersonController.disEmbarkTitan();
         }
 
         if(isDead && currentPlayerType == PlayerType.pilot)
