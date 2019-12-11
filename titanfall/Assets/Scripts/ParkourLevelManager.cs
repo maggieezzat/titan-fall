@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
 
+namespace OurNameSpace{
+
 public class ParkourLevelManager : MonoBehaviour
 {
 
@@ -126,4 +128,5 @@ public class ParkourLevelManager : MonoBehaviour
     }
 
 
+}
 }

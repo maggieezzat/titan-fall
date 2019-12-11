@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.EventSystems;
 
+namespace OurNameSpace{
+
 public class CombatLevelManager : MonoBehaviour
 {
     public FirstPersonController fps;
@@ -157,3 +159,5 @@ public class CombatLevelManager : MonoBehaviour
 
 
 }
+}
+

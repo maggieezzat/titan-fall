@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace OurNameSpace{
+
+
 public class TriggerScript : MonoBehaviour
 {
     PlayerScript playerScript;
@@ -26,4 +29,5 @@ public class TriggerScript : MonoBehaviour
         playerScript.embarkEnabled = false;
         message.SetActive(false);
     }
+}
 }

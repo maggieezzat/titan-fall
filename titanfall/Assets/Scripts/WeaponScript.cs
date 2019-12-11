@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
+namespace OurNameSpace{
+
+
 public class WeaponScript : MonoBehaviour
 {
     public SuperScript superScript;
@@ -379,4 +382,5 @@ public class WeaponScript : MonoBehaviour
         titanWeapon = new TitanWeapon(15,FiringMode.automatic, 20);
         
     }
+}
 }

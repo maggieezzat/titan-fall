@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+namespace OurNameSpace{
+
+
 public class EnemyScript : MonoBehaviour
 {
     PlayerScript playerScript;
@@ -280,4 +283,5 @@ public class EnemyScript : MonoBehaviour
     }
 
 
+}
 }
