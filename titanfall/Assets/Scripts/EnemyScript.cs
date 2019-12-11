@@ -98,7 +98,7 @@ public class EnemyScript : MonoBehaviour
 
         float distance = Vector3.Distance(agent.transform.position, player.transform.position);
 
-        if (distance <= 25f)
+        if (distance <= 50f)
             inRange = true;
         else
             inRange = false;
