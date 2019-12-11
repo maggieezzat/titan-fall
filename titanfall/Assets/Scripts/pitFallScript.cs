@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace OurNameSpace{
+
 public class pitFallScript : MonoBehaviour
 {
     public GameObject gameOverPanel;
@@ -15,5 +17,7 @@ public class pitFallScript : MonoBehaviour
             print("game over");
         }
     }
+
+}
 
 }

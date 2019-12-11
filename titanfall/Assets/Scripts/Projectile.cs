@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+namespace OurNameSpace{
+
+
 public class Projectile : MonoBehaviour
 {
     public bool trajectoryPath;
@@ -108,4 +111,5 @@ public class Projectile : MonoBehaviour
         touching = false;
     }
 
+}
 }

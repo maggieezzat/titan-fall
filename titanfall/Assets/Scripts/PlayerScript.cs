@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+namespace OurNameSpace{
 
 public class PlayerScript : MonoBehaviour
 {
@@ -258,5 +259,7 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         CombatLevelManager.Instance.gameOver();
     }
+
+}
 
 }
