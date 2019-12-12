@@ -257,6 +257,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3407252339025567618, guid: 02a535a5caec2e74ebaa839114bf74ba,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623098061970466839, guid: 02a535a5caec2e74ebaa839114bf74ba,
+        type: 3}
+      propertyPath: audioClips.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2623098061970466839, guid: 02a535a5caec2e74ebaa839114bf74ba,
         type: 3}
       propertyPath: patrolPoints.Array.data[0]
@@ -269,18 +279,38 @@ PrefabInstance:
       objectReference: {fileID: 882417474022434580}
     - target: {fileID: 2623098061970466839, guid: 02a535a5caec2e74ebaa839114bf74ba,
         type: 3}
-      propertyPath: enemyFootsteps
-      value: 
-      objectReference: {fileID: 8300000, guid: 0dba2be68a2ed1c48938fc14f9f033a4, type: 3}
-    - target: {fileID: 2623098061970466839, guid: 02a535a5caec2e74ebaa839114bf74ba,
-        type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 2731192915150887708}
     - target: {fileID: 2623098061970466839, guid: 02a535a5caec2e74ebaa839114bf74ba,
         type: 3}
+      propertyPath: audioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0dba2be68a2ed1c48938fc14f9f033a4, type: 3}
+    - target: {fileID: 2623098061970466839, guid: 02a535a5caec2e74ebaa839114bf74ba,
+        type: 3}
+      propertyPath: audioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 56ed5ff8b470ba944b11676b446b4a71, type: 3}
+    - target: {fileID: 2623098061970466839, guid: 02a535a5caec2e74ebaa839114bf74ba,
+        type: 3}
+      propertyPath: audioClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0ec0c1cf9740c5b49819c8ea601f71e5, type: 3}
+    - target: {fileID: 2623098061970466839, guid: 02a535a5caec2e74ebaa839114bf74ba,
+        type: 3}
+      propertyPath: audioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 83727116c6112fe478e7d60d94dc6de9, type: 3}
+    - target: {fileID: 2623098061970466839, guid: 02a535a5caec2e74ebaa839114bf74ba,
+        type: 3}
       propertyPath: killPoints
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636503997795759608, guid: 02a535a5caec2e74ebaa839114bf74ba,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02a535a5caec2e74ebaa839114bf74ba, type: 3}

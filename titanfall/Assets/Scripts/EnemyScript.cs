@@ -47,6 +47,7 @@ public class EnemyScript : MonoBehaviour
     bool isDead = false;
 
     public AudioSource audioSource;
+    public AudioClip [] audioClips;
 
     public bool isPlaying = false;
     public float nextTimeToFire = 0f;
