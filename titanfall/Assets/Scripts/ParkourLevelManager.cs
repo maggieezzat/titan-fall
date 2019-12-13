@@ -92,6 +92,7 @@ public class ParkourLevelManager : MonoBehaviour
         audioSource.Stop();
         audioSource.clip = parkourLevelMusic;
         audioSource.Play();
+        fps.setMouseLock(true);
         Time.timeScale = 1;
 
     }
@@ -99,6 +100,7 @@ public class ParkourLevelManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene("ParkourLevel");
+        fps.setMouseLock(true);
         Time.timeScale = 1;
     }
 

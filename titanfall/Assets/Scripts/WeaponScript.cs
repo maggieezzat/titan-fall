@@ -273,16 +273,14 @@ public class WeaponScript : MonoBehaviour
 
         if(currentWeapon.weaponType == WeaponType.titan)
         {
-            int layerMask = 1 << 8;
+            int layerMask = 1 << 9;
             layerMask = ~layerMask;
 
             bool RaycastDown = Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, 
                 out hit, Mathf.Infinity , layerMask);
-
             if(RaycastDown  && hit.transform.tag.Contains("Enemy"))
             {
-                
-                // if(hit.transform.GetComponent<EnemyScript>())
+                if(hit.transform.GetComponent<EnemyScript>())
                     hit.transform.GetComponent<EnemyScript>().takeDamage(((TitanWeapon)currentWeapon).damageAmount);
                 // else{
                 //     print(hit.transform.name);

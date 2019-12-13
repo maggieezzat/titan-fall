@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour
     
     public int killedEnemies = 0;
 
-    CutSceneManager cutSceneManager;
+    public CutSceneManager cutSceneManager;
 
 
     public bool isCoreAbility = false;
@@ -74,7 +74,6 @@ public class PlayerScript : MonoBehaviour
         currentPlayer = pilotPlayer;
         currentPlayerType = PlayerType.pilot;
 
-        cutSceneManager = CutSceneManager.Instance;
 
         playerAudioSource1 = AddAudio(false, false, 200f);
         playerAudioSource2 = AddAudio(false, false, 200f);
@@ -83,10 +82,12 @@ public class PlayerScript : MonoBehaviour
 #endregion
 
     void Start()
-    {
+        {
+        cutSceneManager = CutSceneManager.Instance;
         fireRate = weaponScript.primaryWeapon.fireRate;
         nextTimeToFire = 0f;
         InvokeRepeating("regenerateHealth", 0f, 1f);
+
     }
 
     void regenerateHealth()
@@ -225,11 +226,15 @@ public class PlayerScript : MonoBehaviour
 
     void checkForTitanCall()
     {
-        if ((Input.GetKeyDown(KeyCode.Q) &&
-            currentPlayerType == PlayerType.pilot &&
-            ((PilotPlayer)currentPlayer).titanFallMeter >= 100) ||
-            (Input.GetKeyDown(KeyCode.Q) && Input.GetKey(KeyCode.LeftControl) &&      //cheat code for titanfall
-            currentPlayerType == PlayerType.pilot))
+        if (
+                (Input.GetKeyDown(KeyCode.Q) &&
+                currentPlayerType == PlayerType.pilot &&
+                ((PilotPlayer)currentPlayer).titanFallMeter >= 100) ||
+
+                (Input.GetKeyDown(KeyCode.Q) && Input.GetKey(KeyCode.LeftControl) &&      //cheat code for titanfall
+                currentPlayerType == PlayerType.pilot && 
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)
+            )
         {
             playerAudioSource1.clip = audioClips[6];
             playerAudioSource1.Play();
@@ -240,7 +245,7 @@ public class PlayerScript : MonoBehaviour
 
     void checkForNextLevelCheat()
     {
-        if(Input.GetKeyDown(KeyCode.N) && Input.GetKey(KeyCode.LeftControl))
+        if(Input.GetKeyDown(KeyCode.N) && Input.GetKey(KeyCode.LeftControl) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(3);
             }
@@ -251,7 +256,7 @@ public class PlayerScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.F) && 
         currentPlayerType == PlayerType.titan && 
-        Time.time >= nextTimeToShield && !isDefensiveAbility)
+        Time.time >= nextTimeToShield && !isDefensiveAbility && !Input.GetKey(KeyCode.LeftControl))
         {
             defensiveAbilityShield.SetActive(true);
                 playerAudioSource1.clip = audioClips[7];
@@ -261,7 +266,8 @@ public class PlayerScript : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.F)
-                && Input.GetKey(KeyCode.LeftControl) && currentPlayerType == PlayerType.titan)
+                && Input.GetKey(KeyCode.LeftControl) && currentPlayerType == PlayerType.titan
+                && UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)
         {
             defensiveAbilityShield.SetActive(true);
             playerAudioSource1.clip = audioClips[7];
@@ -284,7 +290,8 @@ public class PlayerScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.V) && 
         currentPlayerType == PlayerType.titan && 
-        (((TitanPlayer)currentPlayer).coreAbilityMeter >= 100 || Input.GetKey(KeyCode.LeftControl)))
+        (((TitanPlayer)currentPlayer).coreAbilityMeter >= 100 
+        || (Input.GetKey(KeyCode.LeftControl) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)))
         {
             isCoreAbility = true;
             titanPlayer.resetCoreAbilityMeter();

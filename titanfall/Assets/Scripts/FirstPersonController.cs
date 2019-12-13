@@ -234,6 +234,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MouseLook.UpdateCursorLock(gameOver);
         }
 
+        public void setMouseLock(bool value)
+        {
+            m_MouseLook.m_cursorIsLocked = value;
+        }
+
 
         private void PlayJumpSound()
         {

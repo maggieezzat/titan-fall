@@ -97,7 +97,6 @@ public class CombatLevelManager : MonoBehaviour
         audioSource.clip = pauseMusic;
         audioSource.Play();
         Time.timeScale = 0;
-
     }
 
     public void gameOver()
@@ -119,6 +118,7 @@ public class CombatLevelManager : MonoBehaviour
         audioSource.Stop();
         audioSource.clip = combatLevelMusic;
         audioSource.Play();
+        fps.setMouseLock(true);
         Time.timeScale = 1;
 
     }
@@ -126,6 +126,7 @@ public class CombatLevelManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene("CombatLevel");
+        fps.setMouseLock(true);
         Time.timeScale = 1;
     }
 
