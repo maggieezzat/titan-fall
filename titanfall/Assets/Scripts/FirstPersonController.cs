@@ -131,14 +131,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 sprintPressed = false;
             }
             if(Input.GetKeyDown(KeyCode.X) && (dashSemaphore < -30) && dashMeter > 0 && (PlayerScript.Instance.currentPlayerType == PlayerType.titan)){
-                playerScript.setIsInvincible(true);
+                PlayerScript.Instance.setIsInvincible(true);
                 dashMeter-=1;
                 dashSemaphore = 5;
                 m_WalkSpeed = dashSpeed;
                 m_RunSpeed = dashSpeed;
             }
             if(dashSemaphore <= 0){
-                playerScript.setIsInvincible(false);
+                PlayerScript.Instance.setIsInvincible(false);
                 m_RunSpeed = realRunSpeed;
                 m_WalkSpeed = realWalkSpeed;
             }

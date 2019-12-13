@@ -865,14 +865,14 @@ MonoBehaviour:
   weaponScript: {fileID: 0}
   pausePanel: {fileID: 1229393347}
   gameOverPanel: {fileID: 1912330639}
-  pilotHUD: {fileID: 0}
+  pilotHUD: {fileID: 1798360544}
   audioSource: {fileID: 86598382}
   parkourLevelMusic: {fileID: 8300000, guid: 3df546e2dd03594418ab8f4a27aa589b, type: 3}
   pauseMusic: {fileID: 8300000, guid: 398efd1cfdffb6d48bb3dfa96c168b91, type: 3}
   pilotHealthBar: {fileID: 1873712214}
   pilotTitanFallBar: {fileID: 76284785}
-  pilotWeaponNameText: {fileID: 0}
-  pilotAmmoCountText: {fileID: 0}
+  pilotWeaponNameText: {fileID: 686214598}
+  pilotAmmoCountText: {fileID: 579906888}
 --- !u!82 &86598382
 AudioSource:
   m_ObjectHideFlags: 0
