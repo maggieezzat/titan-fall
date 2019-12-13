@@ -25,6 +25,7 @@ public class EnemyScript : MonoBehaviour
     bool initPatrolSet = false;
     int currentPatrolIndex = 0;
     bool inRange = false;
+    float maxFollowDist = 50f;
     private bool isPatroling = true;
 
 
@@ -122,8 +123,9 @@ public class EnemyScript : MonoBehaviour
         }
 
         float distance = Vector3.Distance(agent.transform.position, player.transform.position);
+        float distFromPatrol = Vector3.Distance(agent.transform.position, transform.parent.position);
 
-        if (distance <= 50f)
+        if (distance <= 50f && distFromPatrol <= maxFollowDist)
             inRange = true;
         else
             inRange = false;

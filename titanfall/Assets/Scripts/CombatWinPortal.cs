@@ -6,18 +6,6 @@ namespace OurNameSpace{
 
 public class CombatWinPortal : MonoBehaviour
 {
-    // public PlayerScript playerScript;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     /// <summary>
     /// OnTriggerEnter is called when the Collider other enters the trigger.

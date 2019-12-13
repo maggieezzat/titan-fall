@@ -106,6 +106,7 @@ public class PlayerScript : MonoBehaviour
         checkForEmbarkDisEmbark();
         checkForDefensiveAbility();
         checkForCoreAbility();
+        checkForNextLevelCheat();
 
 
         if(isDead && currentPlayerType == PlayerType.pilot)
@@ -224,18 +225,25 @@ public class PlayerScript : MonoBehaviour
 
     void checkForTitanCall()
     {
-        // if(Input.GetKeyDown(KeyCode.Q) && 
-        // currentPlayerType == PlayerType.pilot && 
-        // ((PilotPlayer)currentPlayer).titanFallMeter >= 100)
-        //TODO: return titanfall check
-        if(Input.GetKeyDown(KeyCode.Q) && 
-        currentPlayerType == PlayerType.pilot )
+        if ((Input.GetKeyDown(KeyCode.Q) &&
+            currentPlayerType == PlayerType.pilot &&
+            ((PilotPlayer)currentPlayer).titanFallMeter >= 100) ||
+            (Input.GetKeyDown(KeyCode.Q) && Input.GetKey(KeyCode.LeftControl) &&      //cheat code for titanfall
+            currentPlayerType == PlayerType.pilot))
         {
-                playerAudioSource1.clip = audioClips[6];
-                playerAudioSource1.Play();
+            playerAudioSource1.clip = audioClips[6];
+            playerAudioSource1.Play();
             cutSceneManager.playCutScene();
         }
 
+    }
+
+    void checkForNextLevelCheat()
+    {
+        if(Input.GetKeyDown(KeyCode.N) && Input.GetKey(KeyCode.LeftControl))
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+            }
     }
 
 
@@ -249,6 +257,15 @@ public class PlayerScript : MonoBehaviour
                 playerAudioSource1.clip = audioClips[7];
                 playerAudioSource1.Play();
             Invoke("stopDefensiveAbility",10f);
+            isDefensiveAbility = true;
+        }
+
+        if(Input.GetKeyDown(KeyCode.F)
+                && Input.GetKey(KeyCode.LeftControl) && currentPlayerType == PlayerType.titan)
+        {
+            defensiveAbilityShield.SetActive(true);
+            playerAudioSource1.clip = audioClips[7];
+            playerAudioSource1.Play();
             isDefensiveAbility = true;
         }
 
@@ -267,7 +284,7 @@ public class PlayerScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.V) && 
         currentPlayerType == PlayerType.titan && 
-        ((TitanPlayer)currentPlayer).coreAbilityMeter >= 100)
+        (((TitanPlayer)currentPlayer).coreAbilityMeter >= 100 || Input.GetKey(KeyCode.LeftControl)))
         {
             isCoreAbility = true;
             titanPlayer.resetCoreAbilityMeter();
@@ -325,7 +342,9 @@ public class PlayerScript : MonoBehaviour
             yield return new WaitForSeconds(1.9f);
         currentPlayer = pilotPlayer;
         currentPlayerType = PlayerType.pilot;
-        weaponScript.switchToPilotWeapon();
+            defensiveAbilityShield.SetActive(false);
+            isDefensiveAbility = false;
+            weaponScript.switchToPilotWeapon();
         fireRate = weaponScript.primaryWeapon.fireRate;
         titanScreen.SetActive(false);
         CombatLevelManager.Instance.switchToPilotStats();
