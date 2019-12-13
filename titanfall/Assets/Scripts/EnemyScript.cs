@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 namespace OurNameSpace{
 
@@ -46,7 +47,9 @@ public class EnemyScript : MonoBehaviour
     int health = 100;
     bool isDead = false;
 
-    public AudioSource audioSource;
+    public AudioSource audioSource1;
+    public AudioSource audioSource2;
+    public AudioMixerGroup masterAudioMixer;
     public AudioClip [] audioClips;
 
     public bool isPlaying = false;
@@ -56,7 +59,28 @@ public class EnemyScript : MonoBehaviour
 
     public int killPoints;
 
-    void Start()
+    public AudioSource AddAudio(bool loop, bool playAwake, float maxDistance)
+    {
+        AudioSource newAudio = gameObject.AddComponent<AudioSource>();
+            //float effectsLevel;
+            //masterAudioMixer.GetFloat("effectsVol", out effectsLevel);
+            //newAudio.volume = effectsLevel;
+            newAudio.outputAudioMixerGroup = masterAudioMixer;
+            newAudio.spatialBlend = 1f;
+            newAudio.loop = loop;
+        newAudio.playOnAwake = playAwake;
+        newAudio.maxDistance = maxDistance;
+            newAudio.rolloffMode = AudioRolloffMode.Linear;
+        return newAudio; 
+    }
+
+    public void Awake()
+    {
+        audioSource1 = AddAudio(false, false, 200f);
+        audioSource2 = AddAudio(false, false, 200f);
+    }
+
+        void Start()
     {
         enemyAnimator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -198,7 +222,9 @@ public class EnemyScript : MonoBehaviour
                 // enemyAnimator.SetTrigger("isFiring");
                 nextTimeToFire = Time.time + 1f / fireRate;
                 WeaponScript.Instance.enemyFire(enemyWeapon, nozzle);
-                if (!isMuzzlePlaying)
+                    audioSource2.clip = audioClips[4];
+                    audioSource2.Play();
+                    if (!isMuzzlePlaying)
                 {
                     muzzleFlash.Play();
                     isMuzzlePlaying = true;
@@ -235,6 +261,8 @@ public class EnemyScript : MonoBehaviour
             if (fireRate == 1f) //shoot once every 3 secs while inRange
             {
                 enemyAnimator.SetTrigger("isFiring");
+                    audioSource2.clip = audioClips[4];
+                    audioSource2.Play();
                 WeaponScript.Instance.enemyFire(enemyWeapon, nozzle);
                 if (!isMuzzlePlaying)
                 {
@@ -260,6 +288,9 @@ public class EnemyScript : MonoBehaviour
 
     public void takeDamage(int damage)
     {
+            audioSource1.clip = audioClips[1]; //getting hit
+            audioSource2.clip = audioClips[2]; //bullet impact
+            audioSource1.Play();
         health -= damage;
         //healthBar.BarValue = health;
         healthBar.UpdateValue(health, 100);
@@ -271,6 +302,8 @@ public class EnemyScript : MonoBehaviour
     {
         if(!isDead)
         {
+            audioSource1.clip = audioClips[3];
+            audioSource1.Play();
             enemyAnimator.SetTrigger("isDead");
             transform.GetComponent<Collider>().enabled = false;
             agent.updatePosition = false;
@@ -292,7 +325,8 @@ public class EnemyScript : MonoBehaviour
 
     void step()
     {
-        audioSource.Play();
+        audioSource1.clip = audioClips[0];
+        audioSource1.Play();
     }
 
 

@@ -1,102 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!82 &8603306428845071160
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3261490052624245364}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 5073904887056435764, guid: c93010dbe6b7d64498637bdac21713c7,
-    type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &6801225960660257819
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,27 +172,92 @@ PrefabInstance:
       objectReference: {fileID: 6801225960660257818}
     - target: {fileID: 5149116084013398568, guid: bff876be0f3d6ac4bbed802d1cb0531b,
         type: 3}
-      propertyPath: enemyFootsteps
-      value: 
-      objectReference: {fileID: 8300000, guid: 0dba2be68a2ed1c48938fc14f9f033a4, type: 3}
-    - target: {fileID: 5149116084013398568, guid: bff876be0f3d6ac4bbed802d1cb0531b,
-        type: 3}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 8603306428845071160}
-    - target: {fileID: 5149116084013398568, guid: bff876be0f3d6ac4bbed802d1cb0531b,
-        type: 3}
       propertyPath: killPoints
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 940932902035794482, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3905928469098061475, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6903364283440036402, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798768298568533991, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798768299414732720, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 605825830573502172, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798768298726158306, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798768298726158306, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798768298726158306, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798768298726158306, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75,
+        type: 3}
+    - target: {fileID: 6798768298726158306, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798768298726158306, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798768298726158306, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_Text
+      value: Health 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 605825830573502168, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 605825830573502170, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798768298643083256, guid: bff876be0f3d6ac4bbed802d1cb0531b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bff876be0f3d6ac4bbed802d1cb0531b, type: 3}
---- !u!1 &3261490052624245364 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3770842036125301916, guid: bff876be0f3d6ac4bbed802d1cb0531b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1808084433160937192}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1952444805824221287 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 148584713794948751, guid: bff876be0f3d6ac4bbed802d1cb0531b,

@@ -1160,6 +1160,19 @@ MonoBehaviour:
   sniperObj: {fileID: 605825830573502174}
   titanGun: {fileID: 605825830573502174}
   healthBar: {fileID: 6903364283440036402}
+  audioSource1: {fileID: 0}
+  audioSource2: {fileID: 0}
+  masterAudioMixer: {fileID: 5073904887056435764, guid: c93010dbe6b7d64498637bdac21713c7,
+    type: 2}
+  audioClips:
+  - {fileID: 8300000, guid: 0dba2be68a2ed1c48938fc14f9f033a4, type: 3}
+  - {fileID: 8300000, guid: 56ed5ff8b470ba944b11676b446b4a71, type: 3}
+  - {fileID: 8300000, guid: 0ec0c1cf9740c5b49819c8ea601f71e5, type: 3}
+  - {fileID: 8300000, guid: 83727116c6112fe478e7d60d94dc6de9, type: 3}
+  - {fileID: 8300000, guid: d1be5cd02c639d3408244c64ee9ef6e4, type: 3}
+  isPlaying: 0
+  nextTimeToFire: 0
+  killPoints: 0
 --- !u!136 &1629573761603167758
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11709,6 +11722,7 @@ MonoBehaviour:
   repeat: 0
   RepeatRate: 1
   dash: 0
+  BarValue: 0
 --- !u!82 &6881214334759774606
 AudioSource:
   m_ObjectHideFlags: 0

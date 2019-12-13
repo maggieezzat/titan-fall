@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 namespace OurNameSpace{
 
 public class PlayerScript : MonoBehaviour
@@ -41,11 +42,29 @@ public class PlayerScript : MonoBehaviour
     public UnityStandardAssets.Characters.FirstPerson.FirstPersonController firstPersonController;
     private bool isInvincible;
 
-    
+        public AudioMixerGroup masterAudioMixer;
+        public AudioClip[] audioClips;
+        public AudioClip[] fpsClips;
+        public AudioClip[] titanClips;
+        public AudioSource playerAudioSource1;
+        public AudioSource playerAudioSource2;
 
-#region Singleton
+        public AudioSource AddAudio(bool loop, bool playAwake, float maxDistance)
+        {
+            AudioSource newAudio = gameObject.AddComponent<AudioSource>();
+            newAudio.outputAudioMixerGroup = masterAudioMixer;
+            newAudio.loop = loop;
+            newAudio.playOnAwake = playAwake;
+            newAudio.maxDistance = maxDistance;
+            return newAudio;
+        }
+        
 
-    public static PlayerScript Instance;
+
+
+        #region Singleton
+
+        public static PlayerScript Instance;
     void Awake()
     {
         Instance = this;
@@ -56,7 +75,10 @@ public class PlayerScript : MonoBehaviour
         currentPlayerType = PlayerType.pilot;
 
         cutSceneManager = CutSceneManager.Instance;
-    }
+
+        playerAudioSource1 = AddAudio(false, false, 200f);
+        playerAudioSource2 = AddAudio(false, false, 200f);
+        }
 
 #endregion
 
@@ -88,6 +110,8 @@ public class PlayerScript : MonoBehaviour
 
         if(isDead && currentPlayerType == PlayerType.pilot)
         {
+            playerAudioSource1.clip = audioClips[9];
+            playerAudioSource1.Play();
             bloodyScreen.SetActive(false);
             StartCoroutine(gameOverCo());
         }
@@ -123,6 +147,8 @@ public class PlayerScript : MonoBehaviour
                 nextTimeToFire = Time.time + 1f/fireRate;
                 weaponScript.playerFire();
                 ((PrimaryWeapon)weaponScript.currentWeapon).decAmmo();
+                    playerAudioSource2.clip = audioClips[4];
+                    playerAudioSource2.Play();
             }
             if(((PrimaryWeapon)weaponScript.currentWeapon).firingMode == FiringMode.automatic && 
             Input.GetButton("Fire1") && Time.time >= nextTimeToFire
@@ -131,7 +157,12 @@ public class PlayerScript : MonoBehaviour
                 nextTimeToFire = Time.time + 1f/fireRate;
                 weaponScript.playerFire();
                 ((PrimaryWeapon)weaponScript.currentWeapon).decAmmo();
-            }
+                    if(playerAudioSource2.clip != audioClips[5] || !playerAudioSource2.isPlaying)
+                    {
+                        playerAudioSource2.clip = audioClips[5];
+                        playerAudioSource2.Play();
+                    }
+                }
             
         }
         else if(weaponScript.currentWeapon.weaponType == WeaponType.heavy && currentPlayerType==PlayerType.pilot)
@@ -148,7 +179,12 @@ public class PlayerScript : MonoBehaviour
             {
                 nextTimeToFire = Time.time + 1f/fireRate;
                 weaponScript.playerFire();
-            }
+                    if (playerAudioSource2.clip != audioClips[5] || !playerAudioSource2.isPlaying)
+                    {
+                        playerAudioSource2.clip = audioClips[5];
+                        playerAudioSource2.Play();
+                    }
+                }
 
         }
 
@@ -194,6 +230,8 @@ public class PlayerScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q) && 
         currentPlayerType == PlayerType.pilot )
         {
+                playerAudioSource1.clip = audioClips[6];
+                playerAudioSource1.Play();
             cutSceneManager.playCutScene();
         }
 
@@ -207,6 +245,8 @@ public class PlayerScript : MonoBehaviour
         Time.time >= nextTimeToShield && !isDefensiveAbility)
         {
             defensiveAbilityShield.SetActive(true);
+                playerAudioSource1.clip = audioClips[7];
+                playerAudioSource1.Play();
             Invoke("stopDefensiveAbility",10f);
             isDefensiveAbility = true;
         }
@@ -230,6 +270,8 @@ public class PlayerScript : MonoBehaviour
         {
             isCoreAbility = true;
             titanPlayer.resetCoreAbilityMeter();
+                playerAudioSource1.clip = audioClips[8];
+                playerAudioSource1.Play();
             weaponScript.activateCoreAbility();
         }
     }
@@ -238,7 +280,11 @@ public class PlayerScript : MonoBehaviour
     public void takeDamage(int damage)
     {
         isDead = currentPlayer.decHealth(damage);
-        regenerationCount = 0f;
+            playerAudioSource1.clip = audioClips[2];
+            playerAudioSource1.Play();
+            playerAudioSource2.clip = audioClips[3];
+            playerAudioSource2.Play();
+            regenerationCount = 0f;
         StartCoroutine(showHitScreenCo());
     }
 
@@ -246,6 +292,8 @@ public class PlayerScript : MonoBehaviour
     IEnumerator embarkCo()
     {
         blackScreen.SetTrigger("isFadeIn");
+            fpsClips = firstPersonController.m_FootstepSounds;
+            firstPersonController.m_FootstepSounds = titanClips;
         yield return new WaitForSeconds(0.5f);
         pilotPlayer.resetTitanFallMeter();
         currentPlayer = titanPlayer;
@@ -263,7 +311,8 @@ public class PlayerScript : MonoBehaviour
     IEnumerator disembarkCo()
     {
         blackScreen.SetTrigger("isFadeOut");
-        yield return new WaitForSeconds(1.9f);
+            firstPersonController.m_FootstepSounds = fpsClips;
+            yield return new WaitForSeconds(1.9f);
         currentPlayer = pilotPlayer;
         currentPlayerType = PlayerType.pilot;
         weaponScript.switchToPilotWeapon();

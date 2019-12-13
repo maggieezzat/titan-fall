@@ -334,7 +334,7 @@ public class WeaponScript : MonoBehaviour
 
     public IEnumerator nextExplosionCo(GameObject exp)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         exp.transform.SetParent(pools[2].pool_GO.transform);
         exp.SetActive(false);
 
@@ -352,6 +352,12 @@ public class WeaponScript : MonoBehaviour
             {
                 fpsCamera.transform.LookAt(hitColliders[i].transform);
                 playerFire();
+                if(PlayerScript.Instance.playerAudioSource2.clip != PlayerScript.Instance.audioClips[5] 
+                    || !PlayerScript.Instance.playerAudioSource2.isPlaying)
+                {
+                    PlayerScript.Instance.playerAudioSource2.clip = PlayerScript.Instance.audioClips[5];
+                    PlayerScript.Instance.playerAudioSource2.Play();
+                }
                 yield return new WaitForSeconds(0.5f);
             }
             i++;

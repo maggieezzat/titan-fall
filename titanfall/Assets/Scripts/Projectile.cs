@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
     private Rigidbody rigid;
     private Vector3 initialPosition;
     private Quaternion initialRotation;
+        
 
     void Start()
     {
@@ -101,7 +102,6 @@ public class Projectile : MonoBehaviour
             rigid.detectCollisions = false;
 
             WeaponScript.Instance.setInactive(this.gameObject, initialPosition, initialRotation);
-
         }
         
     }
