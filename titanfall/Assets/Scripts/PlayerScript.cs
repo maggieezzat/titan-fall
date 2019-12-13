@@ -277,19 +277,22 @@ public class PlayerScript : MonoBehaviour
 
         public void takeDamage(int damage)
         {
-            isDead = currentPlayer.decHealth(damage);
-            if (playerAudioSource1.clip != audioClips[2] || !playerAudioSource1.isPlaying)
+            if (!isDead)
             {
-                playerAudioSource1.clip = audioClips[2];
-                playerAudioSource1.Play();
+                isDead = currentPlayer.decHealth(damage);
+                if (playerAudioSource1.clip != audioClips[2] || !playerAudioSource1.isPlaying)
+                {
+                    playerAudioSource1.clip = audioClips[2];
+                    playerAudioSource1.Play();
+                }
+                if (playerAudioSource2.clip != audioClips[3] || !playerAudioSource2.isPlaying)
+                {
+                    playerAudioSource2.clip = audioClips[3];
+                    playerAudioSource2.Play();
+                }
+                regenerationCount = 0f;
+                StartCoroutine(showHitScreenCo());
             }
-            if (playerAudioSource2.clip != audioClips[3] || !playerAudioSource2.isPlaying)
-            {
-                playerAudioSource2.clip = audioClips[3];
-            playerAudioSource2.Play();
-            }
-            regenerationCount = 0f;
-        StartCoroutine(showHitScreenCo());
     }
 
 
