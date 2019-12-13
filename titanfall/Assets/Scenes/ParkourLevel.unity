@@ -496,7 +496,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 135, y: -90, z: 0}
 --- !u!1 &66438081
 GameObject:
@@ -818,6 +818,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74774428}
   m_CullTransparentMesh: 0
+--- !u!114 &76284785 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114769781544105922, guid: 5eefba205a58c8c4a937c97b87c185a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 844735241}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149d864443ddca94ba93b092e7acd5ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &86598380
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,14 +865,14 @@ MonoBehaviour:
   weaponScript: {fileID: 0}
   pausePanel: {fileID: 1229393347}
   gameOverPanel: {fileID: 1912330639}
-  pilotHUD: {fileID: 0}
+  pilotHUD: {fileID: 1798360544}
   audioSource: {fileID: 86598382}
   parkourLevelMusic: {fileID: 8300000, guid: 3df546e2dd03594418ab8f4a27aa589b, type: 3}
   pauseMusic: {fileID: 8300000, guid: 398efd1cfdffb6d48bb3dfa96c168b91, type: 3}
-  pilotHealthBar: {fileID: 0}
-  pilotTitanFallBar: {fileID: 0}
-  pilotWeaponNameText: {fileID: 0}
-  pilotAmmoCountText: {fileID: 0}
+  pilotHealthBar: {fileID: 1873712214}
+  pilotTitanFallBar: {fileID: 76284785}
+  pilotWeaponNameText: {fileID: 686214598}
+  pilotAmmoCountText: {fileID: 579906888}
 --- !u!82 &86598382
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4529,7 +4541,7 @@ Transform:
   m_LocalScale: {x: 7.3992186, y: 1.3875, z: 6.3820314}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &686214596
 GameObject:
@@ -18468,7 +18480,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 135, y: -90, z: 0}
 --- !u!1 &1499410948
 GameObject:
@@ -21106,6 +21118,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 759811208}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1873712214 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114769781544105922, guid: 5eefba205a58c8c4a937c97b87c185a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1762892347}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149d864443ddca94ba93b092e7acd5ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1888379978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26973,6 +26997,12 @@ MonoBehaviour:
   isDefensiveAbility: 0
   defensiveAbilityShield: {fileID: 0}
   firstPersonController: {fileID: 0}
+  masterAudioMixer: {fileID: 0}
+  audioClips: []
+  fpsClips: []
+  titanClips: []
+  playerAudioSource1: {fileID: 0}
+  playerAudioSource2: {fileID: 0}
 --- !u!136 &1968315631
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -27142,6 +27172,12 @@ MonoBehaviour:
   isDefensiveAbility: 0
   defensiveAbilityShield: {fileID: 0}
   firstPersonController: {fileID: 0}
+  masterAudioMixer: {fileID: 0}
+  audioClips: []
+  fpsClips: []
+  titanClips: []
+  playerAudioSource1: {fileID: 0}
+  playerAudioSource2: {fileID: 0}
 --- !u!136 &1983124247
 CapsuleCollider:
   m_ObjectHideFlags: 0
