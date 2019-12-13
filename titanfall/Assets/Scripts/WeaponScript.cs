@@ -48,13 +48,9 @@ public class WeaponScript : MonoBehaviour
     void Awake(){
 
         Instance = this;
-
-        //superScript = SuperScript.Instance;
-        //primaryWeaponName = superScript.primaryWeaponName;
-        //heavyWeaponName = superScript.heavyWeaponName;
-
-        primaryWeaponName = PrimaryWeaponName.assaultRifle;
-        heavyWeaponName = HeavyWeaponName.rocketLauncher;
+        superScript = SuperScript.Instance;
+        primaryWeaponName = superScript.primaryWeaponName;
+        heavyWeaponName = superScript.heavyWeaponName;
 
         createPrimaryWeapon(primaryWeaponName);
         createHeavyWeapon(heavyWeaponName);
@@ -282,9 +278,6 @@ public class WeaponScript : MonoBehaviour
             {
                 if(hit.transform.GetComponent<EnemyScript>())
                     hit.transform.GetComponent<EnemyScript>().takeDamage(((TitanWeapon)currentWeapon).damageAmount);
-                // else{
-                //     print(hit.transform.name);
-                // }
                     
             }
             if(isPlaying == false){
@@ -343,7 +336,6 @@ public class WeaponScript : MonoBehaviour
         fps.coreAbility = true;
         aimCanvas.SetActive(true);
         int i = 0;
-        print(hitColliders.Length);
         while (i < hitColliders.Length)
         {
             if(hitColliders[i].transform.tag.Contains("Enemy"))
@@ -362,7 +354,6 @@ public class WeaponScript : MonoBehaviour
             if(i == (hitColliders.Length-1))
             {
                 PlayerScript.Instance.isCoreAbility = false;
-                print("hi");
             }
             
         }

@@ -378,7 +378,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
         public void embarkTitan(){
-            Debug.Log("I am embarked");
             if(isCrouching){
                 crouch();
             }
@@ -387,7 +386,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
         public void disEmbarkTitan(){
-            Debug.Log("I am disembarked");
             gameObject.GetComponent<Transform>().localScale = gameObject.GetComponent<Transform>().localScale + new Vector3(-0.6f,-0.6f,-0.6f);
         }
     }

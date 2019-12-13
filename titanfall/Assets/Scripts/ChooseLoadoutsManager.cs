@@ -168,7 +168,6 @@ public class ChooseLoadoutsManager : MonoBehaviour
         assaultRifle.SetActive(false);
         primaryWeaponsText.text = sniperRifleDesc;
         superScript.primaryWeaponName = PrimaryWeaponName.sniperRifle;
-
     }
 
     public void selectAssaultRifle()
