@@ -473,7 +473,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.2}
   m_AnchoredPosition: {x: -11.5, y: 245.43932}
-  m_SizeDelta: {x: -61.3, y: 849.9}
+  m_SizeDelta: {x: -61.3, y: 1095.4393}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &198845191
 MonoBehaviour:
@@ -493,13 +493,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "* Titans Models: \nhttps://drive.google.com/drive/folders/18iT4kfUmHdHcARD6cVAwkNj6jOYf7WoY\n*
+  m_text: "* Made by: Mariz, Maggie, Peter, Fady and Bishoy :D\n* Titans Models: \nhttps://drive.google.com/drive/folders/18iT4kfUmHdHcARD6cVAwkNj6jOYf7WoY\n*
     Pilot Model:\nhttps://sketchfab.com/3d-models/pilot-stim-titanfall-2-9f42c6d4503841a7a4729c2e9f64047c\n*Robot
     Model:\nhttps://sketchfab.com/3d-models/robo-obj-pose4-uaeYu2fwakD1e1bWp5Cxu3XAqrt\n*Weapons
-    Pack:\nhttps://assetstore.unity.com/packages/3d/props/guns/modern-weapons-pack-14233\n*City
-    Buildings:\nhttps://sketchfab.com/3d-models/tc-city-sections-4abb909bb6c24e47bc683b9bdfc00938\n*Main
+    Pack:\nhttps://assetstore.unity.com/packages/3d/props/guns/modern-weapons-pack-14233\n*Main
     Menu Image:\nhttps://images10.newegg.com/BizIntell/item/74/105/74-105-992/c0.jpg\n*Fonts:\nhttps://www.ffonts.net/TITANFALL-FRONTLINE.font.download\n*Standard
-    Assets:\nhttps://assetstore.unity.com/packages/essentials/asset-packs/standard-assets-for-unity-2017-3-32351\n"
+    Assets:\nhttps://assetstore.unity.com/packages/essentials/asset-packs/standard-assets-for-unity-2017-3-32351\n*Sci-fi
+    UI elements:\nhttps://www.reddit.com/r/titanfall/duplicates/8rsws3/cockpit_render/\nhttps://pngtree.com/\nhttps://pixabay.com/illustrations/hud-sci-fi-design-space-display-3778788/\nhttps://www.flaticon.com/authors/kiranshastry\n*Enemy
+    pilot model\nhttps://www.mixamo.com/\n*Projectile Scripting\nhttps://vilbeyli.github.io/Projectile-Motion-Tutorial-for-Arrows-and-Missiles-in-Unity3D/\n*Enemy
+    Titan Gun\nhttps://sketchfab.com/3d-models/rd-100-adbee6d8720b469b9fd24669974f29a2\n*Environments\nhttps://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-platforms-3d-models-83091\nhttps://assetstore.unity.com/packages/3d/environments/industrial/rpg-fps-game-assets-for-pc-mobile-industrial-set-v2-0-86679"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 12a977fab8c404e409b3fc89ade841a0, type: 2}
   m_sharedMaterial: {fileID: -7709349581512925121, guid: 12a977fab8c404e409b3fc89ade841a0,
@@ -545,7 +547,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 1084
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -569,12 +571,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0.35255608, z: -0.10912334, w: 0.2537201}
   m_textInfo:
     textComponent: {fileID: 198845191}
-    characterCount: 744
+    characterCount: 1216
     spriteCount: 0
-    spaceCount: 27
-    wordCount: 73
+    spaceCount: 53
+    wordCount: 129
     linkCount: 0
-    lineCount: 24
+    lineCount: 39
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -2219,7 +2221,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.89e-43, y: 1.39e-43, z: 0, w: 4.7782726e-22}
+  m_BoundingSphereOverride: {x: 0, y: 1.02e-43, z: 1.7077761e+19, w: 5.503602e-10}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -3468,7 +3470,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1726317245}
   m_Direction: 2
   m_Value: 1.0000011
-  m_Size: 0.33667666
+  m_Size: 0.3366767
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3631,7 +3633,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1443967576}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:

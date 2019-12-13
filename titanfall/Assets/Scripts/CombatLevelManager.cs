@@ -114,7 +114,7 @@ public class CombatLevelManager : MonoBehaviour
     public void ResumeGame()
     {
         pausePanel.SetActive(false);
-        selectedHUD.SetActive(false);
+        selectedHUD.SetActive(true);
         audioSource.Stop();
         audioSource.clip = combatLevelMusic;
         audioSource.Play();

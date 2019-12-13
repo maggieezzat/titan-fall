@@ -336,7 +336,7 @@ public class PlayerScript : MonoBehaviour
         fireRate = weaponScript.titanWeapon.fireRate;
         titanScreen.SetActive(true);
         CombatLevelManager.Instance.switchToTitanStats();
-        firstPersonController.embarkTitan();
+        //firstPersonController.embarkTitan();
 
 
     }
@@ -354,7 +354,7 @@ public class PlayerScript : MonoBehaviour
         fireRate = weaponScript.primaryWeapon.fireRate;
         titanScreen.SetActive(false);
         CombatLevelManager.Instance.switchToPilotStats();
-        firstPersonController.disEmbarkTitan();
+        //firstPersonController.disEmbarkTitan();
 
     }
 

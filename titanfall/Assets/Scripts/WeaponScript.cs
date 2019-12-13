@@ -182,8 +182,10 @@ public class WeaponScript : MonoBehaviour
         float radius = 10f;
         Vector3 center = transform.position;
         int damageAmount = currentWeapon.damageAmount;
+        int layerMask = 1 << 9;
+        layerMask = ~layerMask;
 
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius, layerMask);
         StartCoroutine("coreAbilityCo",hitColliders);
     }
 
