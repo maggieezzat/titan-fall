@@ -138,15 +138,18 @@ public class PlayerScript : MonoBehaviour
     {
         if(weaponScript.currentWeapon.weaponType == WeaponType.primary && currentPlayerType==PlayerType.pilot)
         {
-            if(((PrimaryWeapon)weaponScript.currentWeapon).firingMode == FiringMode.single_shot && 
-            Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire 
-            && ((PrimaryWeapon)weaponScript.currentWeapon).ammoCount > 0)
-            {
-                nextTimeToFire = Time.time + 1f/fireRate;
-                weaponScript.playerFire();
-                ((PrimaryWeapon)weaponScript.currentWeapon).decAmmo();
-                    playerAudioSource2.clip = audioClips[4];
-                    playerAudioSource2.Play();
+                if (((PrimaryWeapon)weaponScript.currentWeapon).firingMode == FiringMode.single_shot &&
+                Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire
+                && ((PrimaryWeapon)weaponScript.currentWeapon).ammoCount > 0)
+                {
+                    nextTimeToFire = Time.time + 1f / fireRate;
+                    weaponScript.playerFire();
+                    ((PrimaryWeapon)weaponScript.currentWeapon).decAmmo();
+                    if (playerAudioSource2.clip != audioClips[4] || !playerAudioSource2.isPlaying)
+                    {
+                        playerAudioSource2.clip = audioClips[4];
+                        playerAudioSource2.Play();
+                    }
             }
             if(((PrimaryWeapon)weaponScript.currentWeapon).firingMode == FiringMode.automatic && 
             Input.GetButton("Fire1") && Time.time >= nextTimeToFire

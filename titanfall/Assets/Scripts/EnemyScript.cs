@@ -222,8 +222,11 @@ public class EnemyScript : MonoBehaviour
                 // enemyAnimator.SetTrigger("isFiring");
                 nextTimeToFire = Time.time + 1f / fireRate;
                 WeaponScript.Instance.enemyFire(enemyWeapon, nozzle);
-                    audioSource2.clip = audioClips[4];
-                    audioSource2.Play();
+                    if(audioSource2.clip != audioClips[4] || !audioSource2.isPlaying)
+                    {
+                        audioSource2.clip = audioClips[4];
+                        audioSource2.Play();
+                    }
                     if (!isMuzzlePlaying)
                 {
                     muzzleFlash.Play();
@@ -288,9 +291,16 @@ public class EnemyScript : MonoBehaviour
 
     public void takeDamage(int damage)
     {
-            audioSource1.clip = audioClips[1]; //getting hit
-            audioSource2.clip = audioClips[2]; //bullet impact
-            audioSource1.Play();
+            if(audioSource1.clip != audioClips[1] || !audioSource1.isPlaying)
+            {
+                audioSource1.clip = audioClips[1]; //getting hit
+                audioSource1.Play();
+            }
+            if (audioSource2.clip != audioClips[2] || !audioSource2.isPlaying)
+            {
+                audioSource2.clip = audioClips[2]; //bullet impact
+                audioSource2.Play();
+            }
         health -= damage;
         //healthBar.BarValue = health;
         healthBar.UpdateValue(health, 100);
