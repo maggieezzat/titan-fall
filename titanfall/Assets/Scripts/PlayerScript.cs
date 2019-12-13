@@ -275,13 +275,19 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-    public void takeDamage(int damage)
-    {
-        isDead = currentPlayer.decHealth(damage);
-            playerAudioSource1.clip = audioClips[2];
-            playerAudioSource1.Play();
-            playerAudioSource2.clip = audioClips[3];
+        public void takeDamage(int damage)
+        {
+            isDead = currentPlayer.decHealth(damage);
+            if (playerAudioSource1.clip != audioClips[2] || !playerAudioSource1.isPlaying)
+            {
+                playerAudioSource1.clip = audioClips[2];
+                playerAudioSource1.Play();
+            }
+            if (playerAudioSource2.clip != audioClips[3] || !playerAudioSource2.isPlaying)
+            {
+                playerAudioSource2.clip = audioClips[3];
             playerAudioSource2.Play();
+            }
             regenerationCount = 0f;
         StartCoroutine(showHitScreenCo());
     }
@@ -334,12 +340,16 @@ public class PlayerScript : MonoBehaviour
     }
 
     IEnumerator gameOverCo()
+    {
+        if(playerAudioSource1.clip != audioClips[9] || !playerAudioSource1.isPlaying)
         {
             playerAudioSource1.clip = audioClips[9];
             playerAudioSource1.Play();
-            yield return new WaitForSeconds(1.5f);
-            playerAudioSource1.Stop();
-            playerAudioSource2.Stop();
+        }
+        yield return new WaitForSeconds(1.5f);
+            isDead = false;
+        playerAudioSource1.Stop();
+        playerAudioSource2.Stop();
         CombatLevelManager.Instance.gameOver();
     }
 
