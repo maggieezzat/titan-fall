@@ -110,8 +110,6 @@ public class PlayerScript : MonoBehaviour
 
         if(isDead && currentPlayerType == PlayerType.pilot)
         {
-            playerAudioSource1.clip = audioClips[9];
-            playerAudioSource1.Play();
             bloodyScreen.SetActive(false);
             StartCoroutine(gameOverCo());
         }
@@ -336,8 +334,12 @@ public class PlayerScript : MonoBehaviour
     }
 
     IEnumerator gameOverCo()
-    {
-        yield return new WaitForSeconds(0.3f);
+        {
+            playerAudioSource1.clip = audioClips[9];
+            playerAudioSource1.Play();
+            yield return new WaitForSeconds(1.5f);
+            playerAudioSource1.Stop();
+            playerAudioSource2.Stop();
         CombatLevelManager.Instance.gameOver();
     }
 
